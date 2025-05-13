@@ -1,0 +1,134 @@
+[
+  {
+    "pregunta": "¿Qué emoción representa esta situación?",
+    "id_pregunta": 1,
+    "opciones": [
+      {
+        "id_opcion": 1,
+        "opcion_texto": "Alegría",
+        "es_correcto": false,
+        "emocion": {
+          "imagen_url": "https://example.com/emocion1.png",
+          "nombre_emocion": "Alegría"
+        }
+      },
+      {
+        "id_opcion": 2,
+        "opcion_texto": "Tristeza",
+        "es_correcto": true,
+        "emocion": {
+          "imagen_url": "https://example.com/emocion2.png",
+          "nombre_emocion": "Tristeza"
+        }
+      },
+      {
+        "id_opcion": 3,
+        "opcion_texto": "Enojo",
+        "es_correcto": false,
+        "emocion": {
+          "imagen_url": "https://example.com/emocion9.png",
+          "nombre_emocion": "Enojo"
+        }
+      }
+    ]
+  },
+  {
+    "pregunta": "¿Qué emoción sientes al recibir buenas noticias?",
+    "id_pregunta": 2,
+    "opciones": [
+      {
+        "id_opcion": 1,
+        "opcion_texto": "Miedo",
+        "es_correcto": false,
+        "emocion": {
+          "imagen_url": "https://example.com/emocion3.png",
+          "nombre_emocion": "Miedo"
+        }
+      },
+      {
+        "id_opcion": 2,
+        "opcion_texto": "Alegría",
+        "es_correcto": true,
+        "emocion": {
+          "imagen_url": "https://example.com/emocion4.png",
+          "nombre_emocion": "Alegría"
+        }
+      },
+      {
+        "id_opcion": 3,
+        "opcion_texto": "Tristeza",
+        "es_correcto": false,
+        "emocion": {
+          "imagen_url": "https://example.com/emocion10.png",
+          "nombre_emocion": "Tristeza"
+        }
+      }
+    ]
+  },
+  {
+    "pregunta": "¿Qué emoción representa perder algo importante?",
+    "id_pregunta": 3,
+    "opciones": [
+      {
+        "id_opcion": 1,
+        "opcion_texto": "Tristeza",
+        "es_correcto": true,
+        "emocion": {
+          "imagen_url": "https://example.com/emocion5.png",
+          "nombre_emocion": "Tristeza"
+        }
+      },
+      {
+        "id_opcion": 2,
+        "opcion_texto": "Enojo",
+        "es_correcto": false,
+        "emocion": {
+          "imagen_url": "https://example.com/emocion6.png",
+          "nombre_emocion": "Enojo"
+        }
+      },
+      {
+        "id_opcion": 3,
+        "opcion_texto": "Miedo",
+        "es_correcto": false,
+        "emocion": {
+          "imagen_url": "https://example.com/emocion11.png",
+          "nombre_emocion": "Miedo"
+        }
+      }
+    ]
+  },
+  {
+    "pregunta": "¿Qué emoción sientes al enfrentar un peligro?",
+    "id_pregunta": 4,
+    "opciones": [
+      {
+        "id_opcion": 1,
+        "opcion_texto": "Miedo",
+        "es_correcto": true,
+        "emocion": {
+          "imagen_url": "https://example.com/emocion7.png",
+          "nombre_emocion": "Miedo"
+        }
+      },
+      {
+        "id_opcion": 2,
+        "opcion_texto": "Alegría",
+        "es_correcto": false,
+        "emocion": {
+          "imagen_url": "https://example.com/emocion8.png",
+          "nombre_emocion": "Alegría"
+        }
+      },
+      {
+        "id_opcion": 3,
+        "opcion_texto": "Enojo",
+        "es_correcto": false,
+        "emocion": {
+          "imagen_url": "https://example.com/emocion12.png",
+          "nombre_emocion": "Enojo"
+        }
+      }
+    ]
+  }
+]
