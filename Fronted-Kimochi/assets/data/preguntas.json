@@ -1,72 +1,72 @@
 [
   {
-    "pregunta": "¿Qué emoción representa esta situación?",
+    "pregunta": "¿Cuál de estas imágenes representa la emoción de Alegría?",
     "id_pregunta": 1,
     "opciones": [
       {
         "id_opcion": 1,
         "opcion_texto": "Alegría",
-        "es_correcto": false,
+        "es_correcto": true,
         "emocion": {
-          "imagen_url": "https://example.com/emocion1.png",
+          "imagen_local": "alegria.png",
           "nombre_emocion": "Alegría"
         }
       },
       {
         "id_opcion": 2,
         "opcion_texto": "Tristeza",
-        "es_correcto": true,
+        "es_correcto": false,
         "emocion": {
-          "imagen_url": "https://example.com/emocion2.png",
+          "imagen_local": "tristeza.png",
           "nombre_emocion": "Tristeza"
         }
       },
       {
         "id_opcion": 3,
-        "opcion_texto": "Enojo",
+        "opcion_texto": "Enfado",
         "es_correcto": false,
         "emocion": {
-          "imagen_url": "https://example.com/emocion9.png",
-          "nombre_emocion": "Enojo"
+          "imagen_local": "enfado.png",
+          "nombre_emocion": "Enfado"
         }
       }
     ]
   },
   {
-    "pregunta": "¿Qué emoción sientes al recibir buenas noticias?",
+    "pregunta": "¿Cuál de estas imágenes representa la emoción de Miedo?",
     "id_pregunta": 2,
     "opciones": [
       {
         "id_opcion": 1,
         "opcion_texto": "Miedo",
-        "es_correcto": false,
+        "es_correcto": true,
         "emocion": {
-          "imagen_url": "https://example.com/emocion3.png",
+          "imagen_local": "miedo.png",
           "nombre_emocion": "Miedo"
         }
       },
       {
         "id_opcion": 2,
         "opcion_texto": "Alegría",
-        "es_correcto": true,
+        "es_correcto": false,
         "emocion": {
-          "imagen_url": "https://example.com/emocion4.png",
+          "imagen_local": "alegria.png",
           "nombre_emocion": "Alegría"
         }
       },
       {
         "id_opcion": 3,
-        "opcion_texto": "Tristeza",
+        "opcion_texto": "Enfado",
         "es_correcto": false,
         "emocion": {
-          "imagen_url": "https://example.com/emocion10.png",
-          "nombre_emocion": "Tristeza"
+          "imagen_local": "enfado.png",
+          "nombre_emocion": "Enfado"
         }
       }
     ]
   },
   {
-    "pregunta": "¿Qué emoción representa perder algo importante?",
+    "pregunta": "¿Cuál de estas imágenes representa la emoción de Tristeza?",
     "id_pregunta": 3,
     "opciones": [
       {
@@ -74,17 +74,17 @@
         "opcion_texto": "Tristeza",
         "es_correcto": true,
         "emocion": {
-          "imagen_url": "https://example.com/emocion5.png",
+          "imagen_local": "tristeza.png",
           "nombre_emocion": "Tristeza"
         }
       },
       {
         "id_opcion": 2,
-        "opcion_texto": "Enojo",
+        "opcion_texto": "Enfado",
         "es_correcto": false,
         "emocion": {
-          "imagen_url": "https://example.com/emocion6.png",
-          "nombre_emocion": "Enojo"
+          "imagen_local": "enfado.png",
+          "nombre_emocion": "Enfado"
         }
       },
       {
@@ -92,41 +92,107 @@
         "opcion_texto": "Miedo",
         "es_correcto": false,
         "emocion": {
-          "imagen_url": "https://example.com/emocion11.png",
+          "imagen_local": "miedo.png",
           "nombre_emocion": "Miedo"
         }
       }
     ]
   },
   {
-    "pregunta": "¿Qué emoción sientes al enfrentar un peligro?",
+    "pregunta": "¿Cuál de estas imágenes muestra cómo se siente alguien que ha perdido su juguete favorito?",
     "id_pregunta": 4,
     "opciones": [
       {
         "id_opcion": 1,
-        "opcion_texto": "Miedo",
-        "es_correcto": true,
-        "emocion": {
-          "imagen_url": "https://example.com/emocion7.png",
-          "nombre_emocion": "Miedo"
-        }
-      },
-      {
-        "id_opcion": 2,
         "opcion_texto": "Alegría",
         "es_correcto": false,
         "emocion": {
-          "imagen_url": "https://example.com/emocion8.png",
+          "imagen_local": "alegria.png",
           "nombre_emocion": "Alegría"
         }
       },
       {
+        "id_opcion": 2,
+        "opcion_texto": "Tristeza",
+        "es_correcto": true,
+        "emocion": {
+          "imagen_local": "tristeza.png",
+          "nombre_emocion": "Tristeza"
+        }
+      },
+      {
         "id_opcion": 3,
-        "opcion_texto": "Enojo",
+        "opcion_texto": "Miedo",
         "es_correcto": false,
         "emocion": {
-          "imagen_url": "https://example.com/emocion12.png",
-          "nombre_emocion": "Enojo"
+          "imagen_local": "miedo.png",
+          "nombre_emocion": "Miedo"
+        }
+      }
+    ]
+  },
+  {
+    "pregunta": "Imagínate que un perro te ladra muy fuerte en la calle. ¿Cuál de estas imágenes representa cómo te sentirías?",
+    "id_pregunta": 5,
+    "opciones": [
+      {
+        "id_opcion": 1,
+        "opcion_texto": "Enfado",
+        "es_correcto": false,
+        "emocion": {
+          "imagen_local": "enfado.png",
+          "nombre_emocion": "Enfado"
+        }
+      },
+      {
+        "id_opcion": 2,
+        "opcion_texto": "Miedo",
+        "es_correcto": true,
+        "emocion": {
+          "imagen_local": "miedo.png",
+          "nombre_emocion": "Miedo"
+        }
+      },
+      {
+        "id_opcion": 3,
+        "opcion_texto": "Alegría",
+        "es_correcto": false,
+        "emocion": {
+          "imagen_local": "alegria.png",
+          "nombre_emocion": "Alegría"
+        }
+      }
+    ]
+  },
+  {
+    "pregunta": "Tu amigo te ha empujado sin querer y se ríe. ¿Cuál de estas imágenes representa mejor cómo podrías sentirte?",
+    "id_pregunta": 6,
+    "opciones": [
+      {
+        "id_opcion": 1,
+        "opcion_texto": "Tristeza",
+        "es_correcto": false,
+        "emocion": {
+          "imagen_local": "tristeza.png",
+          "nombre_emocion": "Tristeza"
+        }
+      },
+      {
+        "id_opcion": 2,
+        "opcion_texto": "Enfado",
+        "es_correcto": true,
+        "emocion": {
+          "imagen_local": "enfado.png",
+          "nombre_emocion": "Enfado"
+        }
+      },
+      {
+        "id_opcion": 3,
+        "opcion_texto": "Miedo",
+        "es_correcto": false,
+        "emocion": {
+          "imagen_local": "miedo.png",
+          "nombre_emocion": "Miedo"
         }
       }
     ]

@@ -14,6 +14,7 @@ import { useRouter } from "expo-router";
 import Dock from "@/components/dock";
 
 import consejos from "@/constants/consejos.json";
+import { SafeAreaView } from "react-native-safe-area-context";
 const DashboardScreen = () => {
   const router = useRouter();
   const isTablet = useIsTablet();
@@ -25,43 +26,45 @@ const DashboardScreen = () => {
 
   const mensaje = consejoAleatorio.texto;
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title}>Bienvenido a Kimochi</Text>
-      </View>
-
-      <View>
-        <Text style={styles.adviceText}>{mensaje}</Text>
-      </View>
-      <View style={{ marginTop: isTablet ? 225 : 10 }}>
-        <View style={styles.cardsContainer}>
-          <Card
-            icon={<FontAwesome5 name="gamepad" size={40} color="#6a1b9a" />}
-            title="Juegos"
-            description="Responde a diferentes situaciones de la vida."
-            onPress={() => router.push("/empatia")}
-          />
-          <Card
-            icon={<FontAwesome5 name="award" size={40} color="#6a1b9a" />}
-            title="Recompensas"
-            description="Gana insignias y recompensas por tu progreso."
-            // onPress={() => router.push('/rewards')}
-          />
-          <Card
-            icon={<FontAwesome5 name="book" size={40} color="#6a1b9a" />}
-            title="Diario de Emociones"
-            description="Gana insignias y Diario de Emociones por tu progreso."
-            // onPress={() => router.push('/rewards')}
-          />
+    <SafeAreaView style={{ flex: 1, backgroundColor: "black" }}>
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <Text style={styles.title}>Bienvenido a Kimochi</Text>
         </View>
-        {/* <Card
+
+        <View>
+          <Text style={styles.adviceText}>{mensaje}</Text>
+        </View>
+        <View style={{ marginTop: isTablet ? 225 : 0 }}>
+          <View style={styles.cardsContainer}>
+            <Card
+              icon={<FontAwesome5 name="gamepad" size={40} color="#6a1b9a" />}
+              title="Juegos"
+              description="Responde a diferentes situaciones de la vida."
+              onPress={() => router.push("/empatia")}
+            />
+            <Card
+              icon={<FontAwesome5 name="award" size={40} color="#6a1b9a" />}
+              title="Recompensas"
+              description="Gana insignias y recompensas por tu progreso."
+              // onPress={() => router.push('/rewards')}
+            />
+            <Card
+              icon={<FontAwesome5 name="book" size={40} color="#6a1b9a" />}
+              title="Diario de Emociones"
+              description="Gana insignias y Diario de Emociones por tu progreso."
+              // onPress={() => router.push('/rewards')}
+            />
+          </View>
+          {/* <Card
           icon={<FontAwesome5 name="lightbulb" size={40} color="#6a1b9a" />}
           title="Consejos Motivacionales"
           description="Obtén un consejo para tu día."
           // onPress={() => router.push('/adviceapi')}
         /> */}
+        </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -113,11 +116,11 @@ const styles = StyleSheet.create({
 
   container: {
     flex: 1,
-    padding: 20,
+    paddingHorizontal: 20,
     backgroundColor: "#fff",
   },
   header: {
-    marginBottom: 30,
+    // marginBottom: 10,
   },
   title: {
     textAlign: "center",
@@ -148,7 +151,8 @@ const styles = StyleSheet.create({
   },
   card: {
     backgroundColor: "#f4f4f4",
-    padding: isTablet ? 40 : 10,
+    padding: isTablet ? 40 : 4,
+    // margin: isTablet ? 20 : 10,
     borderRadius: 15,
     alignItems: "center",
     shadowColor: "#000",

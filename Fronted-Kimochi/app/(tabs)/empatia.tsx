@@ -10,7 +10,8 @@ import {
 } from "react-native";
 import { ScrollView } from "react-native";
 import { useRouter } from "expo-router";
-
+import { SafeAreaView } from "react-native-safe-area-context";
+import imageMap from "@/constants/emocionesMap";
 // Componente principal
 const EmpatiaScreen = () => {
   // Estados para gestionar el juego
@@ -92,65 +93,67 @@ const EmpatiaScreen = () => {
   const current = questions[currentIndex];
 
   return (
-    <ScrollView style={styles.container}>
-      <Text style={styles.title}>Juego de Empatía</Text>
-      <Text style={styles.question}>{current.pregunta}</Text>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
+      <View style={styles.container}>
+        <Text style={styles.title}>Juego de Emociones</Text>
+        <Text style={styles.question}>{current.pregunta}</Text>
 
-      {/* Opciones para la pregunta actual */}
-      <View style={styles.optionsContainer}>
-        {current.opciones.map(
-          (option: {
-            id_opcion: React.Key | null | undefined;
-            emocion: { imagen_url: any };
-            opcion_texto:
-              | string
-              | number
-              | boolean
-              | React.ReactElement<
-                  any,
-                  string | React.JSXElementConstructor<any>
+        {/* Opciones para la pregunta actual */}
+        <View style={styles.optionsContainer}>
+          {current.opciones.map(
+            (option: {
+              id_opcion: React.Key | null | undefined;
+              emocion: { imagen_local: any };
+              opcion_texto:
+                | string
+                | number
+                | boolean
+                | React.ReactElement<
+                    any,
+                    string | React.JSXElementConstructor<any>
+                  >
+                | Iterable<React.ReactNode>
+                | React.ReactPortal
+                | null
+                | undefined;
+            }) => {
+              // Color del borde según estado de respuesta
+              let borderColor = "#ccc";
+              if (option.id_opcion === selectedOption) {
+                borderColor =
+                  answerState === "correcta"
+                    ? "green"
+                    : answerState === "incorrecta"
+                    ? "red"
+                    : "#6a1b9a";
+              }
+
+              return (
+                <TouchableOpacity
+                  key={option.id_opcion}
+                  style={[styles.option, { borderColor }]}
+                  onPress={() => handleOptionPress(option)}
+                  disabled={answerState === "correcta"} // Desactiva si ya acertó
                 >
-              | Iterable<React.ReactNode>
-              | React.ReactPortal
-              | null
-              | undefined;
-          }) => {
-            // Color del borde según estado de respuesta
-            let borderColor = "#ccc";
-            if (option.id_opcion === selectedOption) {
-              borderColor =
-                answerState === "correcta"
-                  ? "green"
-                  : answerState === "incorrecta"
-                  ? "red"
-                  : "#6a1b9a";
+                  {/* Mostrar imagen si existe */}
+                  {option.emocion?.imagen_local && (
+                    <Image
+                      source={imageMap[option.emocion.imagen_local]}
+                      style={styles.image}
+                    />
+                  )}
+                  {/* Texto de la opción */}
+                  {/* <Text style={styles.optionText}>{option.opcion_texto}</Text> */}
+                </TouchableOpacity>
+              );
             }
+          )}
+        </View>
 
-            return (
-              <TouchableOpacity
-                key={option.id_opcion}
-                style={[styles.option, { borderColor }]}
-                onPress={() => handleOptionPress(option)}
-                disabled={answerState === "correcta"} // Desactiva si ya acertó
-              >
-                {/* Mostrar imagen si existe */}
-                {option.emocion?.imagen_url && (
-                  <Image
-                    source={{ uri: option.emocion.imagen_url }}
-                    style={styles.image}
-                  />
-                )}
-                {/* Texto de la opción */}
-                <Text style={styles.optionText}>{option.opcion_texto}</Text>
-              </TouchableOpacity>
-            );
-          }
-        )}
+        {/* Mensaje de feedback */}
+        {feedback !== "" && <Text style={styles.feedback}>{feedback}</Text>}
       </View>
-
-      {/* Mensaje de feedback */}
-      {feedback !== "" && <Text style={styles.feedback}>{feedback}</Text>}
-    </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -185,13 +188,22 @@ const styles = StyleSheet.create({
   },
   optionsContainer: {
     gap: 20,
+    margin: isTablet ? 10 : 15,
+    paddingBottom: isTablet ? 10 : 30,
     alignItems: "center",
+    // justifyContent: 'center',
+    shadowColor: "#000",
+    shadowOpacity: 0.2,
+    shadowOffset: { width: 2, height: 2 },
+    shadowRadius: 5,
+    elevation: 5,
   },
   option: {
     borderWidth: 2,
     borderRadius: 12,
-    padding: 15,
+    padding: 20,
     alignItems: "center",
+    height: isTablet ? 350 : 150,
     width: "90%",
     backgroundColor: "#f8f8f8",
   },
