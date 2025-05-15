@@ -1,0 +1,52 @@
+[
+  {
+    "imagen": "caso1.png",
+    "situacion": "¿Cómo te sentirías si un amigo te empuja sin querer?",
+    "opciones": [
+      { "texto": "Enfadado", "es_correcta": true },
+      { "texto": "Contento", "es_correcta": false },
+      { "texto": "Triste", "es_correcta": false },
+      { "texto": "Hambriento", "es_correcta": false }
+    ]
+  },
+  {
+    "imagen": "caso2.png",
+    "situacion": "¿Cómo te sentirías si alguien te da un abrazo?",
+    "opciones": [
+      { "texto": "Feliz", "es_correcta": true },
+      { "texto": "Asustado", "es_correcta": false },
+      { "texto": "Enfadado", "es_correcta": false },
+      { "texto": "Confundido", "es_correcta": false }
+    ]
+  },
+  {
+    "imagen": "caso3.png",
+    "situacion": "¿Cómo te sentirías si alguien te ha pegado?",
+    "opciones": [
+      { "texto": "Triste", "es_correcta": true },
+      { "texto": "Contento", "es_correcta": false },
+      { "texto": "Asustado", "es_correcta": true },
+      { "texto": "Hambriento", "es_correcta": false }
+    ]
+  },
+  {
+    "imagen": "caso4.png",
+    "situacion": "¿Cómo te sentirías si pierdes tu juguete favorito?",
+    "opciones": [
+      { "texto": "Triste", "es_correcta": true },
+      { "texto": "Feliz", "es_correcta": false },
+      { "texto": "Sorprendido", "es_correcta": false },
+      { "texto": "Relajado", "es_correcta": false }
+    ]
+  },
+  {
+    "imagen": "caso5.png",
+    "situacion": "¿Cómo te sentirías si escuchas un ruido raro por la noche?",
+    "opciones": [
+      { "texto": "Asustado", "es_correcta": true },
+      { "texto": "Tranquilo", "es_correcta": false },
+      { "texto": "Feliz", "es_correcta": false },
+      { "texto": "Con sueño", "es_correcta": false }
+    ]
+  }
+]

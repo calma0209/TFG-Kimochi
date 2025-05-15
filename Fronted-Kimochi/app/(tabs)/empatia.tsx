@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import preguntas from "../../assets/data/preguntas.json";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -8,171 +7,161 @@ import {
   Image,
   Dimensions,
 } from "react-native";
-import { ScrollView } from "react-native";
-import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
+import preguntasJSON from "@/assets/data/preguntasEmpatia.json";
 import imageMap from "@/constants/emocionesMap";
-// Componente principal
-const EmpatiaScreen = () => {
-  // Estados para gestionar el juego
-  const [questions, setQuestions] = useState<any[]>([]); // Lista de preguntas
-  const [currentIndex, setCurrentIndex] = useState(0); // Pregunta actual
-  const [selectedOption, setSelectedOption] = useState<number | null>(null); // Opción seleccionada
-  const [answerState, setAnswerState] = useState<
-    "correcta" | "incorrecta" | null
-  >(null); // Si fue correcta o incorrecta
-  const [feedback, setFeedback] = useState<string>(""); // Mensaje de feedback
-  const [gameOver, setGameOver] = useState(false); // Si terminó el juego
 
-  // Hook que se ejecuta al cargar la pantalla
+const EmpatiaSituacional = () => {
+  const [preguntas, setPreguntas] = useState<any[]>([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [respuestaSeleccionada, setRespuestaSeleccionada] = useState<
+    string | null
+  >(null);
+  const [feedback, setFeedback] = useState<string>("");
+  const [juegoTerminado, setJuegoTerminado] = useState(false);
+
   useEffect(() => {
-    setQuestions(preguntas);
+    iniciarJuego();
   }, []);
 
-  // Cuando se pulsa una opción
-  const handleOptionPress = (option: any) => {
-    setSelectedOption(option.id_opcion); // Marcar la opción elegida
-
-    if (option.es_correcto) {
-      setFeedback("¡Respuesta correcta!");
-      setAnswerState("correcta");
-      // Avanza a la siguiente pregunta después de 2 segundos
-      setTimeout(() => {
-        goToNextQuestion();
-      }, 2000);
-    } else {
-      setFeedback("Respuesta incorrecta. ¡Inténtalo de nuevo!");
-      setAnswerState("incorrecta");
-    }
-  };
-
-  // Avanzar a la siguiente pregunta
-  const goToNextQuestion = () => {
-    const next = currentIndex + 1;
-    if (next < questions.length) {
-      setCurrentIndex(next); // Mostrar siguiente
-      setSelectedOption(null);
-      setAnswerState(null);
-      setFeedback("");
-    } else {
-      setGameOver(true); // Si no hay más, fin del juego
-    }
-  };
-
-  // Reinicia el juego desde el principio
-  const restartGame = () => {
+  const iniciarJuego = () => {
+    const barajadas = shuffleArray([...preguntasJSON]);
+    setPreguntas(barajadas);
     setCurrentIndex(0);
-    setSelectedOption(null);
-    setAnswerState(null);
+    setRespuestaSeleccionada(null);
     setFeedback("");
-    setGameOver(false);
+    setJuegoTerminado(false);
   };
 
-  // Mientras se cargan las preguntas
-  if (questions.length === 0) {
-    return (
-      <View style={styles.centered}>
-        <Text>Cargando preguntas...</Text>
-      </View>
-    );
-  }
+  const shuffleArray = (array: any[]) => {
+    return array.sort(() => Math.random() - 0.5);
+  };
 
-  // Si el juego ha terminado
-  if (gameOver) {
+  const manejarRespuesta = (opcion: any) => {
+    setRespuestaSeleccionada(opcion.texto);
+    setFeedback(opcion.es_correcta ? "¡Correcto!" : "Incorrecto.");
+
+    setTimeout(() => {
+      const siguiente = currentIndex + 1;
+      if (siguiente < preguntas.length) {
+        setCurrentIndex(siguiente);
+        setRespuestaSeleccionada(null);
+        setFeedback("");
+      } else {
+        setJuegoTerminado(true);
+      }
+    }, 2000);
+  };
+
+  if (preguntas.length === 0) return null;
+  if (juegoTerminado) {
     return (
-      <View style={styles.centered}>
+      <SafeAreaView
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "#fff",
+        }}
+      >
         <Text style={styles.title}>🎉 ¡Fin del juego!</Text>
-        <TouchableOpacity style={styles.button} onPress={restartGame}>
+        <TouchableOpacity style={styles.button} onPress={iniciarJuego}>
           <Text style={styles.buttonText}>Volver a jugar</Text>
         </TouchableOpacity>
-      </View>
+      </SafeAreaView>
     );
   }
 
-  // Pregunta actual
-  const current = questions[currentIndex];
+  const preguntaActual = preguntas[currentIndex];
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "black" }}>
       <View style={styles.container}>
-        <Text style={styles.title}>Juego de Emociones</Text>
-        <Text style={styles.question}>{current.pregunta}</Text>
+        {/* Imagen opcional */}
+        {preguntaActual.imagen && (
+          <Image
+            source={imageMap[preguntaActual.imagen]}
+            style={styles.imagen}
+          />
+        )}
 
-        {/* Opciones para la pregunta actual */}
-        <View style={styles.optionsContainer}>
-          {current.opciones.map(
-            (option: {
-              id_opcion: React.Key | null | undefined;
-              emocion: { imagen_local: any };
-              opcion_texto:
-                | string
-                | number
-                | boolean
-                | React.ReactElement<
-                    any,
-                    string | React.JSXElementConstructor<any>
-                  >
-                | Iterable<React.ReactNode>
-                | React.ReactPortal
-                | null
-                | undefined;
-            }) => {
-              // Color del borde según estado de respuesta
-              let borderColor = "#ccc";
-              if (option.id_opcion === selectedOption) {
-                borderColor =
-                  answerState === "correcta"
-                    ? "green"
-                    : answerState === "incorrecta"
-                    ? "red"
-                    : "#6a1b9a";
-              }
+        <Text style={styles.situacion}>{preguntaActual.situacion}</Text>
 
-              return (
-                <TouchableOpacity
-                  key={option.id_opcion}
-                  style={[styles.option, { borderColor }]}
-                  onPress={() => handleOptionPress(option)}
-                  disabled={answerState === "correcta"} // Desactiva si ya acertó
-                >
-                  {/* Mostrar imagen si existe */}
-                  {option.emocion?.imagen_local && (
-                    <Image
-                      source={imageMap[option.emocion.imagen_local]}
-                      style={styles.image}
-                    />
-                  )}
-                  {/* Texto de la opción */}
-                  {/* <Text style={styles.optionText}>{option.opcion_texto}</Text> */}
-                </TouchableOpacity>
-              );
-            }
-          )}
+        <View style={styles.grid}>
+          {preguntaActual.opciones.map((opcion: any, idx: number) => {
+            const seleccionado = opcion.texto === respuestaSeleccionada;
+            const color = seleccionado
+              ? opcion.es_correcta
+                ? "green"
+                : "red"
+              : "#ccc";
+
+            return (
+              <TouchableOpacity
+                key={idx}
+                style={[styles.opcion, { borderColor: color }]}
+                onPress={() => manejarRespuesta(opcion)}
+                disabled={!!respuestaSeleccionada}
+              >
+                <Text style={styles.opcionTexto}>{opcion.texto}</Text>
+              </TouchableOpacity>
+            );
+          })}
         </View>
 
-        {/* Mensaje de feedback */}
         {feedback !== "" && <Text style={styles.feedback}>{feedback}</Text>}
       </View>
     </SafeAreaView>
   );
 };
 
-// 🔧 Estilos responsive según el ancho del dispositivo
 const { width } = Dimensions.get("window");
 const isTablet = width > 600;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: isTablet ? 40 : 30,
-    backgroundColor: "#fff",
-  },
-  centered: {
-    flex: 1,
+    padding: isTablet ? 40 : 20,
     justifyContent: "center",
     alignItems: "center",
-    padding: 20,
-    backgroundColor: "#fff",
+    backgroundColor: "white",
+  },
+  imagen: {
+    width: isTablet ? 250 : 180,
+    height: isTablet ? 200 : 150,
+    resizeMode: "contain",
+  },
+  situacion: {
+    fontSize: isTablet ? 22 : 18,
+    textAlign: "center",
+    marginBottom: 30,
+    fontWeight: "bold",
+    color: "#333",
+  },
+  grid: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    gap: 20,
+  },
+  opcion: {
+    width: width / 2.5,
+    paddingVertical: 15,
+    borderWidth: 2,
+    borderRadius: 12,
+    alignItems: "center",
+    margin: 10,
+    backgroundColor: "#f0f0f0",
+  },
+  opcionTexto: {
+    fontSize: isTablet ? 20 : 16,
+    textAlign: "center",
+  },
+  feedback: {
+    fontSize: 20,
+    marginTop: 30,
+    color: "#6a1b9a",
+    fontWeight: "bold",
   },
   title: {
     fontSize: isTablet ? 28 : 22,
@@ -180,48 +169,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "#6a1b9a",
     marginBottom: 20,
-  },
-  question: {
-    fontSize: isTablet ? 22 : 18,
-    textAlign: "center",
-    marginBottom: 20,
-  },
-  optionsContainer: {
-    gap: 20,
-    margin: isTablet ? 10 : 15,
-    paddingBottom: isTablet ? 10 : 30,
-    alignItems: "center",
-    // justifyContent: 'center',
-    shadowColor: "#000",
-    shadowOpacity: 0.2,
-    shadowOffset: { width: 2, height: 2 },
-    shadowRadius: 5,
-    elevation: 5,
-  },
-  option: {
-    borderWidth: 2,
-    borderRadius: 12,
-    padding: 20,
-    alignItems: "center",
-    height: isTablet ? 350 : 150,
-    width: "90%",
-    backgroundColor: "#f8f8f8",
-  },
-  optionText: {
-    fontSize: isTablet ? 18 : 16,
-    marginTop: 10,
-    textAlign: "center",
-  },
-  image: {
-    width: isTablet ? 160 : 120,
-    height: isTablet ? 200 : 150,
-    resizeMode: "contain",
-  },
-  feedback: {
-    marginTop: 20,
-    fontSize: 18,
-    textAlign: "center",
-    color: "#333",
   },
   button: {
     marginTop: 20,
@@ -237,4 +184,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EmpatiaScreen;
+export default EmpatiaSituacional;

@@ -41,7 +41,7 @@ const DashboardScreen = () => {
               icon={<FontAwesome5 name="gamepad" size={40} color="#6a1b9a" />}
               title="Juegos"
               description="Responde a diferentes situaciones de la vida."
-              onPress={() => router.push("/empatia")}
+              onPress={() => router.push("/(tabs)/opcionesJuegos")}
             />
             <Card
               icon={<FontAwesome5 name="award" size={40} color="#6a1b9a" />}

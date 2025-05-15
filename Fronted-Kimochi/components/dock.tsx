@@ -18,7 +18,7 @@ const icons = [
   { icon: "home", action: () => router.push("/tabs-Dock/dashboard") },
 
   { icon: "user", action: () => router.push("/perfil") },
-  { icon: "cog", action: () => alert("Settings") },
+  // { icon: "cog", action: () => alert("Settings") },
 ];
 
 export default function Dock() {
