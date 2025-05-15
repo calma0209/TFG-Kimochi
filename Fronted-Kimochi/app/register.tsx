@@ -1,15 +1,66 @@
-import React from "react";
+import React, { useState} from "react";
 import {
   View,
   Text,
-  TextInput,
-  TouchableOpacity,
-  StyleSheet,
+  TextInput, //campo entrada para usuario
+  TouchableOpacity, //botón interactivo
+  StyleSheet, 
+  Alert, 
 } from "react-native";
 import { router } from "expo-router";
 // import { FontAwesome } from "@expo/vector-icons";
 
 export default function RegisterScreen() {
+  const [nombre, setNombre] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
+  
+    const handleRegister = async () => {
+
+      //limpiar el error anterior si es l¡que lo hay
+      setError("");
+
+      if (!nombre || !email || !password || !confirmPassword) {
+        setError("Por favor, completa todos los campos.");
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        setError("Las contraseñas no coinciden.");
+        return;
+      }
+    
+    try {
+      // await sirve para esperar a que se complete la promesa (fetch)
+      const response = await fetch("http://localhost:8080/api/usuarios", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          nombre_usuario: nombre,
+          email: email,
+          contraseña: password,
+          rol: "usuario",
+        }),
+      });
+      if (response.ok) {
+        setError("");
+        Alert.alert("Registro exitoso", "Tu cuenta ha sido creada.");
+        router.replace("/login");
+      }else {
+        const errorData = await response.json();
+        setError(errorData.message || "Error al registrar.");
+      }
+        }catch (error) {
+          console.error("Error al registrar el usuario:", error);
+          setError("No se pudo conectar al servidor. Verifica tu conexión.");
+        }
+    };
+    
+
   return (
     <View style={styles.container}>
       {/* Encabezado */}
@@ -22,34 +73,44 @@ export default function RegisterScreen() {
 
       {/* Formulario */}
       <View style={styles.form}>
+
         <TextInput
           placeholder="Nombre completo"
           style={styles.input}
+          value={nombre}
+          onChangeText={setNombre}
           placeholderTextColor="#555"
         />
         <TextInput
           placeholder="Correo electrónico"
           style={styles.input}
           keyboardType="email-address"
+          value={email}
+          onChangeText={setEmail}
           placeholderTextColor="#555"
         />
         <TextInput
           placeholder="Contraseña"
           style={styles.input}
           secureTextEntry
+          value={password}
+          onChangeText={setPassword}
           placeholderTextColor="#555"
         />
         <TextInput
           placeholder="Confirmar contraseña"
           style={styles.input}
           secureTextEntry
+          value={confirmPassword}
+          onChangeText={setConfirmPassword}
           placeholderTextColor="#555"
         />
 
+      {error ? <Text style={styles.errorText}>{error}</Text> : null}
+
         <TouchableOpacity
           style={styles.registerButton}
-          onPress={() => router.replace("/tabs-Dock/dashboard")}
-        >
+          onPress={handleRegister}>
           <Text style={styles.registerText}>Crear cuenta</Text>
         </TouchableOpacity>
       </View>
@@ -85,6 +146,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     height: 50,
     marginBottom: 15,
+  },
+    errorText: {
+    color: "red",
+    marginBottom: 10,
+    textAlign: "center",
   },
   registerButton: {
     backgroundColor: "#000",
