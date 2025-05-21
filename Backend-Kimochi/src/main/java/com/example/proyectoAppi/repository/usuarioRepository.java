@@ -10,4 +10,5 @@ import com.example.proyectoAppi.model.usuario;
 @Repository
 public interface usuarioRepository extends JpaRepository<usuario, Integer> {
     Optional<usuario> findByEmail(String email);
+    
 }
