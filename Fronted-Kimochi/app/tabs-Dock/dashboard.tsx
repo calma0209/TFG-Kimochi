@@ -47,13 +47,13 @@ const DashboardScreen = () => {
               icon={<FontAwesome5 name="award" size={40} color="#6a1b9a" />}
               title="Recompensas"
               description="Gana insignias y recompensas por tu progreso."
-              // onPress={() => router.push('/rewards')}
+              // onPress={() => router.push("/perfil")}
             />
             <Card
               icon={<FontAwesome5 name="book" size={40} color="#6a1b9a" />}
               title="Diario de Emociones"
               description="Gana insignias y Diario de Emociones por tu progreso."
-              // onPress={() => router.push('/rewards')}
+              onPress={() => router.push("/(tabs)/diarioEmociones")}
             />
           </View>
           {/* <Card
