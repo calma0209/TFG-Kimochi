@@ -17,7 +17,7 @@ const SENSITIVITY = 50;
 const icons = [
   { icon: "home", action: () => router.push("/tabs-Dock/dashboard") },
 
-  { icon: "user", action: () => router.push("/perfil") },
+  { icon: "user", action: () => router.push("/tabs-Dock/perfil") },
   // { icon: "cog", action: () => alert("Settings") },
 ];
 
