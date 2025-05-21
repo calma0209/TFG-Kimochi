@@ -38,7 +38,9 @@ public class usuario {
     @Column(nullable = false)
     private Rol rol = Rol.usuario;
 
-    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", updatable = false, insertable = false)
+    @Column(name = "fecha_creacion", nullable = false, updatable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    @org.hibernate.annotations.CreationTimestamp
     private Timestamp fecha_creacion;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)

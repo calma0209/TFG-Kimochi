@@ -1,11 +1,11 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
   TextInput, //campo entrada para usuario
   TouchableOpacity, //botón interactivo
-  StyleSheet, 
-  Alert, 
+  StyleSheet,
+  Alert,
 } from "react-native";
 import { router } from "expo-router";
 // import { FontAwesome } from "@expo/vector-icons";
@@ -16,25 +16,24 @@ export default function RegisterScreen() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
-  
-    const handleRegister = async () => {
 
-      //limpiar el error anterior si es l¡que lo hay
-      setError("");
+  const handleRegister = async () => {
+    //limpiar el error anterior si es que lo hay
+    setError("");
 
-      if (!nombre || !email || !password || !confirmPassword) {
-        setError("Por favor, completa todos los campos.");
-        return;
-      }
+    if (!nombre || !email || !password || !confirmPassword) {
+      setError("Por favor, completa todos los campos.");
+      return;
+    }
 
-      if (password !== confirmPassword) {
-        setError("Las contraseñas no coinciden.");
-        return;
-      }
-    
+    if (password !== confirmPassword) {
+      setError("Las contraseñas no coinciden.");
+      return;
+    }
+
     try {
       // await sirve para esperar a que se complete la promesa (fetch)
-      const response = await fetch("http://localhost:8080/api/usuarios", {
+      const response = await fetch("http://192.168.1.45:8080/api/usuarios", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -50,16 +49,25 @@ export default function RegisterScreen() {
         setError("");
         Alert.alert("Registro exitoso", "Tu cuenta ha sido creada.");
         router.replace("/login");
-      }else {
-        const errorData = await response.json();
-        setError(errorData.message || "Error al registrar.");
-      }
-        }catch (error) {
-          console.error("Error al registrar el usuario:", error);
-          setError("No se pudo conectar al servidor. Verifica tu conexión.");
+      } else {
+        const text = await response.text();
+
+        if (
+          text.includes("Duplicate entry") &&
+          text.includes("nombre_usuarios")
+        ) {
+          setError("Este nombre de usuario ya está en uso. Inicia sesión.");
+        } else if (text.includes("Duplicate entry") && text.includes("email")) {
+          setError("Este correo ya está registrado. Inicia sesión.");
+        } else {
+          setError("Error al registrar. Intenta con otro nombre o correo.");
         }
-    };
-    
+      }
+    } catch (error) {
+      console.error("Error al registrar el usuario:", error);
+      setError("No se pudo conectar al servidor. Verifica tu conexión.");
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -73,7 +81,6 @@ export default function RegisterScreen() {
 
       {/* Formulario */}
       <View style={styles.form}>
-
         <TextInput
           placeholder="Nombre completo"
           style={styles.input}
@@ -106,11 +113,12 @@ export default function RegisterScreen() {
           placeholderTextColor="#555"
         />
 
-      {error ? <Text style={styles.errorText}>{error}</Text> : null}
+        {error ? <Text style={styles.errorText}>{error}</Text> : null}
 
         <TouchableOpacity
           style={styles.registerButton}
-          onPress={handleRegister}>
+          onPress={handleRegister}
+        >
           <Text style={styles.registerText}>Crear cuenta</Text>
         </TouchableOpacity>
       </View>
@@ -147,7 +155,7 @@ const styles = StyleSheet.create({
     height: 50,
     marginBottom: 15,
   },
-    errorText: {
+  errorText: {
     color: "red",
     marginBottom: 10,
     textAlign: "center",
