@@ -1,6 +1,7 @@
 package com.example.proyectoAppi.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
@@ -32,11 +33,12 @@ public class usuarioController {
             @ApiResponse(responseCode = "201", description = "usuario creado correctamente"),
             @ApiResponse(responseCode = "400", description = "Error en la solicitud")
     })
-    public ResponseEntity<usuario> crearUsuario(@RequestBody usuario user) {
-
+    public ResponseEntity<?> crearUsuario(@RequestBody usuario user) {
+    
         if (userS.findByEmail(user.getEmail()).isPresent()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+            .body(Map.of("message", "El correo electrónico ya está registrado."));
+    }
 
         usuario nuevoUsuario = userS.crearUsuario(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevoUsuario);
