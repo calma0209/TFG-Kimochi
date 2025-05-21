@@ -33,7 +33,7 @@ export default function RegisterScreen() {
 
     try {
       // await sirve para esperar a que se complete la promesa (fetch)
-      const response = await fetch("http://192.168.1.45:8080/api/usuarios", {
+      const response = await fetch("http://192.168.1.135:8080/api/usuarios", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -50,17 +50,14 @@ export default function RegisterScreen() {
         Alert.alert("Registro exitoso", "Tu cuenta ha sido creada.");
         router.replace("/login");
       } else {
-        const text = await response.text();
-
-        if (
-          text.includes("Duplicate entry") &&
-          text.includes("nombre_usuarios")
-        ) {
-          setError("Este nombre de usuario ya está en uso. Inicia sesión.");
-        } else if (text.includes("Duplicate entry") && text.includes("email")) {
-          setError("Este correo ya está registrado. Inicia sesión.");
+        const errorData = await response.json();
+        // verificamos si el nombre o correo ya están en uso
+        if (errorData.message.includes("nombre de usuario")) {
+          setError("El nombre de usuario ya está en uso.");
+        } else if (errorData.message.includes("correo")) {
+          setError("El correo electrónico ya está en uso.");
         } else {
-          setError("Error al registrar. Intenta con otro nombre o correo.");
+          setError("Error al registrar. Intenta de nuevo.");
         }
       }
     } catch (error) {
