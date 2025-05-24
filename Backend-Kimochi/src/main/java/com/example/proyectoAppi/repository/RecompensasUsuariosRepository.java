@@ -12,6 +12,9 @@ import com.example.proyectoAppi.model.usuario;
 @Repository
 public interface RecompensasUsuariosRepository extends JpaRepository<RecompensasUsuarios, Integer> {
     List<RecompensasUsuarios> findByUsuario(usuario usuario);
+boolean existsByUsuarioAndRecompensa(usuario usuario, Recompensa recompensa);
+
+
 
     List<RecompensasUsuarios> findByRecompensa(Recompensa recompensa);
 }

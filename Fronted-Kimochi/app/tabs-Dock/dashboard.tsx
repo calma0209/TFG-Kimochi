@@ -47,7 +47,7 @@ const DashboardScreen = () => {
               icon={<FontAwesome5 name="award" size={40} color="#6a1b9a" />}
               title="Recompensas"
               description="Gana insignias y recompensas por tu progreso."
-              // onPress={() => router.push("/perfil")}
+              onPress={() => router.push("/(tabs)/recompensas")}
             />
             <Card
               icon={<FontAwesome5 name="book" size={40} color="#6a1b9a" />}

@@ -42,6 +42,8 @@ public class usuario {
     @Temporal(TemporalType.TIMESTAMP)
     @org.hibernate.annotations.CreationTimestamp
     private Timestamp fecha_creacion;
+    @Column(nullable = false)
+    private int Nivel;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
