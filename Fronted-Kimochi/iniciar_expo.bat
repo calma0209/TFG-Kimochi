@@ -1,2 +1,7 @@
 @echo off
+<<<<<<< HEAD
 set EXPO_DEVTOOLS_LISTEN_ADDRESS=  192.168.1.38 && set REACT_NATIVE_PACKAGER_HOSTNAME=  192.168.1.38&& npx expo start --host=lan
+=======
+
+set EXPO_DEVTOOLS_LISTEN_ADDRESS= 192.168.1.135 && set REACT_NATIVE_PACKAGER_HOSTNAME= 192.168.1.135&& npx expo start --host=lan
+>>>>>>> 477f316545df21509a794b97e5dd7803d0e43178
