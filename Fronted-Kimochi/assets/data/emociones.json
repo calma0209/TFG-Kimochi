@@ -1,0 +1,20 @@
+{
+  "emociones": [
+    {
+      "nombre": "Alegría",
+      "imagen": "alegria.png"
+    },
+    {
+      "nombre": "Tristeza",
+      "imagen": "tristeza.png"
+    },
+    {
+      "nombre": "Enfado",
+      "imagen": "enfado.png"
+    },
+    {
+      "nombre": "Miedo",
+      "imagen": "miedo.png"
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import preguntas from "../../assets/data/preguntas.json";
+import preguntasData from "../../assets/data/preguntas.json";
 import {
   View,
   Text,
@@ -7,89 +7,144 @@ import {
   TouchableOpacity,
   Image,
   Dimensions,
+  Alert,
 } from "react-native";
-import { ScrollView } from "react-native";
-import { router, useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { router } from "expo-router";
 import imageMap from "@/constants/emocionesMap";
-// Componente principal
+
 const EmpatiaScreen = () => {
-  // Estados para gestionar el juego
-  const [questions, setQuestions] = useState<any[]>([]); // Lista de preguntas
-  const [currentIndex, setCurrentIndex] = useState(0); // Pregunta actual
-  const [selectedOption, setSelectedOption] = useState<number | null>(null); // Opción seleccionada
+  const [nivelActual, setNivelActual] = useState(1);
+  const [questions, setQuestions] = useState<any[]>([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [answerState, setAnswerState] = useState<
     "correcta" | "incorrecta" | null
-  >(null); // Si fue correcta o incorrecta
-  const [feedback, setFeedback] = useState<string>(""); // Mensaje de feedback
-  const [gameOver, setGameOver] = useState(false); // Si terminó el juego
+  >(null);
+  const [feedback, setFeedback] = useState("");
+  const [gameOver, setGameOver] = useState(false);
+  const [nivelCompletadoMensaje, setNivelCompletadoMensaje] = useState(false);
 
-  // Hook que se ejecuta al cargar la pantalla
+  const usuarioId = 27;
+
   useEffect(() => {
-    setQuestions(preguntas);
+    obtenerNivel();
   }, []);
 
-  // Cuando se pulsa una opción
-  const handleOptionPress = (option: any) => {
-    setSelectedOption(option.id_opcion); // Marcar la opción elegida
+  useEffect(() => {
+    cargarPreguntas();
+  }, [nivelActual]);
 
+  const obtenerNivel = async () => {
+    try {
+      const res = await fetch(
+        `http://192.168.1.38:8080/api/usuarios/${usuarioId}/nivel`
+      );
+      const nivel = await res.json();
+      if (nivel > 0) setNivelActual(nivel);
+    } catch (error) {
+      console.error("Error obteniendo nivel:", error);
+    }
+  };
+
+  const cargarPreguntas = () => {
+    const preguntasNivel =
+      (preguntasData as any)[`nivel_${nivelActual}`]?.preguntas || [];
+    setQuestions(preguntasNivel);
+    setCurrentIndex(0);
+    setSelectedOption(null);
+    setAnswerState(null);
+    setFeedback("");
+  };
+
+  const handleOptionPress = (option: any) => {
+    setSelectedOption(option.id_opcion);
     if (option.es_correcto) {
       setFeedback("¡Respuesta correcta!");
       setAnswerState("correcta");
-      // Avanza a la siguiente pregunta después de 2 segundos
       setTimeout(() => {
         goToNextQuestion();
-      }, 2000);
+      }, 1500);
     } else {
       setFeedback("Respuesta incorrecta. ¡Inténtalo de nuevo!");
       setAnswerState("incorrecta");
     }
   };
 
-  // Avanzar a la siguiente pregunta
   const goToNextQuestion = () => {
     const next = currentIndex + 1;
     if (next < questions.length) {
-      setCurrentIndex(next); // Mostrar siguiente
+      setCurrentIndex(next);
       setSelectedOption(null);
       setAnswerState(null);
       setFeedback("");
     } else {
-      setGameOver(true); // Si no hay más, fin del juego
+      completarNivel();
     }
   };
 
-  // Reinicia el juego desde el principio
+  const completarNivel = async () => {
+    try {
+      const siguienteNivel = nivelActual + 1;
+
+      setNivelCompletadoMensaje(true); // Mostrar mensaje
+
+      await fetch(
+        `http://192.168.1.38:8080/api/usuarios/${usuarioId}/nivel-completado?nuevoNivel=${siguienteNivel}`,
+        { method: "POST" }
+      );
+
+      setTimeout(() => {
+        const haySiguiente = (preguntasData as any)[`nivel_${siguienteNivel}`];
+        if (haySiguiente) {
+          setNivelActual(siguienteNivel);
+        } else {
+          setGameOver(true);
+        }
+        setNivelCompletadoMensaje(false);
+      }, 2000); // Mostrar 2 segundos
+    } catch (error) {
+      Alert.alert("Error", "No se pudo actualizar el nivel y la recompensa");
+    }
+  };
+
   const restartGame = () => {
-    setCurrentIndex(0);
-    setSelectedOption(null);
-    setAnswerState(null);
-    setFeedback("");
+    setNivelActual(1);
     setGameOver(false);
   };
 
-  // Mientras se cargan las preguntas
-  if (questions.length === 0) {
+  if (nivelCompletadoMensaje) {
     return (
       <View style={styles.centered}>
-        <Text>Cargando preguntas...</Text>
+        <Text style={styles.title}>
+          🎉 ¡Felicidades! Has completado el Nivel {nivelActual}
+        </Text>
+        <Text style={styles.subtitle}>
+          Tienes la insignia de nivel {nivelActual} ¡Felicidades!
+        </Text>
       </View>
     );
   }
 
-  // Si el juego ha terminado
+  if (questions.length === 0) {
+    return (
+      <View style={styles.centered}>
+        <Text>Cargando preguntas del nivel {nivelActual}...</Text>
+      </View>
+    );
+  }
+
   if (gameOver) {
     return (
       <View style={styles.centered}>
-        <Text style={styles.title}>🎉 ¡Fin del juego!</Text>
+        <Text style={styles.title}>🎉 ¡Has completado todos los niveles!</Text>
         <TouchableOpacity style={styles.button} onPress={restartGame}>
-          <Text style={styles.buttonText}>Volver a jugar</Text>
+          <Text style={styles.buttonText}>Volver a empezar</Text>
         </TouchableOpacity>
       </View>
     );
   }
 
-  // Pregunta actual
   const current = questions[currentIndex];
 
   return (
@@ -102,69 +157,45 @@ const EmpatiaScreen = () => {
           <Text style={styles.backText}>{"<"}</Text>
         </TouchableOpacity>
 
-        <Text style={styles.title}>Juego de Emociones</Text>
+        <Text style={styles.title}>Nivel {nivelActual}</Text>
         <Text style={styles.question}>{current.pregunta}</Text>
 
-        {/* Opciones para la pregunta actual */}
         <View style={styles.optionsContainer}>
-          {current.opciones.map(
-            (option: {
-              id_opcion: React.Key | null | undefined;
-              emocion: { imagen_local: any };
-              opcion_texto:
-                | string
-                | number
-                | boolean
-                | React.ReactElement<
-                    any,
-                    string | React.JSXElementConstructor<any>
-                  >
-                | Iterable<React.ReactNode>
-                | React.ReactPortal
-                | null
-                | undefined;
-            }) => {
-              // Color del borde según estado de respuesta
-              let borderColor = "#ccc";
-              if (option.id_opcion === selectedOption) {
-                borderColor =
-                  answerState === "correcta"
-                    ? "green"
-                    : answerState === "incorrecta"
-                    ? "red"
-                    : "#6a1b9a";
-              }
-
-              return (
-                <TouchableOpacity
-                  key={option.id_opcion}
-                  style={[styles.option, { borderColor }]}
-                  onPress={() => handleOptionPress(option)}
-                  disabled={answerState === "correcta"} // Desactiva si ya acertó
-                >
-                  {/* Mostrar imagen si existe */}
-                  {option.emocion?.imagen_local && (
-                    <Image
-                      source={imageMap[option.emocion.imagen_local]}
-                      style={styles.image}
-                    />
-                  )}
-                  {/* Texto de la opción */}
-                  {/* <Text style={styles.optionText}>{option.opcion_texto}</Text> */}
-                </TouchableOpacity>
-              );
+          {current.opciones.map((option: any) => {
+            let borderColor = "#ccc";
+            if (option.id_opcion === selectedOption) {
+              borderColor =
+                answerState === "correcta"
+                  ? "green"
+                  : answerState === "incorrecta"
+                  ? "red"
+                  : "#6a1b9a";
             }
-          )}
+
+            return (
+              <TouchableOpacity
+                key={option.id_opcion}
+                style={[styles.option, { borderColor }]}
+                onPress={() => handleOptionPress(option)}
+                disabled={answerState === "correcta"}
+              >
+                {option.emocion?.imagen_local && (
+                  <Image
+                    source={imageMap[option.emocion.imagen_local]}
+                    style={styles.image}
+                  />
+                )}
+              </TouchableOpacity>
+            );
+          })}
         </View>
 
-        {/* Mensaje de feedback */}
         {feedback !== "" && <Text style={styles.feedback}>{feedback}</Text>}
       </View>
     </SafeAreaView>
   );
 };
 
-// 🔧 Estilos responsive según el ancho del dispositivo
 const { width } = Dimensions.get("window");
 const isTablet = width > 600;
 
@@ -176,7 +207,6 @@ const styles = StyleSheet.create({
   },
   backButton: {
     position: "absolute",
-    // top: 3,
     left: 10,
     zIndex: 10,
     padding: 10,
@@ -186,7 +216,6 @@ const styles = StyleSheet.create({
     color: "#6a1b9a",
     fontWeight: "bold",
   },
-
   centered: {
     flex: 1,
     justifyContent: "center",
@@ -201,6 +230,11 @@ const styles = StyleSheet.create({
     color: "#6a1b9a",
     marginBottom: 20,
   },
+  subtitle: {
+    fontSize: isTablet ? 20 : 16,
+    textAlign: "center",
+    color: "#333",
+  },
   question: {
     fontSize: isTablet ? 22 : 18,
     textAlign: "center",
@@ -211,7 +245,6 @@ const styles = StyleSheet.create({
     margin: isTablet ? 10 : 15,
     paddingBottom: isTablet ? 10 : 30,
     alignItems: "center",
-    // justifyContent: 'center',
     shadowColor: "#000",
     shadowOpacity: 0.2,
     shadowOffset: { width: 2, height: 2 },
@@ -228,21 +261,16 @@ const styles = StyleSheet.create({
     width: isTablet ? 950 : 350,
     backgroundColor: "#f8f8f8",
   },
-  optionText: {
-    fontSize: isTablet ? 18 : 16,
-    marginTop: 10,
-    textAlign: "center",
-  },
   image: {
     width: isTablet ? 250 : 180,
     height: isTablet ? 200 : 150,
     resizeMode: "contain",
   },
   feedback: {
-    // marginTop: 5,
     fontSize: 18,
     textAlign: "center",
     color: "#333",
+    marginTop: 10,
   },
   button: {
     marginTop: 20,

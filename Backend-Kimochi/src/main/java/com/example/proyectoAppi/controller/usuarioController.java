@@ -43,6 +43,21 @@ public class usuarioController {
         usuario nuevoUsuario = userS.crearUsuario(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevoUsuario);
     }
+     @GetMapping("/{id}/nivel")
+    public int getNivelUsuario(@PathVariable int id) {
+        Optional<usuario> usuario = userS.getUsuarioById(id);
+        return usuario.map(u -> u.getNivel()).orElse(-1);
+    }
+
+    @PutMapping("/{id}/nivel")
+    public void actualizarNivel(@PathVariable int id, @RequestParam int nivel) {
+        userS.actualizarNivel(id, nivel);
+    }
+
+    @PostMapping("/{id}/nivel-completado")
+    public void nivelCompletado(@PathVariable int id, @RequestParam int nuevoNivel) {
+        userS.completarNivel(id, nuevoNivel);
+    }
 
     @Operation(summary = "Iniciar sesión", description = "Verifica las credenciales del usuario y devuelve sus datos si son correctas.")
     @ApiResponses(value = {
