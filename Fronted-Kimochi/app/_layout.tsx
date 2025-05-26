@@ -9,6 +9,8 @@ import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import "react-native-reanimated";
+import Toast from "react-native-toast-message";
+import { toastConfig } from "../app/ToastConfig";
 
 import { useColorScheme } from "@/components/useColorScheme";
 
@@ -69,6 +71,7 @@ function RootLayoutNav() {
         <Stack.Screen name="forgotPassword" options={{ headerShown: false }} />
         <Stack.Screen name="resetPassword" options={{ headerShown: false }} />
       </Stack>
+      <Toast config={toastConfig} />
     </ThemeProvider>
   );
 }

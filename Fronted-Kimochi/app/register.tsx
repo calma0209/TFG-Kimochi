@@ -5,9 +5,9 @@ import {
   TextInput, //campo entrada para usuario
   TouchableOpacity, //botón interactivo
   StyleSheet,
-  Alert,
 } from "react-native";
 import { router } from "expo-router";
+import Toast from "react-native-toast-message";
 // import { FontAwesome } from "@expo/vector-icons";
 
 export default function RegisterScreen() {
@@ -47,22 +47,29 @@ export default function RegisterScreen() {
       });
       if (response.ok) {
         setError("");
-        Alert.alert("Registro exitoso", "Tu cuenta ha sido creada.");
-        router.replace("/login");
+        Toast.show({
+          type: "success",
+          text1: "Registro exitoso",
+          text2: "Tu cuenta ha sido creada! 🎉",
+          position: "bottom",
+        });
+        setTimeout(() => {
+          router.replace("/login");
+        }, 1500);
       } else {
         const errorData = await response.json();
         // verificamos si el nombre o correo ya están en uso
-        if (errorData.message.includes("nombre de usuario")) {
-          setError("El nombre de usuario ya está en uso.");
-        } else if (errorData.message.includes("correo")) {
-          setError("El correo electrónico ya está en uso.");
-        } else {
-          setError("Error al registrar. Intenta de nuevo.");
+        if (errorData.message.includes("correo")) {
+          setError(
+            "El correo electrónico ya está registrado. Inicia sesión para continuar."
+          );
         }
       }
     } catch (error) {
       console.error("Error al registrar el usuario:", error);
-      setError("No se pudo conectar al servidor. Verifica tu conexión.");
+      setError(
+        "El usuario o el correo ya están en uso. Inicia sesión para continuar."
+      );
     }
   };
 
@@ -79,7 +86,7 @@ export default function RegisterScreen() {
       {/* Formulario */}
       <View style={styles.form}>
         <TextInput
-          placeholder="Nombre completo"
+          placeholder="Nombre de usuario"
           style={styles.input}
           value={nombre}
           onChangeText={setNombre}
@@ -117,6 +124,19 @@ export default function RegisterScreen() {
           onPress={handleRegister}
         >
           <Text style={styles.registerText}>Crear cuenta</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.registerButton, { backgroundColor: "#6a1b9a" }]}
+          onPress={() =>
+            Toast.show({
+              type: "success",
+              text1: "Registro exitoso",
+              text2: "Tu cuenta ha sido creada! 🎉",
+              position: "bottom",
+            })
+          }
+        >
+          <Text style={styles.registerText}>Probar Toast</Text>
         </TouchableOpacity>
       </View>
 
