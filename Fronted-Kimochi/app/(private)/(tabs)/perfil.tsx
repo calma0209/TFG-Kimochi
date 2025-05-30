@@ -5,11 +5,14 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
-  Alert,
+  BackHandler,
 } from "react-native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons, MaterialCommunityIcons, Feather } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import Toast from "react-native-toast-message";
 
 const PerfilScreen = () => {
   const [usuario, setUsuario] = useState({
@@ -19,37 +22,57 @@ const PerfilScreen = () => {
 
   const router = useRouter();
 
+  const navigation = useNavigation();
+
+  //para que la pantalla no vuelva atrás al presionar el botón de atrás (Android)
+  useFocusEffect(
+    React.useCallback(() => {
+      const onBackPress = () => {
+        return true; // ← bloquea volver atrás
+      };
+      const backHandler = BackHandler.addEventListener(
+        "hardwareBackPress",
+        onBackPress
+      );
+      return () => {
+        backHandler.remove();
+      };
+    }, [])
+  );
+
+  //para que no vuelva atrás al deslizar (iOS)
+
   useEffect(() => {
-    // 🔁 Llamada a la API para obtener los datos del usuario
+    navigation.setOptions({ gestureEnabled: false });
+  }, []);
+
+  useEffect(() => {
     const obtenerDatosUsuario = async () => {
       try {
-        // const respuesta = await fetch("https://tu-backend.com/api/usuario/perfil", {
-        //   method: "GET",
-        //   headers: {
-        //     Authorization: `Bearer TOKEN_DEL_USUARIO`, // Si usáis JWT
-        //   },
-        // });
-        // const data = await respuesta.json();
-        // setUsuario({ nombre: data.nombre, correo: data.email });
-
-        // Simulación de respuesta:
-        setUsuario({
-          nombre: "Nombre del Usuario",
-          correo: "usuario@kimochi.com",
-        });
+        const userString = await AsyncStorage.getItem("user");
+        if (userString) {
+          const user = JSON.parse(userString);
+          setUsuario({
+            nombre: user.nombre_usuario,
+            correo: user.email,
+          });
+        }
       } catch (error) {
-        console.error("Error al obtener datos del usuario:", error);
+        console.error("Error al obtener usuario:", error);
       }
     };
 
     obtenerDatosUsuario();
   }, []);
 
-  const handleCerrarSesion = () => {
-    // 🔐 Aquí se eliminaría el token almacenado o sesión activa
-    // Luego se redirige a la pantalla de login
-    Alert.alert("Sesión cerrada", "Has cerrado sesión correctamente");
-    router.replace("/login");
+  const handleCerrarSesion = async () => {
+    await AsyncStorage.removeItem("user"); // 🔐 elimina la sesión
+    Toast.show({
+      type: "success",
+      text1: "Has cerrado sesión",
+      position: "bottom",
+    });
+    router.replace("/");
   };
 
   return (

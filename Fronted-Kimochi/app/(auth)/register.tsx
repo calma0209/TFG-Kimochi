@@ -33,7 +33,7 @@ export default function RegisterScreen() {
 
     try {
       // await sirve para esperar a que se complete la promesa (fetch)
-      const response = await fetch("http://192.168.1.135:8080/api/usuarios", {
+      const response = await fetch("http://192.168.1.131:8080/api/usuarios", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -143,7 +143,7 @@ export default function RegisterScreen() {
       {/* Opción de volver al login */}
       <View style={styles.footer}>
         <Text>¿Ya tienes cuenta?</Text>
-        <TouchableOpacity onPress={() => router.replace("/login")}>
+        <TouchableOpacity onPress={() => router.replace("/(auth)/login")}>
           <Text style={styles.loginLink}> Inicia sesión</Text>
         </TouchableOpacity>
       </View>

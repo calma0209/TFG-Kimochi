@@ -9,10 +9,13 @@ import {
   TouchableWithoutFeedback,
   ScrollView,
   Image,
+  BackHandler,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { SwipeListView } from "react-native-swipe-list-view";
 import Modal from "react-native-modal";
+import { useRouter } from "expo-router";
+import { useFocusEffect } from "@react-navigation/native";
 
 type Entrada = {
   id_registro: number;
@@ -44,9 +47,28 @@ const DiarioEmociones = () => {
 
   const idUsuario = 18;
 
+  //para que la pantalla no vuelva atrás al presionar el botón de atrás (Android)
+  const router = useRouter();
+
+  useFocusEffect(
+    React.useCallback(() => {
+      const onBackPress = () => {
+        router.replace("/(private)/(tabs)/dashboard");
+        return true;
+      };
+
+      const backHandler = BackHandler.addEventListener(
+        "hardwareBackPress",
+        onBackPress
+      );
+
+      return () => backHandler.remove();
+    }, [])
+  );
+
   const eliminarEntrada = async (id: number) => {
     try {
-      await fetch(`http://192.168.1.38:8080/api/diario/eliminar/${id}`, {
+      await fetch(`http://192.168.1.131:8080/api/diario/eliminar/${id}`, {
         method: "DELETE",
       });
       alert("Entrada eliminada");
@@ -65,7 +87,7 @@ const DiarioEmociones = () => {
 
   const obtenerEmociones = async () => {
     try {
-      const res = await fetch("http://192.168.1.38:8080/api/emociones");
+      const res = await fetch("http://192.168.1.131:8080/api/emociones");
       const data = await res.json();
       setEmociones(data);
     } catch (error) {
@@ -76,7 +98,7 @@ const DiarioEmociones = () => {
   const obtenerEntradas = async () => {
     try {
       const res = await fetch(
-        `http://192.168.1.38:8080/api/diario/usuario/${idUsuario}`
+        `http://192.168.1.131:8080/api/diario/usuario/${idUsuario}`
       );
       const data = await res.json();
       setEntradas(
@@ -102,7 +124,7 @@ const DiarioEmociones = () => {
         return;
       }
 
-      await fetch(`http://192.168.1.38:8080/api/diario/crear/${idUsuario}`, {
+      await fetch(`http://192.168.1.131:8080/api/diario/crear/${idUsuario}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

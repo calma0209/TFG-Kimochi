@@ -33,7 +33,7 @@ const RecompensasScreen: React.FC = () => {
 
   useEffect(() => {
     fetch(
-      `http://192.168.1.38:8080/api/recompensas-usuarios/usuario/${usuarioId}`
+      `http://192.168.1.45:8080/api/recompensas-usuarios/usuario/${usuarioId}`
     )
       .then((res) => res.json())
       .then((data: RecompensaUsuario[]) => {

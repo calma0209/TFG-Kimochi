@@ -8,16 +8,42 @@ import {
   TouchableOpacity,
   ScrollView,
   Dimensions,
+  BackHandler,
 } from "react-native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import Dock from "@/components/dock";
 
 import consejos from "@/constants/consejos.json";
 import { SafeAreaView } from "react-native-safe-area-context";
+
 const DashboardScreen = () => {
   const router = useRouter();
   const isTablet = useIsTablet();
+  const navigation = useNavigation();
+
+  //para que la pantalla no vuelva atrás al presionar el botón de atrás (Android)
+  useFocusEffect(
+    React.useCallback(() => {
+      const onBackPress = () => {
+        return true; // ← bloquea volver atrás
+      };
+      const backHandler = BackHandler.addEventListener(
+        "hardwareBackPress",
+        onBackPress
+      );
+      return () => {
+        backHandler.remove();
+      };
+    }, [])
+  );
+
+  //para que no vuelva atrás al deslizar (iOS)
+
+  useEffect(() => {
+    navigation.setOptions({ gestureEnabled: false });
+  }, []);
 
   type Advice = keyof typeof consejos;
   const consejo = consejos.consejos;
@@ -41,19 +67,19 @@ const DashboardScreen = () => {
               icon={<FontAwesome5 name="gamepad" size={40} color="#6a1b9a" />}
               title="Juegos"
               description="Responde a diferentes situaciones de la vida."
-              onPress={() => router.push("/(tabs)/opcionesJuegos")}
+              onPress={() => router.replace("/(private)/opcionesJuegos")}
             />
             <Card
               icon={<FontAwesome5 name="award" size={40} color="#6a1b9a" />}
               title="Recompensas"
               description="Gana insignias y recompensas por tu progreso."
-              onPress={() => router.push("/(tabs)/recompensas")}
+              onPress={() => router.replace("/(private)/recompensas")}
             />
             <Card
               icon={<FontAwesome5 name="book" size={40} color="#6a1b9a" />}
               title="Diario de Emociones"
               description="Gana insignias y Diario de Emociones por tu progreso."
-              onPress={() => router.push("/(tabs)/diarioEmociones")}
+              onPress={() => router.replace("/(private)/diarioEmociones")}
             />
           </View>
           {/* <Card

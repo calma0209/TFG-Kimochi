@@ -30,13 +30,13 @@ export default function OpcionesJuegos() {
             imagen={require("../../assets/images/image-empatia/alegria.png")}
             title="Juego Emociones"
             description="Juego para identificar las emociones"
-            onPress={() => router.push("/(tabs)/emociones")}
+            onPress={() => router.push("/(private)/opcionesJuegos/emociones")}
           />
           <Card
             imagen={require("../../assets/images/image-empatia/caso2.png")}
             title="Juego Empatia"
             description="Juego para mejorar tu empatia con el entorno"
-            onPress={() => router.push("/(tabs)/empatia")}
+            onPress={() => router.push("/(private)/opcionesJuegos/empatia")}
           />
           {/* </View> */}
         </View>

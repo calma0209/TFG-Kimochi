@@ -7,10 +7,12 @@ import {
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "react-native-reanimated";
 import Toast from "react-native-toast-message";
-import { toastConfig } from "../app/ToastConfig";
+import { toastConfig } from "../config/ToastConfig";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useRouter } from "expo-router";
 
 import { useColorScheme } from "@/components/useColorScheme";
 
@@ -22,8 +24,8 @@ export {
 } from "expo-router";
 
 export const unstable_settings = {
-  // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: "(tabs)",
+  //se carga loading y ahi se decide si el usuario va a login o dashboard
+  initialRouteName: "loading",
 };
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -63,14 +65,13 @@ function RootLayoutNav() {
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+        <Stack.Screen name="(public)" options={{ headerShown: false }} />
+        <Stack.Screen name="(private)" options={{ headerShown: false }} />
+        <Stack.Screen name="loading" options={{ headerShown: false }} />
         <Stack.Screen name="modal" options={{ presentation: "modal" }} />
-        <Stack.Screen name="login" options={{ headerShown: false }} />
-        <Stack.Screen name="register" options={{ headerShown: false }} />
-        <Stack.Screen name="tabs-Dock" options={{ headerShown: false }} />
-        <Stack.Screen name="forgotPassword" options={{ headerShown: false }} />
-        <Stack.Screen name="resetPassword" options={{ headerShown: false }} />
       </Stack>
+
       <Toast config={toastConfig} />
     </ThemeProvider>
   );

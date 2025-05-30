@@ -17,7 +17,7 @@ function TabBarIcon(props: {
   return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
 }
 
-export default function TabLayout() {
+export default function PrivateLayout() {
   const colorScheme = useColorScheme();
 
   return (
@@ -34,7 +34,7 @@ export default function TabLayout() {
           },
         }}
       >
-        <Tabs.Screen
+        {/* <Tabs.Screen
           name="index"
           options={{
             title: "Tab One",
@@ -54,7 +54,7 @@ export default function TabLayout() {
               </Link>
             ),
           }}
-        />
+        /> */}
         {/* <Tabs.Screen
         name="two"
         options={{

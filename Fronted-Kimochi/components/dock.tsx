@@ -15,9 +15,9 @@ const MAGNIFICATION = 1.8;
 const SENSITIVITY = 50;
 
 const icons = [
-  { icon: "home", action: () => router.push("/tabs-Dock/dashboard") },
+  { icon: "home", action: () => router.push("/(private)/(tabs)/dashboard") },
 
-  { icon: "user", action: () => router.push("/tabs-Dock/perfil") },
+  { icon: "user", action: () => router.push("/(private)/(tabs)/perfil") },
   // { icon: "cog", action: () => alert("Settings") },
 ];
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import preguntasData from "../../assets/data/preguntas.json";
+import preguntasData from "../../../assets/data/preguntas.json";
 import {
   View,
   Text,
@@ -38,7 +38,7 @@ const EmpatiaScreen = () => {
   const obtenerNivel = async () => {
     try {
       const res = await fetch(
-        `http://192.168.1.38:8080/api/usuarios/${usuarioId}/nivel`
+        `http://192.168.1.131:8080/api/usuarios/${usuarioId}/nivel`
       );
       const nivel = await res.json();
       if (nivel > 0) setNivelActual(nivel);
@@ -90,7 +90,7 @@ const EmpatiaScreen = () => {
       setNivelCompletadoMensaje(true); // Mostrar mensaje
 
       await fetch(
-        `http://192.168.1.38:8080/api/usuarios/${usuarioId}/nivel-completado?nuevoNivel=${siguienteNivel}`,
+        `http://192.168.1.131:8080/api/usuarios/${usuarioId}/nivel-completado?nuevoNivel=${siguienteNivel}`,
         { method: "POST" }
       );
 
@@ -150,12 +150,12 @@ const EmpatiaScreen = () => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
       <View style={styles.container}>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={styles.backButton}
           onPress={() => router.push("/(tabs)/opcionesJuegos")}
         >
           <Text style={styles.backText}>{"<"}</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <Text style={styles.title}>Nivel {nivelActual}</Text>
         <Text style={styles.question}>{current.pregunta}</Text>

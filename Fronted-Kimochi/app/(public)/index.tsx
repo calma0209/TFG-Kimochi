@@ -13,7 +13,7 @@ export default function WelcomeScreen() {
       {/* Logo y nombre de la app */}
       <View style={styles.topSection}>
         <Image
-          source={require("../../assets/images/ositoInicio.png")} // Coloca tu logo aquí
+          source={require("../../assets/images/focaInicio.png")} // Coloca tu logo aquí
           style={styles.logo}
           resizeMode="contain"
         />
@@ -31,14 +31,14 @@ export default function WelcomeScreen() {
         <View style={styles.buttonRow}>
           <TouchableOpacity
             style={styles.signInButton}
-            onPress={() => router.push("/login")}
+            onPress={() => router.push("/(auth)/login")}
           >
             <Text style={styles.signInText}>Sign In</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={styles.signUpButton}
-            onPress={() => router.push("/register")}
+            onPress={() => router.push("/(auth)/register")}
           >
             <Text style={styles.signUpText}>Sign Up</Text>
           </TouchableOpacity>
@@ -59,9 +59,9 @@ const styles = StyleSheet.create({
     paddingTop: 60,
   },
   logo: {
-    width: 100,
-    height: 100,
-    marginBottom: 10,
+    width: 150,
+    height: 150,
+    marginBottom: 1,
   },
   appName: {
     fontSize: 28,

@@ -1,5 +1,5 @@
 import { useIsTablet } from "@/hooks/useIsTablet";
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -9,18 +9,70 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Platform,
+  Alert,
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { router } from "expo-router";
+import Toast from "react-native-toast-message";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import * as ScreenOrientation from "expo-screen-orientation";
 import { useEffect } from "react";
 
 export default function LoginScreen() {
+  //para que la pantalla no gire
   const isTablet = useIsTablet();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  // Para evitar que la pantalla gire
   useEffect(() => {
     ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
   }, []);
+
+  const handleLogin = async () => {
+    setError("");
+
+    if (!email || !password) {
+      setError("Por favor, completa todos los campos.");
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        "http://192.168.1.131:8080/api/usuarios/login",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, contraseña: password }),
+        }
+      );
+
+      if (response.ok) {
+        const usuario = await response.json();
+        await AsyncStorage.setItem("user", JSON.stringify(usuario));
+
+        Toast.show({
+          type: "success",
+          text1: "¡Sesión iniciada!",
+          text2: `Bienvenido/a, ${usuario.nombre_usuario}!`,
+          position: "bottom",
+        });
+
+        setTimeout(() => {
+          router.replace("/(private)/(tabs)/dashboard");
+        }, 1500);
+      } else {
+        setError("Credenciales incorrectas.");
+      }
+    } catch (e) {
+      console.error("Error de conexión:", e);
+      setError("No se pudo conectar al servidor.");
+    }
+  };
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
@@ -33,16 +85,24 @@ export default function LoginScreen() {
         <View style={styles.formContainer}>
           <View style={styles.form2}>
             <TextInput
-              placeholder="Usuario"
+              placeholder="Correo electrónico"
               style={styles.input}
               placeholderTextColor="#555"
+              value={email}
+              onChangeText={setEmail}
             />
             <TextInput
               placeholder="Contraseña"
               style={styles.input}
               placeholderTextColor="#555"
               secureTextEntry
+              value={password}
+              onChangeText={setPassword}
             />
+
+            {error ? (
+              <Text style={{ color: "red", marginBottom: 10 }}>{error}</Text>
+            ) : null}
           </View>
 
           <View style={{ marginTop: isTablet ? 750 : 250 }}>
@@ -55,10 +115,7 @@ export default function LoginScreen() {
               </TouchableOpacity>
             </View>
 
-            <TouchableOpacity
-              style={styles.signInButton}
-              onPress={() => router.replace("/tabs-Dock/dashboard")}
-            >
+            <TouchableOpacity style={styles.signInButton} onPress={handleLogin}>
               <Text style={styles.signInText}>Sign In</Text>
             </TouchableOpacity>
           </View>
