@@ -8,7 +8,6 @@ import { useColorScheme } from "@/components/useColorScheme";
 import { useClientOnlyValue } from "@/components/useClientOnlyValue";
 import Dock from "@/components/dock";
 import { View } from "@/components/Themed";
-import { Stack } from "expo-router";
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
@@ -23,39 +22,19 @@ export default function PrivateLayout() {
 
   return (
     <View style={{ flex: 1 }}>
-      <Stack>
-        {/*dashboard, perfil, etc. */}
-        <Stack.Screen
-          name="(tabs)"
-          options={{
-            headerShown: false,
-            gestureEnabled: false, // bloquea swipe back desde tabs
-          }}
-        />
-
-        {/* Pantallas donde SÍ se puede volver atrás */}
-        <Stack.Screen
-          name="diarioEmociones"
-          options={{ headerShown: false, gestureEnabled: true }}
-        />
-        <Stack.Screen
-          name="opcionesJuegos"
-          options={{ headerShown: false, gestureEnabled: true }}
-        />
-        <Stack.Screen
-          name="opcionesJuegos/emociones"
-          options={{ headerShown: false, gestureEnabled: true }}
-        />
-        <Stack.Screen
-          name="opcionesJuegos/empatia"
-          options={{ headerShown: false, gestureEnabled: true }}
-        />
-        <Stack.Screen
-          name="recompensas"
-          options={{ headerShown: false, gestureEnabled: true }}
-        />
-      </Stack>
-      {/* <Tabs.Screen
+      <Tabs
+        screenOptions={{
+          tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
+          // Disable the static render of the header on web
+          // to prevent a hydration error in React Navigation v6.
+          // headerShown: useClientOnlyValue(false, true),
+          headerShown: false,
+          tabBarStyle: {
+            display: "none", // Oculta la barra inferior
+          },
+        }}
+      >
+        {/* <Tabs.Screen
           name="index"
           options={{
             title: "Tab One",
@@ -76,14 +55,14 @@ export default function PrivateLayout() {
             ),
           }}
         /> */}
-      {/* <Tabs.Screen
+        {/* <Tabs.Screen
         name="two"
         options={{
           title: "Tab Two",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       /> */}
-      {/* </Tabs> */}
+      </Tabs>
     </View>
   );
 }

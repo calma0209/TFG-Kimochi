@@ -9,7 +9,6 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Platform,
-  Alert,
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { router } from "expo-router";
@@ -20,18 +19,25 @@ import * as ScreenOrientation from "expo-screen-orientation";
 import { useEffect } from "react";
 
 export default function LoginScreen() {
-  //para que la pantalla no gire
+  useEffect(() => {
+    console.log("⚠️ useEffect arrancó");
+    AsyncStorage.getItem("user")
+      .then((res) => {
+        console.log("usuario guardado:", res);
+      })
+      .catch((err) => {
+        console.log("Error en AsyncStorage:", err);
+      });
+  }, []);
+  // //para que la pantalla no gire
   const isTablet = useIsTablet();
+  //
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  // Para evitar que la pantalla gire
-  useEffect(() => {
-    ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
-  }, []);
-
+  // función para manejar el inicio de sesión
   const handleLogin = async () => {
     setError("");
 
@@ -42,7 +48,7 @@ export default function LoginScreen() {
 
     try {
       const response = await fetch(
-        "http://192.168.1.131:8080/api/usuarios/login",
+        "http://192.168.1.135:8080/api/usuarios/login",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -63,7 +69,7 @@ export default function LoginScreen() {
 
         setTimeout(() => {
           router.replace("/(private)/(tabs)/dashboard");
-        }, 1500);
+        }, 500);
       } else {
         setError("Credenciales incorrectas.");
       }
@@ -78,7 +84,7 @@ export default function LoginScreen() {
       <View style={styles.container}>
         {/* Parte superior amarilla */}
         <View style={styles.header}>
-          <Text style={styles.title}>Sign In</Text>
+          <Text style={styles.title}>Iniciar sesión</Text>
         </View>
 
         {/* Formulario */}
@@ -100,23 +106,25 @@ export default function LoginScreen() {
               onChangeText={setPassword}
             />
 
+            {/* Mostrar error si no mete bien las credenciales */}
             {error ? (
               <Text style={{ color: "red", marginBottom: 10 }}>{error}</Text>
             ) : null}
           </View>
 
+          {/* Botones para entrar, registro, iniciar sesion con apple, etc */}
           <View style={{ marginTop: isTablet ? 750 : 250 }}>
             <View style={styles.rowLinks}>
               <TouchableOpacity onPress={() => router.push("/register")}>
-                <Text style={styles.register2}>Register</Text>
+                <Text style={styles.register2}>Registrarse</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={() => router.push("/forgotPassword")}>
-                <Text style={styles.forgot}>Forgot Password?</Text>
+                <Text style={styles.forgot}>Olvidaste tu contraseña?</Text>
               </TouchableOpacity>
             </View>
 
             <TouchableOpacity style={styles.signInButton} onPress={handleLogin}>
-              <Text style={styles.signInText}>Sign In</Text>
+              <Text style={styles.signInText}>Entrar</Text>
             </TouchableOpacity>
           </View>
           <View
@@ -150,7 +158,10 @@ const styles = StyleSheet.create({
     paddingBottom: Platform.OS === "ios" ? 30 : 20,
     backgroundColor: "#fff",
   },
-  container: { flex: 1, backgroundColor: "#fff" },
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+  },
 
   form2: {
     marginTop: 50,

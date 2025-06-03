@@ -13,7 +13,7 @@ export default function WelcomeScreen() {
       {/* Logo y nombre de la app */}
       <View style={styles.topSection}>
         <Image
-          source={require("../../assets/images/focaInicio.png")} // Coloca tu logo aquí
+          source={require("../../assets/images/focaInicio.png")}
           style={styles.logo}
           resizeMode="contain"
         />

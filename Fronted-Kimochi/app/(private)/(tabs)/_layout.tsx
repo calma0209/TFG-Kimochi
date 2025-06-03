@@ -4,7 +4,7 @@ import { Tabs } from "expo-router";
 import Dock from "@/components/dock";
 import { View, StyleSheet } from "react-native";
 
-export default function Layout() {
+export default function PrivateTabsLayout() {
   return (
     <View style={{ flex: 1 }}>
       <Tabs

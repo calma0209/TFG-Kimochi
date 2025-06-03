@@ -1,4 +1,3 @@
-// app/forgot-password.tsx
 import React, { useState } from "react";
 import {
   View,
@@ -7,14 +6,40 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
+import { sendPasswordResetEmail } from "firebase/auth";
+import { auth } from "../../config/firebaseConfig";
+import Toast from "react-native-toast-message";
 import { router } from "expo-router";
 
-export default function ForgotPasswordScreen() {
+export default function ForgotPassword() {
   const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
 
-  const handleSend = () => {
-    // Aquí iría la lógica para enviar el correo de recuperación
-    router.push("/resetPassword"); // o mostrar confirmación
+  const handleResetPassword = async () => {
+    setError("");
+
+    if (!email) {
+      setError("Por favor, introduce tu correo electrónico.");
+      return;
+    }
+
+    try {
+      await sendPasswordResetEmail(auth, email);
+      Toast.show({
+        type: "success",
+        text1: "Correo enviado!",
+        text2: "Revisa tu bandeja de entrada.",
+        position: "bottom",
+      });
+
+      setTimeout(() => {
+        router.replace("/login");
+      }, 1000);
+    } catch (error: any) {
+      console.error(error);
+      setError("No se pudo enviar el correo.");
+    }
+    // router.push("/resetPassword"); // o mostrar confirmación
   };
 
   return (
@@ -36,7 +61,11 @@ export default function ForgotPasswordScreen() {
           placeholderTextColor="#555"
         />
 
-        <TouchableOpacity style={styles.button} onPress={handleSend}>
+        {error ? (
+          <Text style={{ color: "red", marginBottom: 10 }}>{error}</Text>
+        ) : null}
+
+        <TouchableOpacity style={styles.button} onPress={handleResetPassword}>
           <Text style={styles.buttonText}>Continuar</Text>
         </TouchableOpacity>
       </View>

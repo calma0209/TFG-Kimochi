@@ -17,16 +17,17 @@ import { useRouter } from "expo-router";
 import { useColorScheme } from "@/components/useColorScheme";
 
 import * as ScreenOrientation from "expo-screen-orientation";
+import { ActivityIndicator, View } from "react-native";
 
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
 } from "expo-router";
 
-export const unstable_settings = {
-  //se carga loading y ahi se decide si el usuario va a login o dashboard
-  initialRouteName: "loading",
-};
+// export const unstable_settings = {
+//   //se carga loading y ahi se decide si el usuario va a login o dashboard
+//   initialRouteName: "loading",
+// };
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -61,6 +62,24 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
   const colorScheme = useColorScheme();
+  const router = useRouter();
+  const [cargando, setCargando] = useState(true);
+
+  useEffect(() => {
+    const verificarSesion = async () => {
+      const user = await AsyncStorage.getItem("user");
+
+      if (user) {
+        router.replace("/(private)/(tabs)/dashboard");
+      } else {
+        router.replace("/(auth)/login");
+      }
+
+      setCargando(false);
+    };
+
+    verificarSesion();
+  }, []);
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
@@ -68,7 +87,6 @@ function RootLayoutNav() {
         <Stack.Screen name="(auth)" options={{ headerShown: false }} />
         <Stack.Screen name="(public)" options={{ headerShown: false }} />
         <Stack.Screen name="(private)" options={{ headerShown: false }} />
-        <Stack.Screen name="loading" options={{ headerShown: false }} />
         <Stack.Screen name="modal" options={{ presentation: "modal" }} />
       </Stack>
 

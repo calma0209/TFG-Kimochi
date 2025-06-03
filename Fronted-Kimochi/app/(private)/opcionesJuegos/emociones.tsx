@@ -38,7 +38,7 @@ const EmpatiaScreen = () => {
   const obtenerNivel = async () => {
     try {
       const res = await fetch(
-        `http://192.168.1.131:8080/api/usuarios/${usuarioId}/nivel`
+        `http://1192.168.1.135:8080/api/usuarios/${usuarioId}/nivel`
       );
       const nivel = await res.json();
       if (nivel > 0) setNivelActual(nivel);
@@ -90,7 +90,7 @@ const EmpatiaScreen = () => {
       setNivelCompletadoMensaje(true); // Mostrar mensaje
 
       await fetch(
-        `http://192.168.1.131:8080/api/usuarios/${usuarioId}/nivel-completado?nuevoNivel=${siguienteNivel}`,
+        `http://1192.168.1.135:8080/api/usuarios/${usuarioId}/nivel-completado?nuevoNivel=${siguienteNivel}`,
         { method: "POST" }
       );
 

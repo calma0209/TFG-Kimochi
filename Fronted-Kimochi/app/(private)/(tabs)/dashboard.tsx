@@ -21,7 +21,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 const DashboardScreen = () => {
   const router = useRouter();
   const isTablet = useIsTablet();
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
 
   //para que la pantalla no vuelva atrás al presionar el botón de atrás (Android)
   useFocusEffect(
@@ -39,11 +39,11 @@ const DashboardScreen = () => {
     }, [])
   );
 
-  //para que no vuelva atrás al deslizar (iOS)
+  // //para que no vuelva atrás al deslizar (iOS)
 
-  useEffect(() => {
-    navigation.setOptions({ gestureEnabled: false });
-  }, []);
+  // useEffect(() => {
+  //   navigation.setOptions({ gestureEnabled: false });
+  // }, []);
 
   type Advice = keyof typeof consejos;
   const consejo = consejos.consejos;
@@ -67,19 +67,19 @@ const DashboardScreen = () => {
               icon={<FontAwesome5 name="gamepad" size={40} color="#6a1b9a" />}
               title="Juegos"
               description="Responde a diferentes situaciones de la vida."
-              onPress={() => router.replace("/(private)/opcionesJuegos")}
+              onPress={() => router.push("/(private)/opcionesJuegos")}
             />
             <Card
               icon={<FontAwesome5 name="award" size={40} color="#6a1b9a" />}
               title="Recompensas"
               description="Gana insignias y recompensas por tu progreso."
-              onPress={() => router.replace("/(private)/recompensas")}
+              onPress={() => router.push("/(private)/recompensas")}
             />
             <Card
               icon={<FontAwesome5 name="book" size={40} color="#6a1b9a" />}
               title="Diario de Emociones"
               description="Gana insignias y Diario de Emociones por tu progreso."
-              onPress={() => router.replace("/(private)/diarioEmociones")}
+              onPress={() => router.push("/(private)/diarioEmociones")}
             />
           </View>
           {/* <Card
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
     fontSize: isTablet ? 32 : 24,
     fontWeight: "bold",
     color: "#6a1b9a",
-    marginTop: 10,
+    marginTop: 25,
   },
   // weatherBox: {
   //   alignItems: "flex-end",

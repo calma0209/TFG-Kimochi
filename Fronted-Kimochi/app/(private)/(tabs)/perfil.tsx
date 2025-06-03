@@ -22,7 +22,7 @@ const PerfilScreen = () => {
 
   const router = useRouter();
 
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
 
   //para que la pantalla no vuelva atrás al presionar el botón de atrás (Android)
   useFocusEffect(
@@ -40,13 +40,17 @@ const PerfilScreen = () => {
     }, [])
   );
 
-  //para que no vuelva atrás al deslizar (iOS)
+  // //para que no vuelva atrás al deslizar (iOS)
 
-  useEffect(() => {
-    navigation.setOptions({ gestureEnabled: false });
-  }, []);
+  // useEffect(() => {
+  //   navigation.setOptions({ gestureEnabled: false });
+  // }, []);
 
+  // Cargar datos del usuario desde AsyncStorage
   useEffect(() => {
+    AsyncStorage.getItem("user").then((res) =>
+      console.log("usuario guardado:", res)
+    );
     const obtenerDatosUsuario = async () => {
       try {
         const userString = await AsyncStorage.getItem("user");
@@ -65,8 +69,9 @@ const PerfilScreen = () => {
     obtenerDatosUsuario();
   }, []);
 
+  // Función para manejar el cierre de sesión
   const handleCerrarSesion = async () => {
-    await AsyncStorage.removeItem("user"); // 🔐 elimina la sesión
+    await AsyncStorage.removeItem("user"); // elimina la sesión activa
     Toast.show({
       type: "success",
       text1: "Has cerrado sesión",

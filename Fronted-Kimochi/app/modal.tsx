@@ -18,7 +18,7 @@ export default function LoginScreen() {
         <TouchableOpacity onPress={() => router.back()}>
           <Text style={styles.backArrow}>←</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => router.push("/(tabs)")}>
+        <TouchableOpacity onPress={() => router.push("/(public)")}>
           <Text style={styles.register}>Index</Text>
         </TouchableOpacity>
         <Text style={styles.title}>Sign In</Text>
