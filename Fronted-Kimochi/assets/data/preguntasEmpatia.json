@@ -1,52 +1,522 @@
 [
   {
-    "imagen": "caso1.png",
-    "situacion": "¿Cómo te sentirías si un amigo te empuja sin querer?",
+    "imagen": "empatia1.png",
+    "situacion": "Tu amigo está llorando porque se ha caído. ¿Qué haces?",
     "opciones": [
-      { "texto": "Enfadado", "es_correcta": true },
-      { "texto": "Contento", "es_correcta": false },
-      { "texto": "Triste", "es_correcta": false },
-      { "texto": "Hambriento", "es_correcta": false }
+      {
+        "texto": "Te ríes",
+        "es_correcta": false,
+        "reflexion": "A veces no podemos contener la risa en momentos que parecen graciosos, pero debemos pensar cómo se siente la otra persona."
+      },
+      {
+        "texto": "Le preguntas si está bien",
+        "es_correcta": true,
+        "reflexion": "Preocuparse por los demás muestra empatía. Preguntar es una buena forma de ayudar."
+      },
+      {
+        "texto": "Lo ignoras",
+        "es_correcta": false,
+        "reflexion": "Ignorar a alguien que se siente mal puede hacerlo sentir aún peor."
+      },
+      {
+        "texto": "Le ofreces ayuda para levantarse",
+        "es_correcta": true,
+        "reflexion": "Ayudar físicamente también es una forma de mostrar cariño y empatía."
+      }
     ]
   },
   {
-    "imagen": "caso2.png",
-    "situacion": "¿Cómo te sentirías si alguien te da un abrazo?",
+    "imagen": "empatia2.png",
+    "situacion": "Una compañera está sola en el recreo. ¿Qué haces?",
     "opciones": [
-      { "texto": "Feliz", "es_correcta": true },
-      { "texto": "Asustado", "es_correcta": false },
-      { "texto": "Enfadado", "es_correcta": false },
-      { "texto": "Confundido", "es_correcta": false }
+      {
+        "texto": "Te acercas a invitarla a jugar",
+        "es_correcta": true,
+        "reflexion": "Hacer sentir incluido a alguien es una gran muestra de empatía."
+      },
+      {
+        "texto": "La señalas con otros amigos",
+        "es_correcta": false,
+        "reflexion": "Reírse o señalar a alguien puede hacerle sentir mal. Todos merecen respeto."
+      },
+      {
+        "texto": "Te vas sin decir nada",
+        "es_correcta": false,
+        "reflexion": "Si no haces nada, la otra persona puede seguir sintiéndose sola. A veces un gesto cambia mucho."
+      },
+      {
+        "texto": "Le sonríes desde lejos",
+        "es_correcta": true,
+        "reflexion": "Una sonrisa también puede hacer sentir mejor a alguien."
+      }
     ]
   },
   {
-    "imagen": "caso3.png",
-    "situacion": "¿Cómo te sentirías si alguien te ha pegado?",
+    "imagen": "empatia3.png",
+    "situacion": "Tu amigo está nervioso porque tiene que hablar en clase. ¿Qué haces?",
     "opciones": [
-      { "texto": "Triste", "es_correcta": true },
-      { "texto": "Contento", "es_correcta": false },
-      { "texto": "Asustado", "es_correcta": true },
-      { "texto": "Hambriento", "es_correcta": false }
+      {
+        "texto": "Le das ánimos antes de que hable",
+        "es_correcta": true,
+        "reflexion": "Apoyar a otros en momentos difíciles demuestra que nos importan sus emociones."
+      },
+      {
+        "texto": "Le dices que seguro lo hará mal",
+        "es_correcta": false,
+        "reflexion": "Decir cosas negativas aumenta el miedo de los demás. Podemos ayudar con palabras positivas."
+      },
+      {
+        "texto": "Te burlas cuando se equivoca",
+        "es_correcta": false,
+        "reflexion": "Reírse de los errores de otros puede hacerles sentir muy mal."
+      },
+      {
+        "texto": "Le dices que tú también te pones nervioso",
+        "es_correcta": true,
+        "reflexion": "Compartir lo que sentimos ayuda a los demás a sentirse acompañados."
+      }
     ]
   },
   {
-    "imagen": "caso4.png",
-    "situacion": "¿Cómo te sentirías si pierdes tu juguete favorito?",
+    "imagen": "empatia4.png",
+    "situacion": "Ves a un niño nuevo en clase que no entiende bien el idioma. ¿Qué haces?",
     "opciones": [
-      { "texto": "Triste", "es_correcta": true },
-      { "texto": "Feliz", "es_correcta": false },
-      { "texto": "Sorprendido", "es_correcta": false },
-      { "texto": "Relajado", "es_correcta": false }
+      {
+        "texto": "Le hablas despacio y con gestos",
+        "es_correcta": true,
+        "reflexion": "Buscar formas de comunicarse muestra que te importa que el otro se sienta incluido."
+      },
+      {
+        "texto": "Te burlas de cómo habla",
+        "es_correcta": false,
+        "reflexion": "Burlarse de alguien por cómo habla es una falta de respeto y puede doler mucho."
+      },
+      {
+        "texto": "Le haces una seña para sentarse contigo",
+        "es_correcta": true,
+        "reflexion": "Invitarlo a estar contigo lo hará sentir parte del grupo."
+      },
+      {
+        "texto": "No haces nada porque no lo conoces",
+        "es_correcta": false,
+        "reflexion": "Aunque no lo conozcas, puedes hacer algo amable para ayudar."
+      }
     ]
   },
   {
-    "imagen": "caso5.png",
-    "situacion": "¿Cómo te sentirías si escuchas un ruido raro por la noche?",
+    "imagen": "empatia5.png",
+    "situacion": "Tu compañero rompe sin querer tu juguete. ¿Qué haces?",
     "opciones": [
-      { "texto": "Asustado", "es_correcta": true },
-      { "texto": "Tranquilo", "es_correcta": false },
-      { "texto": "Feliz", "es_correcta": false },
-      { "texto": "Con sueño", "es_correcta": false }
+      {
+        "texto": "Le gritas",
+        "es_correcta": false,
+        "reflexion": "Gritar puede herir los sentimientos del otro. Mejor hablar con calma."
+      },
+      {
+        "texto": "Le dices que estás enfadado pero que fue un accidente",
+        "es_correcta": true,
+        "reflexion": "Decir cómo te sientes con respeto es una forma de entender y resolver las cosas."
+      },
+      {
+        "texto": "Lo culpas delante de todos",
+        "es_correcta": false,
+        "reflexion": "Avergonzar a alguien en público no ayuda. Puedes hablar en privado."
+      },
+      {
+        "texto": "Le perdonas si te lo explica bien",
+        "es_correcta": true,
+        "reflexion": "Perdonar también es parte de la empatía. Todos cometemos errores."
+      }
+    ]
+  },
+  {
+    "imagen": "empatia6.png",
+    "situacion": "Tu amiga está triste porque ha perdido su lápiz favorito. ¿Qué haces?",
+    "opciones": [
+      {
+        "texto": "Le ofreces prestarle uno tuyo",
+        "es_correcta": true,
+        "reflexion": "Compartir es una forma bonita de cuidar a los demás cuando están tristes."
+      },
+      {
+        "texto": "Le dices que no es para tanto",
+        "es_correcta": false,
+        "reflexion": "Lo que parece pequeño para ti puede ser importante para otra persona. Escuchar ayuda más."
+      },
+      {
+        "texto": "La ignoras",
+        "es_correcta": false,
+        "reflexion": "No hacer nada puede hacerla sentir más sola. Puedes estar ahí para ella."
+      },
+      {
+        "texto": "Le dices que tú también pierdes cosas a veces",
+        "es_correcta": true,
+        "reflexion": "Compartir una experiencia parecida puede hacer que el otro se sienta comprendido."
+      }
+    ]
+  },
+  {
+    "imagen": "empatia7.png",
+    "situacion": "Un niño se cae jugando fútbol. ¿Qué haces?",
+    "opciones": [
+      {
+        "texto": "Te acercas y le preguntas si está bien",
+        "es_correcta": true,
+        "reflexion": "Mostrar interés por cómo se siente alguien es una forma de ser empático."
+      },
+      {
+        "texto": "Le dices que fue su culpa",
+        "es_correcta": false,
+        "reflexion": "Buscar culpables no ayuda. Lo importante es cuidar y apoyar."
+      },
+      {
+        "texto": "Te alejas porque no lo conoces",
+        "es_correcta": false,
+        "reflexion": "No hace falta conocer a alguien para ser amable."
+      },
+      {
+        "texto": "Le ayudas a levantarse",
+        "es_correcta": true,
+        "reflexion": "Ayudar con acciones también muestra que te importa el otro."
+      }
+    ]
+  },
+  {
+    "imagen": "empatia8.png",
+    "situacion": "Una compañera está llorando porque se ha peleado con su mejor amiga. ¿Qué haces?",
+    "opciones": [
+      {
+        "texto": "Le preguntas si quiere hablar",
+        "es_correcta": true,
+        "reflexion": "A veces solo necesitan a alguien que escuche. Ofrecerse es un gesto bonito."
+      },
+      {
+        "texto": "Le dices que tú no tienes tiempo",
+        "es_correcta": false,
+        "reflexion": "Mostrar interés por lo que le pasa puede ayudarle más de lo que piensas."
+      },
+      {
+        "texto": "La invitas a jugar para animarla",
+        "es_correcta": true,
+        "reflexion": "Buscar algo positivo juntos puede cambiar el ánimo del otro."
+      },
+      {
+        "texto": "Te ríes porque no es tu amiga",
+        "es_correcta": false,
+        "reflexion": "Reírse de alguien que llora puede doler mucho. Mejor mostrar respeto."
+      }
+    ]
+  },
+  {
+    "imagen": "empatia9.png",
+    "situacion": "Tu compañero está muy nervioso antes de un examen. ¿Qué haces?",
+    "opciones": [
+      {
+        "texto": "Le deseas suerte con una sonrisa",
+        "es_correcta": true,
+        "reflexion": "A veces una sonrisa y una palabra amable calman los nervios."
+      },
+      {
+        "texto": "Le dices que seguro va a suspender",
+        "es_correcta": false,
+        "reflexion": "Decir cosas negativas puede aumentar su miedo. Es mejor apoyar."
+      },
+      {
+        "texto": "Le prestas un lápiz bonito para animarlo",
+        "es_correcta": true,
+        "reflexion": "Un pequeño gesto puede hacer sentir mejor a alguien que está nervioso."
+      },
+      {
+        "texto": "Le dices que no te importa",
+        "es_correcta": false,
+        "reflexion": "No mostrar interés puede hacerle sentir solo en un momento difícil."
+      }
+    ]
+  },
+  {
+    "imagen": "empatia10.png",
+    "situacion": "Un amigo no quiere hablar porque está triste. ¿Qué haces?",
+    "opciones": [
+      {
+        "texto": "Le dices que estarás cerca si necesita algo",
+        "es_correcta": true,
+        "reflexion": "Respetar su espacio pero estar disponible demuestra empatía."
+      },
+      {
+        "texto": "Le insistes mucho para que hable",
+        "es_correcta": false,
+        "reflexion": "A veces insistir puede agobiar. Es mejor darle tiempo y estar cerca."
+      },
+      {
+        "texto": "Le das un abrazo si quiere",
+        "es_correcta": true,
+        "reflexion": "Mostrar cariño físico puede ayudar si la otra persona lo acepta."
+      },
+      {
+        "texto": "Le dices que no sea tonto",
+        "es_correcta": false,
+        "reflexion": "Nunca es bueno minimizar lo que siente alguien. Cada emoción es válida."
+      }
+    ]
+  },
+  {
+    "imagen": "empatia11.png",
+    "situacion": "Un niño nuevo entra a clase y se ve muy callado. ¿Qué haces?",
+    "opciones": [
+      {
+        "texto": "Le das la bienvenida con una sonrisa",
+        "es_correcta": true,
+        "reflexion": "Una sonrisa puede hacer que alguien se sienta más cómodo en un lugar nuevo."
+      },
+      {
+        "texto": "Lo observas sin decir nada",
+        "es_correcta": false,
+        "reflexion": "Puede sentirse incómodo si nadie le habla. Un gesto amable puede ayudar mucho."
+      },
+      {
+        "texto": "Le dices que se siente con tu grupo",
+        "es_correcta": true,
+        "reflexion": "Invitarlo a participar le ayudará a sentirse aceptado más rápido."
+      },
+      {
+        "texto": "Le haces una pregunta sencilla para empezar a hablar",
+        "es_correcta": true,
+        "reflexion": "Hacer preguntas amables puede romper el hielo y crear una conexión."
+      }
+    ]
+  },
+  {
+    "imagen": "empatia12.png",
+    "situacion": "Un compañero está enfadado y tira su cuaderno al suelo. ¿Qué haces?",
+    "opciones": [
+      {
+        "texto": "Le preguntas si necesita ayuda",
+        "es_correcta": true,
+        "reflexion": "A veces preguntar con calma puede ayudar a que la otra persona se sienta entendida."
+      },
+      {
+        "texto": "Te ríes y dices que está loco",
+        "es_correcta": false,
+        "reflexion": "Reírse o usar palabras feas puede hacerlo sentir peor. Mejor hablar con respeto."
+      },
+      {
+        "texto": "Lo dejas solo para que se calme",
+        "es_correcta": true,
+        "reflexion": "Si no quiere hablar, darle espacio también puede ser una forma de ayudar."
+      },
+      {
+        "texto": "Le gritas que se calme",
+        "es_correcta": false,
+        "reflexion": "Gritar no ayuda. Podemos calmar el ambiente siendo tranquilos."
+      }
+    ]
+  },
+  {
+    "imagen": "empatia13.png",
+    "situacion": "Tu compañera está muy contenta porque ha sacado buena nota. ¿Qué haces?",
+    "opciones": [
+      {
+        "texto": "Le dices que hizo un buen trabajo",
+        "es_correcta": true,
+        "reflexion": "Alegrarse por los logros de otros es una forma de mostrar empatía y amistad."
+      },
+      {
+        "texto": "Le dices que fue suerte",
+        "es_correcta": false,
+        "reflexion": "Desvalorizar el esfuerzo de alguien puede hacerle sentir mal. Es mejor reconocerlo."
+      },
+      {
+        "texto": "La ignoras porque tú sacaste menos",
+        "es_correcta": false,
+        "reflexion": "Aunque tú no hayas sacado la misma nota, puedes alegrarte por ella."
+      },
+      {
+        "texto": "Le preguntas cómo estudió para aprender también",
+        "es_correcta": true,
+        "reflexion": "Aprender de otros y mostrar interés es una forma positiva de crecer juntos."
+      }
+    ]
+  },
+  {
+    "imagen": "empatia14.png",
+    "situacion": "Un amigo está llorando porque perdió su equipo en el juego. ¿Qué haces?",
+    "opciones": [
+      {
+        "texto": "Le dices que lo importante es divertirse",
+        "es_correcta": true,
+        "reflexion": "Recordar lo bueno del juego puede ayudar a que se sienta mejor."
+      },
+      {
+        "texto": "Te burlas porque perdió",
+        "es_correcta": false,
+        "reflexion": "Burlarse cuando alguien está triste puede hacerlo sentir peor. La empatía anima."
+      },
+      {
+        "texto": "Le dices que otra vez tendrá más suerte",
+        "es_correcta": true,
+        "reflexion": "Mostrar esperanza es una forma de consolar a los demás."
+      },
+      {
+        "texto": "Le dices que siempre pierde",
+        "es_correcta": false,
+        "reflexion": "Decir cosas negativas cuando alguien está triste no ayuda. Es mejor apoyar."
+      }
+    ]
+  },
+  {
+    "imagen": "empatia15.png",
+    "situacion": "Una niña se cae y los demás se ríen. ¿Qué haces?",
+    "opciones": [
+      {
+        "texto": "Te acercas a ayudarla",
+        "es_correcta": true,
+        "reflexion": "Ayudar cuando alguien lo necesita demuestra empatía y bondad."
+      },
+      {
+        "texto": "Te ríes también",
+        "es_correcta": false,
+        "reflexion": "Aunque parezca gracioso, la otra persona puede estar dolida o triste."
+      },
+      {
+        "texto": "Le preguntas si está bien",
+        "es_correcta": true,
+        "reflexion": "Preguntar con interés ayuda a que se sienta cuidada."
+      },
+      {
+        "texto": "Te quedas mirando sin hacer nada",
+        "es_correcta": false,
+        "reflexion": "No hacer nada puede hacer que se sienta sola. Un pequeño gesto ayuda mucho."
+      }
+    ]
+  },
+  {
+    "imagen": "empatia16.png",
+    "situacion": "Tu hermano pequeño está triste porque rompió su juguete. ¿Qué haces?",
+    "opciones": [
+      {
+        "texto": "Le ayudas a buscar una solución",
+        "es_correcta": true,
+        "reflexion": "Buscar juntos una solución es una forma de demostrar cariño y empatía."
+      },
+      {
+        "texto": "Le dices que deje de llorar",
+        "es_correcta": false,
+        "reflexion": "Todos tenemos derecho a sentirnos tristes. Escuchar es mejor que callar."
+      },
+      {
+        "texto": "Le das uno tuyo por un rato",
+        "es_correcta": true,
+        "reflexion": "Compartir con alguien triste puede hacerlo sentir mejor."
+      },
+      {
+        "texto": "Te vas para que se calme solo",
+        "es_correcta": false,
+        "reflexion": "Estar cerca puede ayudar más que dejarlo solo."
+      }
+    ]
+  },
+  {
+    "imagen": "empatia17.png",
+    "situacion": "Una compañera llega tarde a clase y todos la miran. ¿Qué haces?",
+    "opciones": [
+      {
+        "texto": "Le sonríes para que se sienta mejor",
+        "es_correcta": true,
+        "reflexion": "Una sonrisa puede quitar nervios y hacerla sentir bienvenida."
+      },
+      {
+        "texto": "Le dices que va tarde y todos lo saben",
+        "es_correcta": false,
+        "reflexion": "Repetir algo obvio puede hacerla sentir peor. Mejor ser amable."
+      },
+      {
+        "texto": "La ignoras por llegar tarde",
+        "es_correcta": false,
+        "reflexion": "Ignorar a alguien en un momento incómodo puede hacerle sentir sola."
+      },
+      {
+        "texto": "La invitas a sentarse contigo",
+        "es_correcta": true,
+        "reflexion": "Invitarla a sentarse puede ayudarle a integrarse más rápido."
+      }
+    ]
+  },
+  {
+    "imagen": "empatia18.png",
+    "situacion": "Un niño se equivoca al cantar en clase. ¿Qué haces?",
+    "opciones": [
+      {
+        "texto": "Aplaudes para animarlo",
+        "es_correcta": true,
+        "reflexion": "Apoyar en público es una forma fuerte de mostrar empatía."
+      },
+      {
+        "texto": "Te burlas de él",
+        "es_correcta": false,
+        "reflexion": "La burla puede dejar huella. Mejor apoyar aunque se equivoque."
+      },
+      {
+        "texto": "Le haces una cara graciosa",
+        "es_correcta": false,
+        "reflexion": "Puede parecer una broma, pero puede hacer que se sienta mal."
+      },
+      {
+        "texto": "Le dices que lo hizo bien por intentarlo",
+        "es_correcta": true,
+        "reflexion": "Valorar el esfuerzo ayuda a que no tenga miedo de intentarlo de nuevo."
+      }
+    ]
+  },
+  {
+    "imagen": "empatia19.png",
+    "situacion": "Un compañero olvida su almuerzo. ¿Qué haces?",
+    "opciones": [
+      {
+        "texto": "Compartes el tuyo",
+        "es_correcta": true,
+        "reflexion": "Compartir con alguien que lo necesita es una gran muestra de empatía."
+      },
+      {
+        "texto": "Le dices que debe recordar sus cosas",
+        "es_correcta": false,
+        "reflexion": "Regañar no ayuda. Puede estar triste o preocupado por eso."
+      },
+      {
+        "texto": "Le ofreces un poco de tu merienda",
+        "es_correcta": true,
+        "reflexion": "Ofrecer aunque sea un poco ya es un gran gesto para la otra persona."
+      },
+      {
+        "texto": "No haces nada porque no es tu culpa",
+        "es_correcta": false,
+        "reflexion": "Aunque no sea tu culpa, puedes ayudar si quieres ser amable."
+      }
+    ]
+  },
+  {
+    "imagen": "empatia20.png",
+    "situacion": "Tu mejor amiga está seria y no quiere hablar. ¿Qué haces?",
+    "opciones": [
+      {
+        "texto": "Le dices que estás ahí si necesita hablar",
+        "es_correcta": true,
+        "reflexion": "Ofrecerte sin presionar es una buena forma de mostrar empatía."
+      },
+      {
+        "texto": "Le haces preguntas una y otra vez",
+        "es_correcta": false,
+        "reflexion": "Insistir demasiado puede hacerla sentir incómoda."
+      },
+      {
+        "texto": "Le das un dibujo o una nota bonita",
+        "es_correcta": true,
+        "reflexion": "Un detalle pequeño puede ayudar a que se sienta mejor."
+      },
+      {
+        "texto": "Te enfadas porque no te cuenta nada",
+        "es_correcta": false,
+        "reflexion": "Todos necesitamos nuestro espacio a veces. La empatía es respetarlo."
+      }
     ]
   }
 ]

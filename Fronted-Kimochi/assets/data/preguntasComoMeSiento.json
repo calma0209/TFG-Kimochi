@@ -1,0 +1,442 @@
+[
+  {
+    "imagen": "caso1.png",
+    "situacion": "¿Cómo te sentirías si un amigo te empuja sin querer?",
+    "opciones": [
+      {
+        "texto": "Enfadado",
+        "reflexion": "Está bien sentirse enfadado. Puedes respirar hondo o contar lo que pasó."
+      },
+      {
+        "texto": "Contento",
+        "reflexion": "Si te sientes contento, ¡disfrútalo! Puedes sonreír o hacer algo divertido."
+      },
+      {
+        "texto": "Triste",
+        "reflexion": "Sentirse triste es normal. A veces ayuda hablar o abrazar algo que te guste."
+      },
+      {
+        "texto": "Hambriento",
+        "reflexion": "Sentir hambre es natural. A veces nuestras emociones se mezclan con el cuerpo."
+      }
+    ]
+  },
+  {
+    "imagen": "caso2.png",
+    "situacion": "¿Cómo te sentirías si alguien te da un abrazo?",
+    "opciones": [
+      {
+        "texto": "Feliz",
+        "reflexion": "¡Qué bien sentirse feliz! Puedes compartir tu alegría con alguien."
+      },
+      {
+        "texto": "Asustado",
+        "reflexion": "Si algo te asusta, puedes hablar con un adulto y buscar un lugar seguro."
+      },
+      {
+        "texto": "Enfadado",
+        "reflexion": "Está bien sentirse enfadado. Puedes respirar hondo o contar lo que pasó."
+      },
+      {
+        "texto": "Confundido",
+        "reflexion": "Estar confundido es parte de aprender. Puedes pedir ayuda o pensar con calma."
+      }
+    ]
+  },
+  {
+    "imagen": "caso3.png",
+    "situacion": "¿Cómo te sentirías si alguien te ha pegado?",
+    "opciones": [
+      {
+        "texto": "Triste",
+        "reflexion": "Sentirse triste es normal. A veces ayuda hablar o abrazar algo que te guste."
+      },
+      {
+        "texto": "Contento",
+        "reflexion": "Si te sientes contento, ¡disfrútalo! Puedes sonreír o hacer algo divertido."
+      },
+      {
+        "texto": "Asustado",
+        "reflexion": "Si algo te asusta, puedes hablar con un adulto y buscar un lugar seguro."
+      },
+      {
+        "texto": "Hambriento",
+        "reflexion": "Sentir hambre es natural. A veces nuestras emociones se mezclan con el cuerpo."
+      }
+    ]
+  },
+  {
+    "imagen": "caso4.png",
+    "situacion": "¿Cómo te sentirías si pierdes tu juguete favorito?",
+    "opciones": [
+      {
+        "texto": "Triste",
+        "reflexion": "Sentirse triste es normal. A veces ayuda hablar o abrazar algo que te guste."
+      },
+      {
+        "texto": "Feliz",
+        "reflexion": "¡Qué bien sentirse feliz! Puedes compartir tu alegría con alguien."
+      },
+      {
+        "texto": "Sorprendido",
+        "reflexion": "Cuando algo nos sorprende, podemos pararnos y pensar por qué pasó."
+      },
+      {
+        "texto": "Relajado",
+        "reflexion": "Estar relajado es una buena sensación. Puedes seguir haciendo lo que te hace sentir así."
+      }
+    ]
+  },
+  {
+    "imagen": "caso5.png",
+    "situacion": "¿Cómo te sentirías si escuchas un ruido raro por la noche?",
+    "opciones": [
+      {
+        "texto": "Asustado",
+        "reflexion": "Si algo te asusta, puedes hablar con un adulto y buscar un lugar seguro."
+      },
+      {
+        "texto": "Tranquilo",
+        "reflexion": "Sentirse tranquilo ayuda a pensar mejor. Puedes respirar despacio si quieres seguir así."
+      },
+      {
+        "texto": "Feliz",
+        "reflexion": "¡Qué bien sentirse feliz! Puedes compartir tu alegría con alguien."
+      },
+      {
+        "texto": "Con sueño",
+        "reflexion": "Tener sueño también es sentir algo. Dormir bien ayuda a sentirse mejor."
+      }
+    ]
+  },
+  {
+    "imagen": "caso6.png",
+    "situacion": "¿Cómo te sentirías si nadie quiere jugar contigo en el recreo?",
+    "opciones": [
+      {
+        "texto": "Triste",
+        "reflexion": "Está bien sentirse triste. Puedes contárselo a un profe o buscar a otro amigo."
+      },
+      {
+        "texto": "Enfadado",
+        "reflexion": "Cuando te enfadas, respira hondo y habla con alguien de confianza."
+      },
+      {
+        "texto": "Aburrido",
+        "reflexion": "Si estás aburrido, intenta pensar en un juego nuevo o leer algo que te guste."
+      },
+      {
+        "texto": "Feliz",
+        "reflexion": "Si te sientes feliz, está genial. Puedes invitar a otros a jugar contigo."
+      }
+    ]
+  },
+  {
+    "imagen": "caso7.png",
+    "situacion": "¿Cómo te sentirías si ganas un premio en clase?",
+    "opciones": [
+      {
+        "texto": "Feliz",
+        "reflexion": "¡Qué alegría! Puedes compartir tu felicidad con tu familia o amigos."
+      },
+      {
+        "texto": "Nervioso",
+        "reflexion": "Sentir nervios también es normal. Puedes respirar lento para calmarte."
+      },
+      {
+        "texto": "Sorprendido",
+        "reflexion": "Las sorpresas pueden ser buenas. Disfruta el momento con una sonrisa."
+      },
+      {
+        "texto": "Tímido",
+        "reflexion": "Está bien sentirse tímido. Puedes mirar a alguien que te dé confianza."
+      }
+    ]
+  },
+  {
+    "imagen": "caso8.png",
+    "situacion": "¿Cómo te sentirías si se rompe tu dibujo favorito?",
+    "opciones": [
+      {
+        "texto": "Triste",
+        "reflexion": "Puedes volver a dibujar otro. A veces, crear algo nuevo ayuda a sentirse mejor."
+      },
+      {
+        "texto": "Enfadado",
+        "reflexion": "Es normal enfadarse. Puedes contar hasta 5 y luego hablar de lo que pasó."
+      },
+      {
+        "texto": "Indiferente",
+        "reflexion": "Si no te afecta mucho, está bien también. No todo nos hace sentir igual."
+      },
+      {
+        "texto": "Creativo",
+        "reflexion": "¡Qué bien! Puedes usar tu imaginación para hacer algo nuevo y especial."
+      }
+    ]
+  },
+  {
+    "imagen": "caso9.png",
+    "situacion": "¿Cómo te sentirías si ves una película con monstruos?",
+    "opciones": [
+      {
+        "texto": "Asustado",
+        "reflexion": "Si tienes miedo, puedes apagar la película o ver algo que te guste más."
+      },
+      {
+        "texto": "Emocionado",
+        "reflexion": "Las emociones fuertes también pueden ser divertidas. Respira si te sientes raro."
+      },
+      {
+        "texto": "Valiente",
+        "reflexion": "¡Bien por ti! Puedes sentir orgullo de ser valiente, aunque tengas un poco de miedo."
+      },
+      {
+        "texto": "Confundido",
+        "reflexion": "Puedes preguntar si algo no lo entiendes. Hablar ayuda a sentirte mejor."
+      }
+    ]
+  },
+  {
+    "imagen": "caso10.png",
+    "situacion": "¿Cómo te sentirías si un amigo comparte su merienda contigo?",
+    "opciones": [
+      {
+        "texto": "Agradecido",
+        "reflexion": "Decir 'gracias' es una forma bonita de mostrar lo que sientes."
+      },
+      {
+        "texto": "Feliz",
+        "reflexion": "Compartir hace que los momentos sean más bonitos. Disfrútalo."
+      },
+      {
+        "texto": "Sorprendido",
+        "reflexion": "Cuando alguien es amable sin esperarlo, puedes sonreír y dar las gracias."
+      },
+      {
+        "texto": "Tranquilo",
+        "reflexion": "Estar tranquilo es una emoción bonita. Puedes disfrutar ese momento con calma."
+      }
+    ]
+  },
+  {
+    "imagen": "caso11.png",
+    "situacion": "¿Cómo te sentirías si te equivocas al leer en voz alta?",
+    "opciones": [
+      {
+        "texto": "Vergüenza",
+        "reflexion": "Sentir vergüenza es normal. Todos cometemos errores y seguimos aprendiendo."
+      },
+      {
+        "texto": "Orgullo",
+        "reflexion": "Puedes sentirte orgulloso de haberlo intentado, aunque no salga perfecto."
+      },
+      {
+        "texto": "Tristeza",
+        "reflexion": "Si te pones triste, puedes hablar con tu profe o un amigo."
+      },
+      {
+        "texto": "Frustración",
+        "reflexion": "Cuando algo no sale bien, respira hondo y vuelve a intentarlo."
+      }
+    ]
+  },
+  {
+    "imagen": "caso12.png",
+    "situacion": "¿Cómo te sentirías si un amigo juega con otro y no contigo?",
+    "opciones": [
+      {
+        "texto": "Celos",
+        "reflexion": "Los celos aparecen a veces. Puedes invitar a jugar también o hablar con tu amigo."
+      },
+      {
+        "texto": "Soledad",
+        "reflexion": "Sentirse solo es algo que pasa. Puedes buscar a alguien más con quien jugar."
+      },
+      {
+        "texto": "Enfado",
+        "reflexion": "Si te enfadas, intenta entender lo que sientes y hablar con calma."
+      },
+      {
+        "texto": "Tristeza",
+        "reflexion": "Está bien sentirse triste. Compartirlo con alguien ayuda."
+      }
+    ]
+  },
+  {
+    "imagen": "caso13.png",
+    "situacion": "¿Cómo te sentirías si ves a alguien caer y te ríes sin querer?",
+    "opciones": [
+      {
+        "texto": "Culpa",
+        "reflexion": "Sentir culpa es normal. Puedes pedir perdón y ayudar al otro niño."
+      },
+      {
+        "texto": "Empatía",
+        "reflexion": "Puedes imaginar cómo se siente el otro y actuar con cariño."
+      },
+      {
+        "texto": "Vergüenza",
+        "reflexion": "Si te da vergüenza, puedes respirar hondo y aprender de lo que pasó."
+      },
+      {
+        "texto": "Alegría",
+        "reflexion": "A veces reímos sin querer. Lo importante es darnos cuenta y cuidar a los demás."
+      }
+    ]
+  },
+  {
+    "imagen": "caso14.png",
+    "situacion": "¿Cómo te sentirías si haces un dibujo y todos lo admiran?",
+    "opciones": [
+      {
+        "texto": "Orgullo",
+        "reflexion": "Sentirse orgulloso es bonito. Disfruta lo que lograste."
+      },
+      {
+        "texto": "Alegría",
+        "reflexion": "¡Qué bien se siente cuando algo te sale bien!"
+      },
+      {
+        "texto": "Sorpresa",
+        "reflexion": "A veces nos sorprende que a otros les guste lo que hacemos. ¡Y está genial!"
+      },
+      {
+        "texto": "Ilusión",
+        "reflexion": "La ilusión es una emoción bonita. Puedes seguir dibujando si te gusta."
+      }
+    ]
+  },
+  {
+    "imagen": "caso15.png",
+    "situacion": "¿Cómo te sentirías si tienes que hablar delante de toda la clase?",
+    "opciones": [
+      {
+        "texto": "Nervios",
+        "reflexion": "Sentir nervios es normal. Puedes respirar profundo y mirar a alguien que te apoye."
+      },
+      {
+        "texto": "Inseguridad",
+        "reflexion": "Cuando no estás seguro, puedes preparar lo que vas a decir y confiar en ti."
+      },
+      {
+        "texto": "Confusión",
+        "reflexion": "Si te confundes, no pasa nada. Puedes parar y volver a empezar."
+      },
+      {
+        "texto": "Esperanza",
+        "reflexion": "Tener esperanza es pensar que todo va a salir bien. ¡Confía en ti!"
+      }
+    ]
+  },
+  {
+    "imagen": "caso16.png",
+    "situacion": "¿Cómo te sentirías si te regalan algo que querías mucho?",
+    "opciones": [
+      {
+        "texto": "Alegría",
+        "reflexion": "¡Disfrútalo! Sentirse feliz por algo bonito está genial."
+      },
+      {
+        "texto": "Gratitud",
+        "reflexion": "Puedes decir 'gracias' con una sonrisa o un abrazo."
+      },
+      {
+        "texto": "Euforia",
+        "reflexion": "Cuando estás muy contento, puedes saltar, reír o cantar. ¡Exprésalo con alegría!"
+      },
+      {
+        "texto": "Cariño",
+        "reflexion": "Puedes sentir cariño por quien te dio el regalo. Es lindo compartir ese sentimiento."
+      }
+    ]
+  },
+  {
+    "imagen": "caso17.png",
+    "situacion": "¿Cómo te sentirías si te castigan por algo que no hiciste?",
+    "opciones": [
+      {
+        "texto": "Injusticia",
+        "reflexion": "Cuando algo es injusto, puedes explicarlo con calma a un adulto."
+      },
+      {
+        "texto": "Rabia",
+        "reflexion": "Sentir rabia es fuerte. Respira y cuéntale lo que pasó a alguien de confianza."
+      },
+      {
+        "texto": "Tristeza",
+        "reflexion": "Puedes sentirte triste, pero hablarlo ayuda."
+      },
+      {
+        "texto": "Soledad",
+        "reflexion": "A veces, cuando nos sentimos solos, necesitamos un abrazo o compañía."
+      }
+    ]
+  },
+  {
+    "imagen": "caso18.png",
+    "situacion": "¿Cómo te sentirías si alguien te da las gracias por ayudarle?",
+    "opciones": [
+      {
+        "texto": "Agradecimiento",
+        "reflexion": "Ayudar a otros y que te lo reconozcan da una sensación bonita. ¡Bien hecho!"
+      },
+      {
+        "texto": "Empatía",
+        "reflexion": "Entender a los demás y ayudarlos es algo muy valioso."
+      },
+      {
+        "texto": "Alegría",
+        "reflexion": "¡Qué bien sentirse útil! Puedes seguir haciendo cosas buenas."
+      },
+      {
+        "texto": "Orgullo",
+        "reflexion": "Puedes sentir orgullo de haber hecho algo bueno."
+      }
+    ]
+  },
+  {
+    "imagen": "caso19.png",
+    "situacion": "¿Cómo te sentirías si te equivocas y alguien se ríe de ti?",
+    "opciones": [
+      {
+        "texto": "Culpa",
+        "reflexion": "No tienes que sentirte culpable por equivocarte. Todos aprendemos así."
+      },
+      {
+        "texto": "Vergüenza",
+        "reflexion": "Puedes respirar hondo y recordar que todos cometemos errores."
+      },
+      {
+        "texto": "Tristeza",
+        "reflexion": "Si algo te hace sentir mal, cuéntalo a alguien que te escuche."
+      },
+      {
+        "texto": "Rabia",
+        "reflexion": "Si sientes rabia, es mejor calmarte antes de responder."
+      }
+    ]
+  },
+  {
+    "imagen": "caso20.png",
+    "situacion": "¿Cómo te sentirías si un amigo nuevo quiere jugar contigo?",
+    "opciones": [
+      {
+        "texto": "Ilusión",
+        "reflexion": "¡Qué bonito es hacer nuevos amigos! Disfruta ese momento."
+      },
+      {
+        "texto": "Alegría",
+        "reflexion": "Sentir alegría por compartir un juego es especial."
+      },
+      {
+        "texto": "Curiosidad",
+        "reflexion": "Conocer a alguien nuevo puede despertar curiosidad. ¡Pregúntale cosas!"
+      },
+      {
+        "texto": "Cariño",
+        "reflexion": "Con el tiempo, los nuevos amigos pueden volverse muy importantes."
+      }
+    ]
+  }
+]

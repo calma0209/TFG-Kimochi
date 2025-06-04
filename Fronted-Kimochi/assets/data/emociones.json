@@ -2,19 +2,183 @@
   "emociones": [
     {
       "nombre": "Alegría",
-      "imagen": "alegria.png"
+      "imagen": "alegria.png",
+      "descripcion": "Es cuando te sientes muy bien por dentro, como cuando juegas o te dan una buena noticia."
     },
     {
       "nombre": "Tristeza",
-      "imagen": "tristeza.png"
+      "imagen": "tristeza.png",
+      "descripcion": "Es cuando algo te hace sentir mal o te falta algo que quieres mucho."
     },
     {
       "nombre": "Enfado",
-      "imagen": "enfado.png"
+      "imagen": "enfado.png",
+      "descripcion": "Es cuando algo no te gusta o te parece injusto, y te dan ganas de gritar o cruzarte de brazos."
     },
     {
       "nombre": "Miedo",
-      "imagen": "miedo.png"
+      "imagen": "miedo.png",
+      "descripcion": "Es cuando algo te asusta y quieres protegerte o alejarte."
+    },
+    {
+      "nombre": "Vergüenza",
+      "imagen": "tristeza.png",
+      "descripcion": "Es cuando no quieres que te miren porque hiciste algo que te incomoda."
+    },
+    {
+      "nombre": "Calma",
+      "imagen": "alegria.png",
+      "descripcion": "Es cuando estás tranquilo y nada te molesta."
+    },
+    {
+      "nombre": "Confusión",
+      "imagen": "miedo.png",
+      "descripcion": "Es cuando no entiendes algo o no sabes qué hacer."
+    },
+    {
+      "nombre": "Sorpresa",
+      "imagen": "alegria.png",
+      "descripcion": "Es cuando algo pasa sin esperarlo y te cambia la cara."
+    },
+    {
+      "nombre": "Orgullo",
+      "imagen": "alegria.png",
+      "descripcion": "Es cuando te sientes bien contigo mismo por haber hecho algo bueno."
+    },
+    {
+      "nombre": "Celos",
+      "imagen": "enfado.png",
+      "descripcion": "Es cuando quieres lo que otro tiene y eso te hace sentir mal."
+    },
+    {
+      "nombre": "Aburrimiento",
+      "imagen": "tristeza.png",
+      "descripcion": "Es cuando no sabes qué hacer y nada te divierte."
+    },
+    {
+      "nombre": "Cansancio",
+      "imagen": "tristeza.png",
+      "descripcion": "Es cuando tu cuerpo o tu mente necesitan descansar."
+    },
+    {
+      "nombre": "Ilusión",
+      "imagen": "alegria.png",
+      "descripcion": "Es cuando algo que esperas con muchas ganas te hace sentir feliz."
+    },
+    {
+      "nombre": "Frustración",
+      "imagen": "enfado.png",
+      "descripcion": "Es cuando intentas algo y no sale como quieres, y eso te molesta."
+    },
+    {
+      "nombre": "Cariño",
+      "imagen": "alegria.png",
+      "descripcion": "Es cuando te gusta alguien mucho y quieres estar cerca."
+    },
+    {
+      "nombre": "Ansiedad",
+      "imagen": "miedo.png",
+      "descripcion": "Es cuando estás muy nervioso por algo que aún no ha pasado."
+    },
+    {
+      "nombre": "Gratitud",
+      "imagen": "alegria.png",
+      "descripcion": "Es cuando alguien hace algo bueno por ti y te sientes agradecido."
+    },
+    {
+      "nombre": "Soledad",
+      "imagen": "tristeza.png",
+      "descripcion": "Es cuando estás solo y te gustaría estar acompañado."
+    },
+    {
+      "nombre": "Esperanza",
+      "imagen": "alegria.png",
+      "descripcion": "Es cuando confías en que algo bueno va a pasar."
+    },
+    {
+      "nombre": "Emoción",
+      "imagen": "miedo.png",
+      "descripcion": "Es cuando sientes algo muy fuerte en el cuerpo y el corazón, como alegría o miedo."
+    },
+    {
+      "nombre": "Inseguridad",
+      "imagen": "miedo.png",
+      "descripcion": "Es cuando dudas de ti mismo y no sabes si podrás hacerlo bien."
+    },
+    {
+      "nombre": "Curiosidad",
+      "imagen": "alegria.png",
+      "descripcion": "Es cuando quieres saber más sobre algo o alguien."
+    },
+    {
+      "nombre": "Culpa",
+      "imagen": "tristeza.png",
+      "descripcion": "Es cuando hiciste algo que crees que estuvo mal y te pesa."
+    },
+    {
+      "nombre": "Empatía",
+      "imagen": "alegria.png",
+      "descripcion": "Es cuando entiendes cómo se siente otra persona."
+    },
+    {
+      "nombre": "Serenidad",
+      "imagen": "alegria.png",
+      "descripcion": "Es una calma profunda, como estar en paz contigo mismo."
+    },
+    {
+      "nombre": "Rabia",
+      "imagen": "enfado.png",
+      "descripcion": "Es un enfado muy fuerte que a veces se nota mucho en el cuerpo."
+    },
+    {
+      "nombre": "Euforia",
+      "imagen": "alegria.png",
+      "descripcion": "Es una alegría tan grande que quieres saltar y gritar."
+    },
+    {
+      "nombre": "Agobio",
+      "imagen": "miedo.png",
+      "descripcion": "Es cuando hay muchas cosas a la vez y no sabes cómo hacerlas."
+    },
+    {
+      "nombre": "Desconfianza",
+      "imagen": "miedo.png",
+      "descripcion": "Es cuando no te fías de algo o de alguien."
+    },
+    {
+      "nombre": "Admiración",
+      "imagen": "alegria.png",
+      "descripcion": "Es cuando ves algo que te parece increíble o muy bueno."
+    },
+    {
+      "nombre": "Alivio",
+      "imagen": "alegria.png",
+      "descripcion": "Es cuando algo que te preocupaba ya no está y te sientes mejor."
+    },
+    {
+      "nombre": "Preocupación",
+      "imagen": "miedo.png",
+      "descripcion": "Es cuando piensas mucho en algo que puede salir mal."
+    },
+    {
+      "nombre": "Pena",
+      "imagen": "tristeza.png",
+      "descripcion": "Es una tristeza suave, como cuando algo te duele por dentro."
+    },
+    {
+      "nombre": "Rechazo",
+      "imagen": "enfado.png",
+      "descripcion": "Es cuando sientes que no te aceptan o no te quieren cerca."
+    },
+    {
+      "nombre": "Gracia",
+      "imagen": "alegria.png",
+      "descripcion": "Es cuando algo te hace reír o te parece divertido."
+    },
+    {
+      "nombre": "Agradecimiento",
+      "imagen": "alegria.png",
+      "descripcion": "Es cuando sientes ganas de dar las gracias a alguien por algo."
     }
   ]
 }

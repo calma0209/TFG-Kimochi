@@ -8,10 +8,10 @@ import {
   Dimensions,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import preguntasJSON from "@/assets/data/preguntasEmpatia.json";
+import preguntasJSON from "@/assets/data/preguntasComoMeSiento.json";
 import imageMap from "@/constants/emocionesMap";
 
-const EmpatiaSituacional = () => {
+const EmocionesSituacional = () => {
   const [preguntas, setPreguntas] = useState<any[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [respuestaSeleccionada, setRespuestaSeleccionada] = useState<
@@ -19,6 +19,7 @@ const EmpatiaSituacional = () => {
   >(null);
   const [feedback, setFeedback] = useState<string>("");
   const [juegoTerminado, setJuegoTerminado] = useState(false);
+  const [mostrarBotonSiguiente, setMostrarBotonSiguiente] = useState(false);
 
   useEffect(() => {
     iniciarJuego();
@@ -31,6 +32,7 @@ const EmpatiaSituacional = () => {
     setRespuestaSeleccionada(null);
     setFeedback("");
     setJuegoTerminado(false);
+    setMostrarBotonSiguiente(false);
   };
 
   const shuffleArray = (array: any[]) => {
@@ -39,29 +41,33 @@ const EmpatiaSituacional = () => {
 
   const manejarRespuesta = (opcion: any) => {
     setRespuestaSeleccionada(opcion.texto);
+    setMostrarBotonSiguiente(true);
     setFeedback(opcion.reflexion);
   };
 
-  const avanzarSiguiente = () => {
+  const avanzar = () => {
     const siguiente = currentIndex + 1;
     if (siguiente < preguntas.length) {
       setCurrentIndex(siguiente);
       setRespuestaSeleccionada(null);
       setFeedback("");
+      setMostrarBotonSiguiente(false);
     } else {
       setJuegoTerminado(true);
     }
   };
 
-  const reintentarPregunta = () => {
-    setRespuestaSeleccionada(null);
-    setFeedback("");
-  };
-
   if (preguntas.length === 0) return null;
   if (juegoTerminado) {
     return (
-      <SafeAreaView style={styles.finalContainer}>
+      <SafeAreaView
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "#fff",
+        }}
+      >
         <Text style={styles.title}>🎉 ¡Fin del juego!</Text>
         <TouchableOpacity style={styles.button} onPress={iniciarJuego}>
           <Text style={styles.buttonText}>Volver a jugar</Text>
@@ -71,9 +77,6 @@ const EmpatiaSituacional = () => {
   }
 
   const preguntaActual = preguntas[currentIndex];
-  const esRespuestaCorrecta = preguntaActual.opciones.find(
-    (o: any) => o.texto === respuestaSeleccionada && o.es_correcta
-  );
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "black" }}>
@@ -90,11 +93,7 @@ const EmpatiaSituacional = () => {
         <View style={styles.grid}>
           {preguntaActual.opciones.map((opcion: any, idx: number) => {
             const seleccionado = opcion.texto === respuestaSeleccionada;
-            const color = seleccionado
-              ? opcion.es_correcta
-                ? "green"
-                : "red"
-              : "#ccc";
+            const color = seleccionado ? "#6a1b9a" : "#ccc";
 
             return (
               <TouchableOpacity
@@ -109,25 +108,12 @@ const EmpatiaSituacional = () => {
           })}
         </View>
 
-        {respuestaSeleccionada && (
-          <>
-            <Text style={styles.reflexion}>{feedback}</Text>
-            {esRespuestaCorrecta ? (
-              <TouchableOpacity
-                style={styles.button}
-                onPress={avanzarSiguiente}
-              >
-                <Text style={styles.buttonText}>Siguiente</Text>
-              </TouchableOpacity>
-            ) : (
-              <TouchableOpacity
-                style={styles.button}
-                onPress={reintentarPregunta}
-              >
-                <Text style={styles.buttonText}>Reintentar</Text>
-              </TouchableOpacity>
-            )}
-          </>
+        {feedback !== "" && <Text style={styles.feedback}>{feedback}</Text>}
+
+        {mostrarBotonSiguiente && (
+          <TouchableOpacity style={styles.button} onPress={avanzar}>
+            <Text style={styles.buttonText}>Siguiente</Text>
+          </TouchableOpacity>
         )}
       </View>
     </SafeAreaView>
@@ -144,12 +130,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "white",
-  },
-  finalContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#fff",
   },
   imagen: {
     width: isTablet ? 250 : 180,
@@ -182,12 +162,11 @@ const styles = StyleSheet.create({
     fontSize: isTablet ? 20 : 16,
     textAlign: "center",
   },
-  reflexion: {
-    fontSize: isTablet ? 20 : 16,
-    marginTop: 20,
-    textAlign: "center",
-    color: "#444",
-    paddingHorizontal: 10,
+  feedback: {
+    fontSize: 20,
+    marginTop: 30,
+    color: "#6a1b9a",
+    fontWeight: "bold",
   },
   title: {
     fontSize: isTablet ? 28 : 22,
@@ -210,4 +189,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EmpatiaSituacional;
+export default EmocionesSituacional;

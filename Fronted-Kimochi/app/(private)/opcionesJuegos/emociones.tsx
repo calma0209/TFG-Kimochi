@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import preguntasData from "../../../assets/data/preguntas.json";
+import preguntasData from "../../../assets/data/preguntasEmociones.json";
 import {
   View,
   Text,
@@ -13,7 +13,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
 import imageMap from "@/constants/emocionesMap";
 
-const EmpatiaScreen = () => {
+const EmocionesScreen = () => {
   const [nivelActual, setNivelActual] = useState(1);
   const [questions, setQuestions] = useState<any[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -24,6 +24,7 @@ const EmpatiaScreen = () => {
   const [feedback, setFeedback] = useState("");
   const [gameOver, setGameOver] = useState(false);
   const [nivelCompletadoMensaje, setNivelCompletadoMensaje] = useState(false);
+  const [mostrarBotonSiguiente, setMostrarBotonSiguiente] = useState(false);
 
   const usuarioId = 27;
 
@@ -38,7 +39,7 @@ const EmpatiaScreen = () => {
   const obtenerNivel = async () => {
     try {
       const res = await fetch(
-        `http://1192.168.1.135:8080/api/usuarios/${usuarioId}/nivel`
+        `http://192.168.1.135:8080/api/usuarios/${usuarioId}/nivel`
       );
       const nivel = await res.json();
       if (nivel > 0) setNivelActual(nivel);
@@ -55,19 +56,20 @@ const EmpatiaScreen = () => {
     setSelectedOption(null);
     setAnswerState(null);
     setFeedback("");
+    setMostrarBotonSiguiente(false);
   };
 
   const handleOptionPress = (option: any) => {
     setSelectedOption(option.id_opcion);
     if (option.es_correcto) {
-      setFeedback("¡Respuesta correcta!");
       setAnswerState("correcta");
-      setTimeout(() => {
-        goToNextQuestion();
-      }, 1500);
+      setFeedback(
+        option.emocion?.descripcion ? " " + option.emocion.descripcion : ""
+      );
+      setMostrarBotonSiguiente(true);
     } else {
-      setFeedback("Respuesta incorrecta. ¡Inténtalo de nuevo!");
       setAnswerState("incorrecta");
+      setFeedback("Respuesta incorrecta. ¡Inténtalo de nuevo!");
     }
   };
 
@@ -78,6 +80,7 @@ const EmpatiaScreen = () => {
       setSelectedOption(null);
       setAnswerState(null);
       setFeedback("");
+      setMostrarBotonSiguiente(false);
     } else {
       completarNivel();
     }
@@ -86,11 +89,10 @@ const EmpatiaScreen = () => {
   const completarNivel = async () => {
     try {
       const siguienteNivel = nivelActual + 1;
-
-      setNivelCompletadoMensaje(true); // Mostrar mensaje
+      setNivelCompletadoMensaje(true);
 
       await fetch(
-        `http://1192.168.1.135:8080/api/usuarios/${usuarioId}/nivel-completado?nuevoNivel=${siguienteNivel}`,
+        `http://192.168.1.135:8080/api/usuarios/${usuarioId}/nivel-completado?nuevoNivel=${siguienteNivel}`,
         { method: "POST" }
       );
 
@@ -102,7 +104,7 @@ const EmpatiaScreen = () => {
           setGameOver(true);
         }
         setNivelCompletadoMensaje(false);
-      }, 2000); // Mostrar 2 segundos
+      }, 2000);
     } catch (error) {
       Alert.alert("Error", "No se pudo actualizar el nivel y la recompensa");
     }
@@ -150,13 +152,6 @@ const EmpatiaScreen = () => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
       <View style={styles.container}>
-        {/* <TouchableOpacity
-          style={styles.backButton}
-          onPress={() => router.push("/(tabs)/opcionesJuegos")}
-        >
-          <Text style={styles.backText}>{"<"}</Text>
-        </TouchableOpacity> */}
-
         <Text style={styles.title}>Nivel {nivelActual}</Text>
         <Text style={styles.question}>{current.pregunta}</Text>
 
@@ -191,6 +186,12 @@ const EmpatiaScreen = () => {
         </View>
 
         {feedback !== "" && <Text style={styles.feedback}>{feedback}</Text>}
+
+        {mostrarBotonSiguiente && (
+          <TouchableOpacity style={styles.button} onPress={goToNextQuestion}>
+            <Text style={styles.buttonText}>Siguiente</Text>
+          </TouchableOpacity>
+        )}
       </View>
     </SafeAreaView>
   );
@@ -204,17 +205,6 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: isTablet ? 40 : 30,
     backgroundColor: "#fff",
-  },
-  backButton: {
-    position: "absolute",
-    left: 10,
-    zIndex: 10,
-    padding: 10,
-  },
-  backText: {
-    fontSize: 28,
-    color: "#6a1b9a",
-    fontWeight: "bold",
   },
   centered: {
     flex: 1,
@@ -286,4 +276,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EmpatiaScreen;
+export default EmocionesScreen;

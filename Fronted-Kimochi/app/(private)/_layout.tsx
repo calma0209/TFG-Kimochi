@@ -47,6 +47,10 @@ export default function PrivateLayout() {
           options={{ headerShown: false, gestureEnabled: true }}
         />
         <Stack.Screen
+          name="opcionesJuegos/comoMeSiento"
+          options={{ headerShown: false, gestureEnabled: true }}
+        />
+        <Stack.Screen
           name="opcionesJuegos/empatia"
           options={{ headerShown: false, gestureEnabled: true }}
         />

@@ -18,14 +18,14 @@ export default function WelcomeScreen() {
           resizeMode="contain"
         />
         <Text style={styles.appName}>Kimochi</Text>
-        <Text style={styles.slogan}>Emotional Wellness</Text>
+        <Text style={styles.slogan}>Bienestar Emocional</Text>
       </View>
 
       {/* Sección inferior con fondo amarillo */}
       <View style={styles.bottomSection}>
-        <Text style={styles.welcomeTitle}>Welcome</Text>
+        <Text style={styles.welcomeTitle}>Bienvenido</Text>
         <Text style={styles.welcomeText}>
-          Mejora la inteligencia emocional de forma divertida y adaptada a ti.
+          Mejora la inteligencia emocional de forma divertidai.
         </Text>
 
         <View style={styles.buttonRow}>
@@ -33,14 +33,14 @@ export default function WelcomeScreen() {
             style={styles.signInButton}
             onPress={() => router.push("/(auth)/login")}
           >
-            <Text style={styles.signInText}>Sign In</Text>
+            <Text style={styles.signInText}>Iniciar sesión</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={styles.signUpButton}
             onPress={() => router.push("/(auth)/register")}
           >
-            <Text style={styles.signUpText}>Sign Up</Text>
+            <Text style={styles.signUpText}>Registrarse</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     flex: 1.5,
     alignItems: "center",
     justifyContent: "center",
-    paddingTop: 60,
+    paddingTop: 50,
   },
   logo: {
     width: 150,
@@ -71,21 +71,21 @@ const styles = StyleSheet.create({
   slogan: {
     fontSize: 14,
     color: "#888",
-    marginTop: 4,
+    marginTop: 5,
   },
   bottomSection: {
     flex: 1,
     backgroundColor: "#FFB800",
     borderTopLeftRadius: 40,
     borderTopRightRadius: 40,
-    padding: 30,
+    padding: 40,
     alignItems: "center",
     justifyContent: "center",
   },
   welcomeTitle: {
     fontSize: 24,
     fontWeight: "bold",
-    marginBottom: 10,
+    marginBottom: 20,
     color: "#000",
   },
   welcomeText: {
@@ -94,15 +94,19 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   buttonRow: {
-    flexDirection: "row",
+    flexDirection: "column", // De 'row' a 'column'
     gap: 12,
+    width: "100%", // Para que se alineen bien
+    alignItems: "center", // Centra los botones
   },
   signInButton: {
     backgroundColor: "#000",
     paddingVertical: 12,
     paddingHorizontal: 25,
     borderRadius: 25,
-    marginRight: 10,
+    marginBottom: 10,
+    width: "80%",
+    alignItems: "center",
   },
   signInText: {
     color: "#FFF",
@@ -113,6 +117,8 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 25,
     borderRadius: 25,
+    width: "80%",
+    alignItems: "center",
   },
   signUpText: {
     color: "#000",

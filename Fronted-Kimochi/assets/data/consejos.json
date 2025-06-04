@@ -1,0 +1,179 @@
+{
+  "consejos": [
+    {
+      "id": 1,
+      "categoria": "emociones",
+      "texto": "Respira despacio 3 veces si estas nervioso. A veces, una pausa lo cambia todo."
+    },
+    {
+      "id": 2,
+      "categoria": "emociones",
+      "texto": "Di en voz alta cómo te sientes. Eso ayuda."
+    },
+    {
+      "id": 3,
+      "categoria": "motivacion",
+      "texto": "Hoy puedes hacer algo pequeñito que te acerque a tu meta."
+    },
+    {
+      "id": 4,
+      "categoria": "emociones",
+      "texto": "Está bien estar triste a veces."
+    },
+    {
+      "id": 5,
+      "categoria": "motivacion",
+      "texto": "Poco a poco se logran grandes cosas."
+    },
+    {
+      "id": 6,
+      "categoria": "emociones",
+      "texto": "Si estás muy enfadado, escribe o dibuja cómo te sientes."
+    },
+    {
+      "id": 7,
+      "categoria": "motivacion",
+      "texto": "No importa lo que hacen los demás. Tú eres tú."
+    },
+    {
+      "id": 8,
+      "categoria": "emociones",
+      "texto": "Cierra los ojos un minuto y escucha los sonidos."
+    },
+    {
+      "id": 9,
+      "categoria": "motivacion",
+      "texto": "Si te equivocas, puedes volver a intentarlo."
+    },
+    {
+      "id": 10,
+      "categoria": "emociones",
+      "texto": "Piensa en algo bonito que haya pasado hoy."
+    },
+    {
+      "id": 11,
+      "categoria": "motivacion",
+      "texto": "No tienes que hacerlo todo perfecto."
+    },
+    {
+      "id": 12,
+      "categoria": "emociones",
+      "texto": "Sentir cosas no es malo, es normal."
+    },
+    {
+      "id": 13,
+      "categoria": "motivacion",
+      "texto": "Cada día es una nueva oportunidad para aprender."
+    },
+    {
+      "id": 14,
+      "categoria": "emociones",
+      "texto": "Si algo te molesta, puedes tomarte un descanso."
+    },
+    {
+      "id": 15,
+      "categoria": "motivacion",
+      "texto": "Busca a alguien a quien quieras y cuéntale cómo estás."
+    },
+    {
+      "id": 16,
+      "categoria": "emociones",
+      "texto": "Jugar y bailar ayuda cuando estás triste."
+    },
+    {
+      "id": 17,
+      "categoria": "emociones",
+      "texto": "Cuando estás feliz, compartelo con alguien."
+    },
+    {
+      "id": 18,
+      "categoria": "emociones",
+      "texto": "Si algo te asusta, cuéntaselo a un adulto."
+    },
+    {
+      "id": 19,
+      "categoria": "emociones",
+      "texto": "Todos sentimos miedo o vergüenza a veces."
+    },
+    {
+      "id": 20,
+      "categoria": "emociones",
+      "texto": "Puedes ayudar a un amigo que esté triste."
+    },
+    {
+      "id": 21,
+      "categoria": "emociones",
+      "texto": "Tu eres importante tal y como eres."
+    },
+    {
+      "id": 22,
+      "categoria": "emociones",
+      "texto": "Puedes sentir más de una emoción al mismo tiempo. Es normal."
+    },
+    {
+      "id": 23,
+      "categoria": "motivación",
+      "texto": "Tu esfuerzo vale mucho, aunque nadie lo vea."
+    },
+    {
+      "id": 24,
+      "categoria": "emociones",
+      "texto": "Está bien pedir ayuda cuando no sabes qué hacer."
+    },
+    {
+      "id": 25,
+      "categoria": "motivacion",
+      "texto": "Cada persona aprende a su ritmo. Lo importante es seguir intentándolo."
+    },
+    {
+      "id": 26,
+      "categoria": "emociones",
+      "texto": "Abrazar algo suave o a alguien que quieras puede hacerte sentir mejor."
+    },
+    {
+      "id": 27,
+      "categoria": "motivación",
+      "texto": "A veces aprender es difícil, pero eso no significa que no puedas lograrlo."
+    },
+    {
+      "id": 28,
+      "categoria": "emociones",
+      "texto": "Las emociones no son buenas ni malas, solo te dicen cómo estás por dentro."
+    },
+    {
+      "id": 29,
+      "categoria": "motivación",
+      "texto": "Descansar también es parte de hacer las cosas bien."
+    },
+    {
+      "id": 30,
+      "categoria": "emociones",
+      "texto": "A veces llorar ayuda a que el corazón se sienta más ligero."
+    },
+    {
+      "id": 31,
+      "categoria": "motivacion",
+      "texto": "Cada error es una forma nueva de aprender algo."
+    },
+    {
+      "id": 32,
+      "categoria": "emociones",
+      "texto": "Puedes imaginar un lugar bonito cuando te sientes mal. Eso te puede calmar."
+    },
+    {
+      "id": 33,
+      "categoria": "emociones",
+      "texto": "Tu cuerpo también habla cuando sientes algo. Escúchalo con atención"
+    },
+    {
+      "id": 34,
+      "categoria": "emociones",
+      "texto": "No tienes que entender todo lo que sientes. A veces solo hay que sentirlo."
+    },
+    {
+      "id": 35,
+      "categoria": "motivacion",
+      "texto": "Si algo no te sale, cambia la forma, no el sueño."
+    }
+  ]
+}
