@@ -12,6 +12,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
 import imageMap from "@/constants/emocionesMap";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const EmpatiaScreen = () => {
   const [nivelActual, setNivelActual] = useState(1);
@@ -24,21 +25,41 @@ const EmpatiaScreen = () => {
   const [feedback, setFeedback] = useState("");
   const [gameOver, setGameOver] = useState(false);
   const [nivelCompletadoMensaje, setNivelCompletadoMensaje] = useState(false);
+  const [usuario, setUsuario] = useState<any>(null);
 
-  const usuarioId = 27;
-
+  // Obtener usuario al iniciar
   useEffect(() => {
-    obtenerNivel();
+    const obtenerUsuarioGuardado = async () => {
+      try {
+        const usuarioJSON = await AsyncStorage.getItem("user");
+        if (usuarioJSON) {
+          const usuarioObj = JSON.parse(usuarioJSON);
+          setUsuario(usuarioObj);
+        }
+      } catch (error) {
+        console.error("Error al recuperar el usuario:", error);
+      }
+    };
+
+    obtenerUsuarioGuardado();
   }, []);
 
+  // Obtener nivel cuando el usuario esté listo
+  useEffect(() => {
+    if (usuario) {
+      obtenerNivel(usuario.id_usuario);
+    }
+  }, [usuario]);
+
+  // Cargar preguntas al cambiar de nivel
   useEffect(() => {
     cargarPreguntas();
   }, [nivelActual]);
 
-  const obtenerNivel = async () => {
+  const obtenerNivel = async (id: number) => {
     try {
       const res = await fetch(
-        `http://1192.168.1.135:8080/api/usuarios/${usuarioId}/nivel`
+        `http://192.168.1.135:8080/api/usuarios/${id}/nivel`
       );
       const nivel = await res.json();
       if (nivel > 0) setNivelActual(nivel);
@@ -84,13 +105,13 @@ const EmpatiaScreen = () => {
   };
 
   const completarNivel = async () => {
+    if (!usuario) return;
     try {
       const siguienteNivel = nivelActual + 1;
-
-      setNivelCompletadoMensaje(true); // Mostrar mensaje
+      setNivelCompletadoMensaje(true);
 
       await fetch(
-        `http://1192.168.1.135:8080/api/usuarios/${usuarioId}/nivel-completado?nuevoNivel=${siguienteNivel}`,
+        `http://192.168.1.135:8080/api/usuarios/${usuario.id_usuario}/nivel-completado?nuevoNivel=${siguienteNivel}`,
         { method: "POST" }
       );
 
@@ -102,7 +123,7 @@ const EmpatiaScreen = () => {
           setGameOver(true);
         }
         setNivelCompletadoMensaje(false);
-      }, 2000); // Mostrar 2 segundos
+      }, 2000);
     } catch (error) {
       Alert.alert("Error", "No se pudo actualizar el nivel y la recompensa");
     }
@@ -113,6 +134,7 @@ const EmpatiaScreen = () => {
     setGameOver(false);
   };
 
+  // Estados intermedios
   if (nivelCompletadoMensaje) {
     return (
       <View style={styles.centered}>
@@ -126,7 +148,7 @@ const EmpatiaScreen = () => {
     );
   }
 
-  if (questions.length === 0) {
+  if (!usuario || questions.length === 0) {
     return (
       <View style={styles.centered}>
         <Text>Cargando preguntas del nivel {nivelActual}...</Text>
@@ -150,13 +172,6 @@ const EmpatiaScreen = () => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
       <View style={styles.container}>
-        {/* <TouchableOpacity
-          style={styles.backButton}
-          onPress={() => router.push("/(tabs)/opcionesJuegos")}
-        >
-          <Text style={styles.backText}>{"<"}</Text>
-        </TouchableOpacity> */}
-
         <Text style={styles.title}>Nivel {nivelActual}</Text>
         <Text style={styles.question}>{current.pregunta}</Text>
 
@@ -204,17 +219,6 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: isTablet ? 40 : 30,
     backgroundColor: "#fff",
-  },
-  backButton: {
-    position: "absolute",
-    left: 10,
-    zIndex: 10,
-    padding: 10,
-  },
-  backText: {
-    fontSize: 28,
-    color: "#6a1b9a",
-    fontWeight: "bold",
   },
   centered: {
     flex: 1,

@@ -16,6 +16,7 @@ import { SwipeListView } from "react-native-swipe-list-view";
 import Modal from "react-native-modal";
 import { useRouter } from "expo-router";
 import { useFocusEffect } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type Entrada = {
   id_registro: number;
@@ -44,11 +45,34 @@ const DiarioEmociones = () => {
   const [entradaSeleccionada, setEntradaSeleccionada] =
     useState<Entrada | null>(null);
   const [entradas, setEntradas] = useState<Entrada[]>([]);
+  const [usuario, setUsuario] = useState<any>(null);
 
-  const idUsuario = 18;
-
-  //para que la pantalla no vuelva atrás al presionar el botón de atrás (Android)
   const router = useRouter();
+
+  // 🔄 Cargar usuario al montar el componente
+  useEffect(() => {
+    const obtenerUsuario = async () => {
+      try {
+        const usuarioJSON = await AsyncStorage.getItem("user");
+        if (usuarioJSON) {
+          const usuarioObj = JSON.parse(usuarioJSON);
+          setUsuario(usuarioObj);
+        }
+      } catch (error) {
+        console.error("Error al obtener el usuario:", error);
+      }
+    };
+
+    obtenerUsuario();
+  }, []);
+
+  // ✅ Solo obtenemos entradas cuando el usuario esté cargado
+  useEffect(() => {
+    if (usuario) {
+      obtenerEntradas(usuario.id_usuario);
+      obtenerEmociones();
+    }
+  }, [usuario]);
 
   useFocusEffect(
     React.useCallback(() => {
@@ -66,25 +90,6 @@ const DiarioEmociones = () => {
     }, [])
   );
 
-  const eliminarEntrada = async (id: number) => {
-    try {
-      await fetch(`http://192.168.1.135:8080/api/diario/eliminar/${id}`, {
-        method: "DELETE",
-      });
-      alert("Entrada eliminada");
-      obtenerEntradas();
-    } catch (error) {
-      console.error("Error al eliminar entrada:", error);
-    }
-  };
-
-  const fechaActual = new Date().toLocaleDateString("es-ES", {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-
   const obtenerEmociones = async () => {
     try {
       const res = await fetch("http://192.168.1.135:8080/api/emociones");
@@ -95,12 +100,14 @@ const DiarioEmociones = () => {
     }
   };
 
-  const obtenerEntradas = async () => {
+  // 🟢 CAMBIO: ahora recibe el ID como parámetro y solo se llama si el usuario está definido
+  const obtenerEntradas = async (id: number) => {
     try {
       const res = await fetch(
-        `http://192.168.1.135:8080/api/diario/usuario/${idUsuario}`
+        `http://192.168.1.135:8080/api/diario/usuario/${id}`
       );
       const data = await res.json();
+
       setEntradas(
         data.sort(
           (a: Entrada, b: Entrada) =>
@@ -113,7 +120,21 @@ const DiarioEmociones = () => {
     }
   };
 
+  const eliminarEntrada = async (id: number) => {
+    try {
+      await fetch(`http://192.168.1.135:8080/api/diario/eliminar/${id}`, {
+        method: "DELETE",
+      });
+      alert("Entrada eliminada");
+      if (usuario) obtenerEntradas(usuario.id_usuario);
+    } catch (error) {
+      console.error("Error al eliminar entrada:", error);
+    }
+  };
+
   const handleGuardar = async () => {
+    if (!usuario) return;
+
     try {
       if (!emocionSeleccionada) {
         alert("Selecciona una emoción antes de guardar.");
@@ -124,28 +145,33 @@ const DiarioEmociones = () => {
         return;
       }
 
-      await fetch(`http://192.168.1.135:8080/api/diario/crear/${idUsuario}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          nota: texto,
-          emocion: { id_emocion: emocionSeleccionada },
-        }),
-      });
+      await fetch(
+        `http://192.168.1.135:8080/api/diario/crear/${usuario.id_usuario}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            nota: texto,
+            emocion: { id_emocion: emocionSeleccionada },
+          }),
+        }
+      );
 
       alert("Entrada guardada");
       setTexto("");
       setEmocionSeleccionada(null);
-      obtenerEntradas();
+      obtenerEntradas(usuario.id_usuario);
     } catch (error) {
       console.error("Error al guardar:", error);
     }
   };
 
-  useEffect(() => {
-    obtenerEntradas();
-    obtenerEmociones();
-  }, []);
+  const fechaActual = new Date().toLocaleDateString("es-ES", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "black" }}>
@@ -193,6 +219,7 @@ const DiarioEmociones = () => {
               value={texto}
               onChangeText={setTexto}
             />
+
             <TouchableOpacity style={styles.button} onPress={handleGuardar}>
               <Text style={styles.buttonText}>Guardar</Text>
             </TouchableOpacity>
@@ -292,7 +319,6 @@ const DiarioEmociones = () => {
 };
 
 export default DiarioEmociones;
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
