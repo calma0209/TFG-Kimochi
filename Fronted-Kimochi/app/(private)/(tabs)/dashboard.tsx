@@ -18,10 +18,28 @@ import Dock from "@/components/dock";
 import consejos from "@/assets/data/consejos.json"; // Asegúrate de que la ruta sea correcta
 import { SafeAreaView } from "react-native-safe-area-context";
 
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 const DashboardScreen = () => {
   const router = useRouter();
   const isTablet = useIsTablet();
   // const navigation = useNavigation();
+  const [usuario, setUsuario] = useState<any>(null);
+  useEffect(() => {
+    const obtenerUsuario = async () => {
+      try {
+        const usuarioJSON = await AsyncStorage.getItem("user");
+        if (usuarioJSON) {
+          const usuarioObj = JSON.parse(usuarioJSON);
+          setUsuario(usuarioObj);
+        }
+      } catch (error) {
+        console.error("Error al obtener el usuario:", error);
+      }
+    };
+
+    obtenerUsuario();
+  }, []);
 
   //para que la pantalla no vuelva atrás al presionar el botón de atrás (Android)
   useFocusEffect(
@@ -55,7 +73,10 @@ const DashboardScreen = () => {
     <SafeAreaView style={{ flex: 1, backgroundColor: "black" }}>
       <View style={styles.container}>
         <View style={styles.header}>
-          <Text style={styles.title}>Bienvenido a Kimochi</Text>
+          <Text style={styles.title}>
+            Bienvenido
+            {usuario?.nombre_usuario ? `, ${usuario.nombre_usuario}` : ""} 👋
+          </Text>
         </View>
 
         <View>

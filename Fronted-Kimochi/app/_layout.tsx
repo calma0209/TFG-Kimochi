@@ -72,7 +72,7 @@ function RootLayoutNav() {
       if (user) {
         router.replace("/(private)/(tabs)/dashboard");
       } else {
-        router.replace("/(auth)/login");
+        router.replace("/(public)");
       }
 
       setCargando(false);

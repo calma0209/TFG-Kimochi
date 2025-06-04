@@ -12,6 +12,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
 import imageMap from "@/constants/emocionesMap";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const EmocionesScreen = () => {
   const [nivelActual, setNivelActual] = useState(1);
@@ -25,21 +26,41 @@ const EmocionesScreen = () => {
   const [gameOver, setGameOver] = useState(false);
   const [nivelCompletadoMensaje, setNivelCompletadoMensaje] = useState(false);
   const [mostrarBotonSiguiente, setMostrarBotonSiguiente] = useState(false);
+  const [usuario, setUsuario] = useState<any>(null);
 
-  const usuarioId = 27;
-
+  // Obtener usuario al iniciar
   useEffect(() => {
-    obtenerNivel();
+    const obtenerUsuarioGuardado = async () => {
+      try {
+        const usuarioJSON = await AsyncStorage.getItem("user");
+        if (usuarioJSON) {
+          const usuarioObj = JSON.parse(usuarioJSON);
+          setUsuario(usuarioObj);
+        }
+      } catch (error) {
+        console.error("Error al recuperar el usuario:", error);
+      }
+    };
+
+    obtenerUsuarioGuardado();
   }, []);
 
+  // Obtener nivel cuando el usuario esté listo
+  useEffect(() => {
+    if (usuario) {
+      obtenerNivel(usuario.id_usuario);
+    }
+  }, [usuario]);
+
+  // Cargar preguntas al cambiar de nivel
   useEffect(() => {
     cargarPreguntas();
   }, [nivelActual]);
 
-  const obtenerNivel = async () => {
+  const obtenerNivel = async (id: number) => {
     try {
       const res = await fetch(
-        `http://192.168.1.135:8080/api/usuarios/${usuarioId}/nivel`
+        `http://192.168.1.135:8080/api/usuarios/${id}/nivel`
       );
       const nivel = await res.json();
       if (nivel > 0) setNivelActual(nivel);
@@ -87,12 +108,13 @@ const EmocionesScreen = () => {
   };
 
   const completarNivel = async () => {
+    if (!usuario) return;
     try {
       const siguienteNivel = nivelActual + 1;
       setNivelCompletadoMensaje(true);
 
       await fetch(
-        `http://192.168.1.135:8080/api/usuarios/${usuarioId}/nivel-completado?nuevoNivel=${siguienteNivel}`,
+        `http://192.168.1.135:8080/api/usuarios/${usuario.id_usuario}/nivel-completado?nuevoNivel=${siguienteNivel}`,
         { method: "POST" }
       );
 
@@ -115,6 +137,7 @@ const EmocionesScreen = () => {
     setGameOver(false);
   };
 
+  // Estados intermedios
   if (nivelCompletadoMensaje) {
     return (
       <View style={styles.centered}>
@@ -128,7 +151,7 @@ const EmocionesScreen = () => {
     );
   }
 
-  if (questions.length === 0) {
+  if (!usuario || questions.length === 0) {
     return (
       <View style={styles.centered}>
         <Text>Cargando preguntas del nivel {nivelActual}...</Text>
