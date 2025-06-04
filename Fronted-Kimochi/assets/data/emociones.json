@@ -174,11 +174,6 @@
       "nombre": "Gracia",
       "imagen": "alegria.png",
       "descripcion": "Es cuando algo te hace reír o te parece divertido."
-    },
-    {
-      "nombre": "Agradecimiento",
-      "imagen": "alegria.png",
-      "descripcion": "Es cuando sientes ganas de dar las gracias a alguien por algo."
     }
   ]
 }

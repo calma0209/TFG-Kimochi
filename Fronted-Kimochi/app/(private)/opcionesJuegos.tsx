@@ -80,7 +80,10 @@ const styles = StyleSheet.create({
   },
   contenedor: {
     flex: 1,
-    justifyContent: "space-around",
+    // justifyContent: "space-evenly",
+    gap: 60,
+    paddingTop: isTablet ? 50 : 0,
+    justifyContent: "center",
   },
   card: {
     backgroundColor: "#f4f4f4",

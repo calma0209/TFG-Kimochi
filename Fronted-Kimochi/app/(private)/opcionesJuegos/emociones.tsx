@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import preguntasData from "../../../assets/data/preguntasEmociones.json";
 import {
   View,
@@ -8,11 +8,24 @@ import {
   Image,
   Dimensions,
   Alert,
+  Animated,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { router } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
 import imageMap from "@/constants/emocionesMap";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
+/***************************
+ * 🎨  PALETA DE COLORES  *
+ ***************************/
+const COLORS = {
+  purple: "#6a1b9a",
+  yellow: "#FFB800",
+  lavender: "#f3e5f5",
+  white: "#FFFFFF",
+  green: "#C8E6C9", // verde suave
+  red: "#FFCDD2", // rojo claro
+};
 
 const EmocionesScreen = () => {
   const [nivelActual, setNivelActual] = useState(1);
@@ -28,7 +41,26 @@ const EmocionesScreen = () => {
   const [mostrarBotonSiguiente, setMostrarBotonSiguiente] = useState(false);
   const [usuario, setUsuario] = useState<any>(null);
 
-  // Obtener usuario al iniciar
+  // Animación sencilla para las tarjetas de opción (scale al presionar)
+  const scaleAnim = useRef(new Animated.Value(1)).current;
+  const animateScaleIn = () => {
+    Animated.timing(scaleAnim, {
+      toValue: 0.95,
+      duration: 100,
+      useNativeDriver: true,
+    }).start();
+  };
+  const animateScaleOut = () => {
+    Animated.timing(scaleAnim, {
+      toValue: 1,
+      duration: 100,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  /* -------------------------
+   * 📥  OBTENER USUARIO AL INICIAR
+   * ------------------------- */
   useEffect(() => {
     const obtenerUsuarioGuardado = async () => {
       try {
@@ -45,14 +77,13 @@ const EmocionesScreen = () => {
     obtenerUsuarioGuardado();
   }, []);
 
-  // Obtener nivel cuando el usuario esté listo
+  /* -------------------------
+   * 🔄  NIVEL DEL USUARIO
+   * ------------------------- */
   useEffect(() => {
-    if (usuario) {
-      obtenerNivel(usuario.id_usuario);
-    }
+    if (usuario) obtenerNivel(usuario.id_usuario);
   }, [usuario]);
 
-  // Cargar preguntas al cambiar de nivel
   useEffect(() => {
     cargarPreguntas();
   }, [nivelActual]);
@@ -69,6 +100,9 @@ const EmocionesScreen = () => {
     }
   };
 
+  /* -------------------------
+   * 📝  CARGAR PREGUNTAS
+   * ------------------------- */
   const cargarPreguntas = () => {
     const preguntasNivel =
       (preguntasData as any)[`nivel_${nivelActual}`]?.preguntas || [];
@@ -84,13 +118,11 @@ const EmocionesScreen = () => {
     setSelectedOption(option.id_opcion);
     if (option.es_correcto) {
       setAnswerState("correcta");
-      setFeedback(
-        option.emocion?.descripcion ? " " + option.emocion.descripcion : ""
-      );
+      setFeedback(option.emocion?.descripcion || "¡Muy bien!");
       setMostrarBotonSiguiente(true);
     } else {
       setAnswerState("incorrecta");
-      setFeedback("Respuesta incorrecta. ¡Inténtalo de nuevo!");
+      setFeedback("¡Ups! Intenta de nuevo.");
     }
   };
 
@@ -137,16 +169,13 @@ const EmocionesScreen = () => {
     setGameOver(false);
   };
 
-  // Estados intermedios
+  /*********************************
+   * 🚩  ESTADOS INTERMEDIOS
+   *********************************/
   if (nivelCompletadoMensaje) {
     return (
       <View style={styles.centered}>
-        <Text style={styles.title}>
-          🎉 ¡Felicidades! Has completado el Nivel {nivelActual}
-        </Text>
-        <Text style={styles.subtitle}>
-          Tienes la insignia de nivel {nivelActual} ¡Felicidades!
-        </Text>
+        <Text style={styles.bigTitle}>🎉 ¡Nivel {nivelActual} completado!</Text>
       </View>
     );
   }
@@ -154,7 +183,7 @@ const EmocionesScreen = () => {
   if (!usuario || questions.length === 0) {
     return (
       <View style={styles.centered}>
-        <Text>Cargando preguntas del nivel {nivelActual}...</Text>
+        <Text style={styles.title}>Cargando nivel {nivelActual}...</Text>
       </View>
     );
   }
@@ -162,9 +191,12 @@ const EmocionesScreen = () => {
   if (gameOver) {
     return (
       <View style={styles.centered}>
-        <Text style={styles.title}>🎉 ¡Has completado todos los niveles!</Text>
-        <TouchableOpacity style={styles.button} onPress={restartGame}>
-          <Text style={styles.buttonText}>Volver a empezar</Text>
+        <Text style={styles.bigTitle}>
+          🎉 ¡Has completado todos los niveles!
+        </Text>
+        <TouchableOpacity style={styles.ctaButton} onPress={restartGame}>
+          <Ionicons name="refresh" size={20} color={COLORS.purple} />
+          <Text style={styles.ctaText}>Volver a empezar</Text>
         </TouchableOpacity>
       </View>
     );
@@ -173,46 +205,77 @@ const EmocionesScreen = () => {
   const current = questions[currentIndex];
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lavender }}>
       <View style={styles.container}>
         <Text style={styles.title}>Nivel {nivelActual}</Text>
         <Text style={styles.question}>{current.pregunta}</Text>
 
+        {/* Tarjetas de opciones */}
         <View style={styles.optionsContainer}>
           {current.opciones.map((option: any) => {
-            let borderColor = "#ccc";
-            if (option.id_opcion === selectedOption) {
-              borderColor =
-                answerState === "correcta"
-                  ? "green"
-                  : answerState === "incorrecta"
-                  ? "red"
-                  : "#6a1b9a";
-            }
+            const isSelected = option.id_opcion === selectedOption;
+            const correct = answerState === "correcta" && isSelected;
+            const incorrect = answerState === "incorrecta" && isSelected;
+
+            const borderColor = correct
+              ? COLORS.green
+              : incorrect
+              ? COLORS.red
+              : COLORS.purple;
 
             return (
-              <TouchableOpacity
+              <Animated.View
                 key={option.id_opcion}
-                style={[styles.option, { borderColor }]}
-                onPress={() => handleOptionPress(option)}
-                disabled={answerState === "correcta"}
+                style={{ transform: [{ scale: scaleAnim }] }}
               >
-                {option.emocion?.imagen_local && (
-                  <Image
-                    source={imageMap[option.emocion.imagen_local]}
-                    style={styles.image}
-                  />
-                )}
-              </TouchableOpacity>
+                <TouchableOpacity
+                  style={[styles.option, { borderColor }]}
+                  onPressIn={animateScaleIn}
+                  onPressOut={animateScaleOut}
+                  onPress={() => handleOptionPress(option)}
+                  disabled={answerState === "correcta"}
+                  activeOpacity={0.9}
+                >
+                  {option.emocion?.imagen_local && (
+                    <Image
+                      source={imageMap[option.emocion.imagen_local]}
+                      style={styles.image}
+                    />
+                  )}
+                </TouchableOpacity>
+              </Animated.View>
             );
           })}
         </View>
 
-        {feedback !== "" && <Text style={styles.feedback}>{feedback}</Text>}
+        {/* Feedback visual */}
+        {answerState && (
+          <View
+            style={[
+              styles.feedbackCard,
+              {
+                backgroundColor:
+                  answerState === "correcta" ? COLORS.green : COLORS.red,
+              },
+            ]}
+          >
+            <Ionicons
+              name={
+                answerState === "correcta" ? "checkmark-circle" : "close-circle"
+              }
+              size={24}
+              color={COLORS.purple}
+              style={{ marginRight: 6 }}
+            />
+            <Text style={styles.feedbackText}>{feedback}</Text>
+          </View>
+        )}
 
+        {/* Botón siguiente */}
         {mostrarBotonSiguiente && (
-          <TouchableOpacity style={styles.button} onPress={goToNextQuestion}>
-            <Text style={styles.buttonText}>Siguiente</Text>
+          <TouchableOpacity style={styles.ctaButton} onPress={goToNextQuestion}>
+            <Ionicons name="arrow-forward" size={20} color={COLORS.purple} />
+            <Text style={styles.ctaText}>Siguiente</Text>
           </TouchableOpacity>
         )}
       </View>
@@ -220,82 +283,109 @@ const EmocionesScreen = () => {
   );
 };
 
+/***************************
+ * 💅  ESTILOS
+ ***************************/
 const { width } = Dimensions.get("window");
-const isTablet = width > 600;
+const isTablet = width > 700;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: isTablet ? 40 : 30,
-    backgroundColor: "#fff",
+    padding: isTablet ? 40 : 24,
   },
   centered: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: COLORS.lavender,
     padding: 20,
-    backgroundColor: "#fff",
   },
   title: {
     fontSize: isTablet ? 28 : 22,
     fontWeight: "bold",
     textAlign: "center",
-    color: "#6a1b9a",
-    marginBottom: 20,
+    color: COLORS.purple,
+    marginBottom: 18,
   },
-  subtitle: {
-    fontSize: isTablet ? 20 : 16,
+  bigTitle: {
+    fontSize: isTablet ? 32 : 26,
+    fontWeight: "bold",
     textAlign: "center",
-    color: "#333",
+    color: COLORS.purple,
+    marginBottom: 24,
   },
   question: {
-    fontSize: isTablet ? 22 : 18,
+    fontSize: isTablet ? 24 : 18,
     textAlign: "center",
+    color: COLORS.purple,
     marginBottom: 20,
   },
   optionsContainer: {
-    gap: 20,
-    margin: isTablet ? 10 : 15,
-    paddingBottom: isTablet ? 10 : 30,
+    gap: 18,
+    marginBottom: 24,
     alignItems: "center",
-    shadowColor: "#000",
-    shadowOpacity: 0.2,
-    shadowOffset: { width: 2, height: 2 },
-    shadowRadius: 5,
-    elevation: 5,
   },
   option: {
-    borderWidth: 2,
-    borderRadius: 12,
+    borderWidth: 3,
+    borderRadius: 20,
     padding: 20,
     justifyContent: "center",
     alignItems: "center",
     height: isTablet ? 350 : 150,
-    width: isTablet ? 950 : 350,
-    backgroundColor: "#f8f8f8",
+    width: isTablet ? 900 : 320,
+    backgroundColor: COLORS.white,
+    shadowColor: "#000",
+    shadowOpacity: 0.15,
+    shadowOffset: { width: 0, height: 3 },
+    shadowRadius: 4,
+    elevation: 4,
   },
   image: {
-    width: isTablet ? 250 : 180,
-    height: isTablet ? 200 : 150,
+    width: isTablet ? 260 : 180,
+    height: isTablet ? 220 : 150,
     resizeMode: "contain",
   },
-  feedback: {
-    fontSize: 18,
-    textAlign: "center",
-    color: "#333",
-    marginTop: 10,
+  feedbackCard: {
+    flexDirection: "row",
+    alignItems: "center",
+    alignSelf: "center",
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    borderRadius: 14,
+    marginBottom: 25,
+    shadowColor: "#000",
+    shadowOpacity: 0.2,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 4,
+    elevation: 6,
   },
-  button: {
-    marginTop: 20,
-    backgroundColor: "#6a1b9a",
-    paddingVertical: 12,
-    paddingHorizontal: 30,
-    borderRadius: 10,
-  },
-  buttonText: {
-    color: "#fff",
+  feedbackText: {
     fontSize: 16,
+    color: COLORS.purple,
     fontWeight: "bold",
+    textAlign: "center",
+  },
+  ctaButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    alignSelf: "center",
+    backgroundColor: COLORS.yellow,
+    paddingVertical: 12,
+    paddingHorizontal: 28,
+    borderRadius: 16,
+    shadowColor: "#000",
+    shadowOpacity: 0.25,
+    shadowOffset: { width: 0, height: 3 },
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  ctaText: {
+    color: COLORS.purple,
+    fontSize: 18,
+    fontWeight: "bold",
+    marginLeft: 6,
   },
 });
 

@@ -5,19 +5,19 @@
     "opciones": [
       {
         "texto": "Enfadado",
-        "reflexion": "Está bien sentirse enfadado. Puedes respirar hondo o contar lo que pasó."
+        "reflexion": "Está bien enfadarse. Respira hondo o cuéntalo."
       },
       {
         "texto": "Contento",
-        "reflexion": "Si te sientes contento, ¡disfrútalo! Puedes sonreír o hacer algo divertido."
+        "reflexion": "Si estás contento, disfrútalo: sonríe o juega."
       },
       {
         "texto": "Triste",
-        "reflexion": "Sentirse triste es normal. A veces ayuda hablar o abrazar algo que te guste."
+        "reflexion": "La tristeza es normal. Habla o abraza algo que te guste."
       },
       {
         "texto": "Hambriento",
-        "reflexion": "Sentir hambre es natural. A veces nuestras emociones se mezclan con el cuerpo."
+        "reflexion": "Tener hambre es normal. A veces cuerpo y emociones se mezclan."
       }
     ]
   },
@@ -27,19 +27,19 @@
     "opciones": [
       {
         "texto": "Feliz",
-        "reflexion": "¡Qué bien sentirse feliz! Puedes compartir tu alegría con alguien."
+        "reflexion": "¡Qué bien estar feliz! Comparte tu alegría."
       },
       {
         "texto": "Asustado",
-        "reflexion": "Si algo te asusta, puedes hablar con un adulto y buscar un lugar seguro."
+        "reflexion": "Si te asusta, habla con un adulto y busca un lugar seguro."
       },
       {
         "texto": "Enfadado",
-        "reflexion": "Está bien sentirse enfadado. Puedes respirar hondo o contar lo que pasó."
+        "reflexion": "Enfadarse está bien. Respira hondo o explícalo."
       },
       {
         "texto": "Confundido",
-        "reflexion": "Estar confundido es parte de aprender. Puedes pedir ayuda o pensar con calma."
+        "reflexion": "La confusión ayuda a aprender. Pide ayuda o piensa con calma."
       }
     ]
   },
@@ -49,19 +49,19 @@
     "opciones": [
       {
         "texto": "Triste",
-        "reflexion": "Sentirse triste es normal. A veces ayuda hablar o abrazar algo que te guste."
+        "reflexion": "La tristeza es normal. Habla o abraza algo."
       },
       {
         "texto": "Contento",
-        "reflexion": "Si te sientes contento, ¡disfrútalo! Puedes sonreír o hacer algo divertido."
+        "reflexion": "Si estás contento, sonríe o juega."
       },
       {
         "texto": "Asustado",
-        "reflexion": "Si algo te asusta, puedes hablar con un adulto y buscar un lugar seguro."
+        "reflexion": "Si tienes miedo, habla con un adulto y busca un lugar seguro."
       },
       {
         "texto": "Hambriento",
-        "reflexion": "Sentir hambre es natural. A veces nuestras emociones se mezclan con el cuerpo."
+        "reflexion": "Tener hambre es normal. Cuerpo y emociones se mezclan."
       }
     ]
   },
@@ -71,19 +71,19 @@
     "opciones": [
       {
         "texto": "Triste",
-        "reflexion": "Sentirse triste es normal. A veces ayuda hablar o abrazar algo que te guste."
+        "reflexion": "La tristeza es normal. Habla o abraza algo."
       },
       {
         "texto": "Feliz",
-        "reflexion": "¡Qué bien sentirse feliz! Puedes compartir tu alegría con alguien."
+        "reflexion": "¡Qué bien estar feliz! Comparte tu alegría."
       },
       {
         "texto": "Sorprendido",
-        "reflexion": "Cuando algo nos sorprende, podemos pararnos y pensar por qué pasó."
+        "reflexion": "Si algo te sorprende, para y piensa por qué."
       },
       {
         "texto": "Relajado",
-        "reflexion": "Estar relajado es una buena sensación. Puedes seguir haciendo lo que te hace sentir así."
+        "reflexion": "Estar relajado se siente bien. Sigue haciendo eso."
       }
     ]
   },
@@ -93,19 +93,19 @@
     "opciones": [
       {
         "texto": "Asustado",
-        "reflexion": "Si algo te asusta, puedes hablar con un adulto y buscar un lugar seguro."
+        "reflexion": "Si te asusta, habla con un adulto y busca un lugar seguro."
       },
       {
         "texto": "Tranquilo",
-        "reflexion": "Sentirse tranquilo ayuda a pensar mejor. Puedes respirar despacio si quieres seguir así."
+        "reflexion": "Estar tranquilo ayuda a pensar. Respira despacio para seguir así."
       },
       {
         "texto": "Feliz",
-        "reflexion": "¡Qué bien sentirse feliz! Puedes compartir tu alegría con alguien."
+        "reflexion": "¡Qué bien estar feliz! Comparte tu alegría."
       },
       {
         "texto": "Con sueño",
-        "reflexion": "Tener sueño también es sentir algo. Dormir bien ayuda a sentirse mejor."
+        "reflexion": "Tener sueño es normal. Dormir bien ayuda."
       }
     ]
   },
@@ -115,19 +115,19 @@
     "opciones": [
       {
         "texto": "Triste",
-        "reflexion": "Está bien sentirse triste. Puedes contárselo a un profe o buscar a otro amigo."
+        "reflexion": "Sentirse triste está bien. Cuéntaselo a un profe o busca otro amigo."
       },
       {
         "texto": "Enfadado",
-        "reflexion": "Cuando te enfadas, respira hondo y habla con alguien de confianza."
+        "reflexion": "Si te enfadas, respira y habla con alguien de confianza."
       },
       {
         "texto": "Aburrido",
-        "reflexion": "Si estás aburrido, intenta pensar en un juego nuevo o leer algo que te guste."
+        "reflexion": "¿Aburrido? Piensa un juego nuevo o lee algo."
       },
       {
         "texto": "Feliz",
-        "reflexion": "Si te sientes feliz, está genial. Puedes invitar a otros a jugar contigo."
+        "reflexion": "Si estás feliz, genial. Invita a otros a jugar."
       }
     ]
   },
@@ -137,19 +137,19 @@
     "opciones": [
       {
         "texto": "Feliz",
-        "reflexion": "¡Qué alegría! Puedes compartir tu felicidad con tu familia o amigos."
+        "reflexion": "¡Qué alegría! Compártela con familia o amigos."
       },
       {
         "texto": "Nervioso",
-        "reflexion": "Sentir nervios también es normal. Puedes respirar lento para calmarte."
+        "reflexion": "Los nervios son normales. Respira lento para calmarte."
       },
       {
         "texto": "Sorprendido",
-        "reflexion": "Las sorpresas pueden ser buenas. Disfruta el momento con una sonrisa."
+        "reflexion": "Las sorpresas pueden ser buenas. Sonríe y disfruta."
       },
       {
         "texto": "Tímido",
-        "reflexion": "Está bien sentirse tímido. Puedes mirar a alguien que te dé confianza."
+        "reflexion": "La timidez está bien. Mira a alguien que te dé confianza."
       }
     ]
   },
@@ -159,19 +159,19 @@
     "opciones": [
       {
         "texto": "Triste",
-        "reflexion": "Puedes volver a dibujar otro. A veces, crear algo nuevo ayuda a sentirse mejor."
+        "reflexion": "Dibuja otro; crear algo nuevo ayuda."
       },
       {
         "texto": "Enfadado",
-        "reflexion": "Es normal enfadarse. Puedes contar hasta 5 y luego hablar de lo que pasó."
+        "reflexion": "Es normal enfadarse. Cuenta hasta 5 y habla de lo ocurrido."
       },
       {
         "texto": "Indiferente",
-        "reflexion": "Si no te afecta mucho, está bien también. No todo nos hace sentir igual."
+        "reflexion": "Si no te afecta, también está bien. No todos sentimos igual."
       },
       {
         "texto": "Creativo",
-        "reflexion": "¡Qué bien! Puedes usar tu imaginación para hacer algo nuevo y especial."
+        "reflexion": "¡Genial! Usa tu imaginación para crear algo nuevo."
       }
     ]
   },
@@ -181,19 +181,19 @@
     "opciones": [
       {
         "texto": "Asustado",
-        "reflexion": "Si tienes miedo, puedes apagar la película o ver algo que te guste más."
+        "reflexion": "Si tienes miedo, apaga la película o pon algo que te guste."
       },
       {
         "texto": "Emocionado",
-        "reflexion": "Las emociones fuertes también pueden ser divertidas. Respira si te sientes raro."
+        "reflexion": "Las emociones fuertes pueden ser divertidas. Respira si te sientes raro."
       },
       {
         "texto": "Valiente",
-        "reflexion": "¡Bien por ti! Puedes sentir orgullo de ser valiente, aunque tengas un poco de miedo."
+        "reflexion": "¡Bien! Puedes sentir orgullo de ser valiente, aunque haya miedo."
       },
       {
         "texto": "Confundido",
-        "reflexion": "Puedes preguntar si algo no lo entiendes. Hablar ayuda a sentirte mejor."
+        "reflexion": "Si no entiendes algo, pregunta. Hablar ayuda."
       }
     ]
   },
@@ -203,19 +203,19 @@
     "opciones": [
       {
         "texto": "Agradecido",
-        "reflexion": "Decir 'gracias' es una forma bonita de mostrar lo que sientes."
+        "reflexion": "Di 'gracias' para mostrar lo que sientes."
       },
       {
         "texto": "Feliz",
-        "reflexion": "Compartir hace que los momentos sean más bonitos. Disfrútalo."
+        "reflexion": "Compartir hace los momentos más bonitos. Disfrútalo."
       },
       {
         "texto": "Sorprendido",
-        "reflexion": "Cuando alguien es amable sin esperarlo, puedes sonreír y dar las gracias."
+        "reflexion": "Una amabilidad sorpresa: sonríe y da las gracias."
       },
       {
         "texto": "Tranquilo",
-        "reflexion": "Estar tranquilo es una emoción bonita. Puedes disfrutar ese momento con calma."
+        "reflexion": "Estar tranquilo es bonito. Disfruta el momento con calma."
       }
     ]
   },
@@ -225,19 +225,19 @@
     "opciones": [
       {
         "texto": "Vergüenza",
-        "reflexion": "Sentir vergüenza es normal. Todos cometemos errores y seguimos aprendiendo."
+        "reflexion": "La vergüenza es normal. Todos aprendemos con errores."
       },
       {
         "texto": "Orgullo",
-        "reflexion": "Puedes sentirte orgulloso de haberlo intentado, aunque no salga perfecto."
+        "reflexion": "Si lo intentas, siéntete orgulloso, aunque no salga perfecto."
       },
       {
         "texto": "Tristeza",
-        "reflexion": "Si te pones triste, puedes hablar con tu profe o un amigo."
+        "reflexion": "Si estás triste, habla con tu profe o un amigo."
       },
       {
         "texto": "Frustración",
-        "reflexion": "Cuando algo no sale bien, respira hondo y vuelve a intentarlo."
+        "reflexion": "Si algo no sale, respira hondo y vuelve a intentarlo."
       }
     ]
   },
@@ -247,19 +247,19 @@
     "opciones": [
       {
         "texto": "Celos",
-        "reflexion": "Los celos aparecen a veces. Puedes invitar a jugar también o hablar con tu amigo."
+        "reflexion": "A veces sentimos celos. Invita a jugar o habla con tu amigo."
       },
       {
         "texto": "Soledad",
-        "reflexion": "Sentirse solo es algo que pasa. Puedes buscar a alguien más con quien jugar."
+        "reflexion": "La soledad pasa. Busca a alguien para jugar."
       },
       {
         "texto": "Enfado",
-        "reflexion": "Si te enfadas, intenta entender lo que sientes y hablar con calma."
+        "reflexion": "Si te enfadas, entiende tu emoción y habla con calma."
       },
       {
         "texto": "Tristeza",
-        "reflexion": "Está bien sentirse triste. Compartirlo con alguien ayuda."
+        "reflexion": "Sentirse triste está bien. Compártelo con alguien."
       }
     ]
   },
@@ -269,19 +269,19 @@
     "opciones": [
       {
         "texto": "Culpa",
-        "reflexion": "Sentir culpa es normal. Puedes pedir perdón y ayudar al otro niño."
+        "reflexion": "La culpa es normal. Pide perdón y ayuda."
       },
       {
         "texto": "Empatía",
-        "reflexion": "Puedes imaginar cómo se siente el otro y actuar con cariño."
+        "reflexion": "Imagina cómo se siente y actúa con cariño."
       },
       {
         "texto": "Vergüenza",
-        "reflexion": "Si te da vergüenza, puedes respirar hondo y aprender de lo que pasó."
+        "reflexion": "Si sientes vergüenza, respira y aprende de lo ocurrido."
       },
       {
         "texto": "Alegría",
-        "reflexion": "A veces reímos sin querer. Lo importante es darnos cuenta y cuidar a los demás."
+        "reflexion": "A veces reímos sin querer. Luego cuida a los demás."
       }
     ]
   },
@@ -291,19 +291,16 @@
     "opciones": [
       {
         "texto": "Orgullo",
-        "reflexion": "Sentirse orgulloso es bonito. Disfruta lo que lograste."
+        "reflexion": "Orgulloso está bien. Disfruta tu logro."
       },
-      {
-        "texto": "Alegría",
-        "reflexion": "¡Qué bien se siente cuando algo te sale bien!"
-      },
+      { "texto": "Alegría", "reflexion": "¡Qué bien cuando algo sale bien!" },
       {
         "texto": "Sorpresa",
-        "reflexion": "A veces nos sorprende que a otros les guste lo que hacemos. ¡Y está genial!"
+        "reflexion": "Sorprende que guste lo que haces. ¡Genial!"
       },
       {
         "texto": "Ilusión",
-        "reflexion": "La ilusión es una emoción bonita. Puedes seguir dibujando si te gusta."
+        "reflexion": "La ilusión es bonita. Sigue dibujando si te gusta."
       }
     ]
   },
@@ -313,19 +310,19 @@
     "opciones": [
       {
         "texto": "Nervios",
-        "reflexion": "Sentir nervios es normal. Puedes respirar profundo y mirar a alguien que te apoye."
+        "reflexion": "Los nervios son normales. Respira profundo y mira a quien te apoye."
       },
       {
         "texto": "Inseguridad",
-        "reflexion": "Cuando no estás seguro, puedes preparar lo que vas a decir y confiar en ti."
+        "reflexion": "Si no estás seguro, prepara lo que dirás y confía en ti."
       },
       {
         "texto": "Confusión",
-        "reflexion": "Si te confundes, no pasa nada. Puedes parar y volver a empezar."
+        "reflexion": "Si te confundes, para y vuelve a empezar."
       },
       {
         "texto": "Esperanza",
-        "reflexion": "Tener esperanza es pensar que todo va a salir bien. ¡Confía en ti!"
+        "reflexion": "Esperanza es creer que saldrá bien. ¡Confía!"
       }
     ]
   },
@@ -335,19 +332,19 @@
     "opciones": [
       {
         "texto": "Alegría",
-        "reflexion": "¡Disfrútalo! Sentirse feliz por algo bonito está genial."
+        "reflexion": "¡Disfrútalo! Ser feliz por algo bonito está genial."
       },
       {
         "texto": "Gratitud",
-        "reflexion": "Puedes decir 'gracias' con una sonrisa o un abrazo."
+        "reflexion": "Di 'gracias' con una sonrisa o un abrazo."
       },
       {
         "texto": "Euforia",
-        "reflexion": "Cuando estás muy contento, puedes saltar, reír o cantar. ¡Exprésalo con alegría!"
+        "reflexion": "Muy contento: salta, ríe o canta. ¡Exprésalo!"
       },
       {
         "texto": "Cariño",
-        "reflexion": "Puedes sentir cariño por quien te dio el regalo. Es lindo compartir ese sentimiento."
+        "reflexion": "Siente cariño por quien te regaló. Comparte ese sentimiento."
       }
     ]
   },
@@ -357,19 +354,19 @@
     "opciones": [
       {
         "texto": "Injusticia",
-        "reflexion": "Cuando algo es injusto, puedes explicarlo con calma a un adulto."
+        "reflexion": "Si es injusto, explícalo con calma a un adulto."
       },
       {
         "texto": "Rabia",
-        "reflexion": "Sentir rabia es fuerte. Respira y cuéntale lo que pasó a alguien de confianza."
+        "reflexion": "La rabia es fuerte. Respira y cuéntalo a alguien de confianza."
       },
       {
         "texto": "Tristeza",
-        "reflexion": "Puedes sentirte triste, pero hablarlo ayuda."
+        "reflexion": "La tristeza es normal; hablarla ayuda."
       },
       {
         "texto": "Soledad",
-        "reflexion": "A veces, cuando nos sentimos solos, necesitamos un abrazo o compañía."
+        "reflexion": "Si te sientes solo, busca un abrazo o compañía."
       }
     ]
   },
@@ -379,20 +376,17 @@
     "opciones": [
       {
         "texto": "Agradecimiento",
-        "reflexion": "Ayudar a otros y que te lo reconozcan da una sensación bonita. ¡Bien hecho!"
+        "reflexion": "Ayudar y que te lo agradezcan se siente bien. ¡Bien hecho!"
       },
       {
         "texto": "Empatía",
-        "reflexion": "Entender a los demás y ayudarlos es algo muy valioso."
+        "reflexion": "Entender y ayudar a otros es valioso."
       },
       {
         "texto": "Alegría",
-        "reflexion": "¡Qué bien sentirse útil! Puedes seguir haciendo cosas buenas."
+        "reflexion": "¡Qué bien ser útil! Sigue haciendo cosas buenas."
       },
-      {
-        "texto": "Orgullo",
-        "reflexion": "Puedes sentir orgullo de haber hecho algo bueno."
-      }
+      { "texto": "Orgullo", "reflexion": "Siente orgullo por tu buena acción." }
     ]
   },
   {
@@ -401,19 +395,19 @@
     "opciones": [
       {
         "texto": "Culpa",
-        "reflexion": "No tienes que sentirte culpable por equivocarte. Todos aprendemos así."
+        "reflexion": "No te culpes por equivocarte. Todos aprendemos."
       },
       {
         "texto": "Vergüenza",
-        "reflexion": "Puedes respirar hondo y recordar que todos cometemos errores."
+        "reflexion": "Respira hondo; todos cometemos errores."
       },
       {
         "texto": "Tristeza",
-        "reflexion": "Si algo te hace sentir mal, cuéntalo a alguien que te escuche."
+        "reflexion": "Si te sientes mal, cuéntaselo a alguien que escuche."
       },
       {
         "texto": "Rabia",
-        "reflexion": "Si sientes rabia, es mejor calmarte antes de responder."
+        "reflexion": "Si sientes rabia, cálmate antes de responder."
       }
     ]
   },
@@ -423,19 +417,19 @@
     "opciones": [
       {
         "texto": "Ilusión",
-        "reflexion": "¡Qué bonito es hacer nuevos amigos! Disfruta ese momento."
+        "reflexion": "Hacer nuevos amigos es bonito. Disfrútalo."
       },
       {
         "texto": "Alegría",
-        "reflexion": "Sentir alegría por compartir un juego es especial."
+        "reflexion": "Compartir un juego da alegría especial."
       },
       {
         "texto": "Curiosidad",
-        "reflexion": "Conocer a alguien nuevo puede despertar curiosidad. ¡Pregúntale cosas!"
+        "reflexion": "Alguien nuevo despierta curiosidad. ¡Pregúntale!"
       },
       {
         "texto": "Cariño",
-        "reflexion": "Con el tiempo, los nuevos amigos pueden volverse muy importantes."
+        "reflexion": "Con el tiempo, los nuevos amigos cuentan mucho."
       }
     ]
   }
