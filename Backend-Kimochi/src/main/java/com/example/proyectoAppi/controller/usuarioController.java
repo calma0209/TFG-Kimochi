@@ -67,7 +67,7 @@ public class usuarioController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
         Optional<usuario> usuario = userS.findByEmail(request.getEmail());
-
+            System.out.println("📩 Petición recibida en /login con email: " + request.getEmail());
         if (usuario.isPresent() && userS.verificarContraseña(request.getContraseña(), usuario.get().getContraseña())) {
             return ResponseEntity.ok(usuario.get()); // Devuelve usuario autenticado.
         }
@@ -98,6 +98,34 @@ public class usuarioController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
                         "usuario con ID " + id + " no encontrado"));
     }
+ @PostMapping("/forgot-password")
+public ResponseEntity<Map<String, String>> forgotPassword(@RequestBody Map<String, String> body) {
+    String email = body.get("email");
+
+    try {
+        userS.forgotPassword(email);   // ① genera y envía el correo
+        return ResponseEntity.ok(Map.of("message", "Correo enviado"));
+    } catch (IllegalArgumentException e) {      // ② correo NO registrado
+        // ✅ Para no dar pistas, respondemos igual que si todo fuera bien
+        return ResponseEntity.ok(Map.of("message", "Correo enviado"));
+    } catch (Exception e) {                     // ③ fallo al enviar e-mail, etc.
+        return ResponseEntity
+               .status(HttpStatus.INTERNAL_SERVER_ERROR)
+               .body(Map.of("message", "No se pudo enviar el correo"));
+    }
+}
+
+
+    @PostMapping("/reset-password")
+    public ResponseEntity<String> resetPassword(@RequestBody Map<String, String> body) {
+         
+        String email = body.get("email");
+ System.out.println("📩 Petición recibida en /forgot-password con email: " + email);
+        String token = body.get("token");
+        String nueva = body.get("nuevaPassword");
+        return userS.resetearPassword(email, token, nueva);
+    }
+
 
     @PutMapping("/{id}")
     @Operation(summary = "Actualizar usuario", description = "Actualiza los datos de un usuario por su ID")

@@ -45,6 +45,8 @@ public class usuario {
     @Column(nullable = false)
     private int Nivel;
 
+    @Column(name = "token_reset")
+    private String tokenReset;
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<Diario> diarioEmocionalList;

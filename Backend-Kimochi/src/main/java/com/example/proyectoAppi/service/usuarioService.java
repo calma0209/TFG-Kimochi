@@ -2,9 +2,11 @@ package com.example.proyectoAppi.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -26,7 +28,7 @@ public class usuarioService {
     private final PasswordEncoder passwordEncoder;
     private final RecompensasUsuariosRepository recompensasUsuariosRepository;
     private final RecompensaRepository recompensaRepository;
-
+    private final EmailService emailService;
     public usuario crearUsuario(usuario user) {
         user.setContraseña(passwordEncoder.encode(user.getContraseña()));
         return usuarioR.save(user);
@@ -48,6 +50,63 @@ public class usuarioService {
             usuarioR.save(usuario);
         }
     }
+    public void forgotPassword(String email) {
+    Optional<usuario> optUser = usuarioR.findByEmail(email);
+    if (optUser.isEmpty()) {
+        throw new IllegalArgumentException("El correo no está registrado.");
+    }
+
+    usuario user = optUser.get();
+
+    // 1️⃣ Generar y guardar token
+    String token = UUID.randomUUID().toString();
+    user.setTokenReset(token);
+    usuarioR.save(user);
+
+    // 2️⃣ Construir deep-link
+    //    Usa tu host de Expo (túnel o LAN). Puedes inyectarlo por variable de entorno.
+    String host = System.getenv().getOrDefault("EXPO_HOST", "gbjt_so-slubyn-8081.exp.direct");
+    String enlace = "exp://" + host + "/--/resetPassword?email=" + email + "&token=" + token;
+
+    // 3️⃣ Plantilla HTML del correo
+    String html = """
+        <html>
+          <body style="font-family: Arial, sans-serif; text-align: center;">
+            <h2>Restablecer tu contraseña</h2>
+            <p>Haz clic en el botón para abrir Kimochi y crear una nueva contraseña:</p>
+            <a href="%s" style="background-color:#FFB800;color:black;padding:12px 20px;
+               border-radius:6px;text-decoration:none;font-weight:bold;">
+              ABRIR EN KIMOCHI
+            </a>
+            <p>Si no funciona el botón, copia y pega este enlace en tu navegador:</p>
+            <p>%s</p>
+          </body>
+        </html>
+        """.formatted(enlace, enlace);
+
+    emailService.enviarCorreo(email, "Recuperación de contraseña – Kimochi", html);
+}
+
+
+
+    public ResponseEntity<String> resetearPassword(String email, String token, String nuevaPassword) {
+        Optional<usuario> usuarioOpt = usuarioR.findByEmail(email);
+        if (!usuarioOpt.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario no encontrado");
+        }
+
+        usuario usuario = usuarioOpt.get();
+        if (!token.equals(usuario.getTokenReset())) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Token inválido");
+        }
+
+       usuario.setContraseña(passwordEncoder.encode(nuevaPassword)); // 🔐 ahora sí encriptada
+
+        usuario.setTokenReset(null); // invalida token
+        usuarioR.save(usuario);
+        return ResponseEntity.ok("Contraseña actualizada correctamente");
+    }
+
 
   public void completarNivel(int idUsuario, int nuevoNivel) {
     Optional<usuario> optionalUsuario = usuarioR.findById(idUsuario);
