@@ -91,7 +91,7 @@ const EmocionesScreen = () => {
   const obtenerNivel = async (id: number) => {
     try {
       const res = await fetch(
-        `http://192.168.1.135:8080/api/usuarios/${id}/nivel`
+        `http://192.168.1.45:8080/api/usuarios/${id}/nivel`
       );
       const nivel = await res.json();
       if (nivel > 0) setNivelActual(nivel);
@@ -146,7 +146,7 @@ const EmocionesScreen = () => {
       setNivelCompletadoMensaje(true);
 
       await fetch(
-        `http://192.168.1.135:8080/api/usuarios/${usuario.id_usuario}/nivel-completado?nuevoNivel=${siguienteNivel}`,
+        `http://192.168.1.45:8080/api/usuarios/${usuario.id_usuario}/nivel-completado?nuevoNivel=${siguienteNivel}`,
         { method: "POST" }
       );
 

@@ -211,11 +211,11 @@
         "opciones": [
           {
             "id_opcion": 1,
-            "opcion_texto": "Ilusión",
+            "opcion_texto": "ilusion",
             "es_correcto": false,
             "emocion": {
-              "imagen_local": "ilusión.png",
-              "nombre_emocion": "Ilusión"
+              "imagen_local": "ilusion.png",
+              "nombre_emocion": "ilusion"
             }
           },
           {
@@ -223,7 +223,7 @@
             "opcion_texto": "Alegría",
             "es_correcto": false,
             "emocion": {
-              "imagen_local": "alegría.png",
+              "imagen_local": "alegria.png",
               "nombre_emocion": "Alegría"
             }
           },
@@ -269,6 +269,40 @@
             "emocion": {
               "imagen_local": "calma.png",
               "nombre_emocion": "Calma"
+            }
+          }
+        ]
+      },
+      {
+        "pregunta": "¿Cuál de estas imágenes representa la emoción de Asco?",
+        "id_pregunta": 35,
+        "opciones": [
+          {
+            "id_opcion": 1,
+            "opcion_texto": "Gracia",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "gracia.png",
+              "nombre_emocion": "Gracia"
+            }
+          },
+          {
+            "id_opcion": 2,
+            "opcion_texto": "Curiosidad",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "curiosidad.png",
+              "nombre_emocion": "Curiosidad"
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "Asco",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "asco.png",
+              "nombre_emocion": "Asco",
+              "descripcion": " cuando algo te da ganas de irte porque huele o se ve muy feo"
             }
           }
         ]
@@ -440,7 +474,7 @@
             "opcion_texto": "Vergüenza",
             "es_correcto": true,
             "emocion": {
-              "imagen_local": "vergüenza.png",
+              "imagen_local": "verguenza.png",
               "nombre_emocion": "Vergüenza",
               "descripcion": "Es cuando no quieres que te miren porque hiciste algo que te incomoda."
             }
@@ -453,11 +487,11 @@
         "opciones": [
           {
             "id_opcion": 1,
-            "opcion_texto": "Confusión",
+            "opcion_texto": "confusion",
             "es_correcto": true,
             "emocion": {
-              "imagen_local": "confusión.png",
-              "nombre_emocion": "Confusión",
+              "imagen_local": "confusion.png",
+              "nombre_emocion": "confusion",
               "descripcion": "Es cuando no entiendes algo o no sabes qué hacer."
             }
           },
@@ -472,11 +506,11 @@
           },
           {
             "id_opcion": 3,
-            "opcion_texto": "Ilusión",
+            "opcion_texto": "ilusion",
             "es_correcto": false,
             "emocion": {
-              "imagen_local": "ilusión.png",
-              "nombre_emocion": "Ilusión"
+              "imagen_local": "ilusion.png",
+              "nombre_emocion": "ilusion"
             }
           }
         ]
@@ -497,11 +531,11 @@
           },
           {
             "id_opcion": 2,
-            "opcion_texto": "Empatía",
+            "opcion_texto": "empatia",
             "es_correcto": false,
             "emocion": {
-              "imagen_local": "empatía.png",
-              "nombre_emocion": "Empatía"
+              "imagen_local": "empatia.png",
+              "nombre_emocion": "empatia"
             }
           },
           {
@@ -555,11 +589,11 @@
         "opciones": [
           {
             "id_opcion": 1,
-            "opcion_texto": "Frustración",
+            "opcion_texto": "frustracion",
             "es_correcto": true,
             "emocion": {
-              "imagen_local": "frustración.png",
-              "nombre_emocion": "Frustración",
+              "imagen_local": "frustracion.png",
+              "nombre_emocion": "frustracion",
               "descripcion": "Es cuando intentas algo y no sale como quieres, y te enfadas o te pones triste."
             }
           },
@@ -574,11 +608,11 @@
           },
           {
             "id_opcion": 3,
-            "opcion_texto": "Admiración",
+            "opcion_texto": "admiracion",
             "es_correcto": false,
             "emocion": {
-              "imagen_local": "admiración.png",
-              "nombre_emocion": "Admiración"
+              "imagen_local": "admiracion.png",
+              "nombre_emocion": "admiracion"
             }
           }
         ]
@@ -589,11 +623,11 @@
         "opciones": [
           {
             "id_opcion": 1,
-            "opcion_texto": "Ilusión",
+            "opcion_texto": "ilusion",
             "es_correcto": true,
             "emocion": {
-              "imagen_local": "ilusión.png",
-              "nombre_emocion": "Ilusión",
+              "imagen_local": "ilusion.png",
+              "nombre_emocion": "ilusion",
               "descripcion": "Es cuando estás muy emocionado porque algo bonito va a pasar."
             }
           },
@@ -642,11 +676,11 @@
           },
           {
             "id_opcion": 3,
-            "opcion_texto": "Ilusión",
+            "opcion_texto": "ilusion",
             "es_correcto": false,
             "emocion": {
-              "imagen_local": "ilusión.png",
-              "nombre_emocion": "Ilusión"
+              "imagen_local": "ilusion.png",
+              "nombre_emocion": "ilusion"
             }
           }
         ]
@@ -667,11 +701,11 @@
           },
           {
             "id_opcion": 2,
-            "opcion_texto": "Frustración",
+            "opcion_texto": "frustracion",
             "es_correcto": false,
             "emocion": {
-              "imagen_local": "frustración.png",
-              "nombre_emocion": "Frustración"
+              "imagen_local": "frustracion.png",
+              "nombre_emocion": "frustracion"
             }
           },
           {
@@ -679,42 +713,8 @@
             "opcion_texto": "Vergüenza",
             "es_correcto": false,
             "emocion": {
-              "imagen_local": "vergüenza.png",
+              "imagen_local": "verguenza.png",
               "nombre_emocion": "Vergüenza"
-            }
-          }
-        ]
-      },
-      {
-        "pregunta": "¿Cuál de estas imágenes representa la emoción de Emoción?",
-        "id_pregunta": 20,
-        "opciones": [
-          {
-            "id_opcion": 1,
-            "opcion_texto": "Emoción",
-            "es_correcto": true,
-            "emocion": {
-              "imagen_local": "emoción.png",
-              "nombre_emocion": "Emoción",
-              "descripcion": "Es cuando sientes algo muy intenso y tu corazón late rápido porque pasa algo que te importa."
-            }
-          },
-          {
-            "id_opcion": 2,
-            "opcion_texto": "Ansiedad",
-            "es_correcto": false,
-            "emocion": {
-              "imagen_local": "ansiedad.png",
-              "nombre_emocion": "Ansiedad"
-            }
-          },
-          {
-            "id_opcion": 3,
-            "opcion_texto": "Alivio",
-            "es_correcto": false,
-            "emocion": {
-              "imagen_local": "alivio.png",
-              "nombre_emocion": "Alivio"
             }
           }
         ]
@@ -735,11 +735,11 @@
           },
           {
             "id_opcion": 2,
-            "opcion_texto": "Confusión",
+            "opcion_texto": "confusion",
             "es_correcto": false,
             "emocion": {
-              "imagen_local": "confusión.png",
-              "nombre_emocion": "Confusión"
+              "imagen_local": "confusion.png",
+              "nombre_emocion": "confusion"
             }
           },
           {
@@ -759,11 +759,11 @@
         "opciones": [
           {
             "id_opcion": 1,
-            "opcion_texto": "Empatía",
+            "opcion_texto": "empatia",
             "es_correcto": true,
             "emocion": {
-              "imagen_local": "empatía.png",
-              "nombre_emocion": "Empatía",
+              "imagen_local": "empatia.png",
+              "nombre_emocion": "empatia",
               "descripcion": "Es cuando entiendes cómo se siente otra persona y quieres ayudarla."
             }
           },
@@ -778,11 +778,11 @@
           },
           {
             "id_opcion": 3,
-            "opcion_texto": "Ilusión",
+            "opcion_texto": "ilusion",
             "es_correcto": false,
             "emocion": {
-              "imagen_local": "ilusión.png",
-              "nombre_emocion": "Ilusión"
+              "imagen_local": "ilusion.png",
+              "nombre_emocion": "ilusion"
             }
           }
         ]
@@ -793,11 +793,11 @@
         "opciones": [
           {
             "id_opcion": 1,
-            "opcion_texto": "Confusión",
+            "opcion_texto": "confusion",
             "es_correcto": false,
             "emocion": {
-              "imagen_local": "confusión.png",
-              "nombre_emocion": "Confusión"
+              "imagen_local": "confusion.png",
+              "nombre_emocion": "confusion"
             }
           },
           {
@@ -827,11 +827,11 @@
         "opciones": [
           {
             "id_opcion": 1,
-            "opcion_texto": "Admiración",
+            "opcion_texto": "admiracion",
             "es_correcto": true,
             "emocion": {
-              "imagen_local": "admiración.png",
-              "nombre_emocion": "Admiración",
+              "imagen_local": "admiracion.png",
+              "nombre_emocion": "admiracion",
               "descripcion": "Es cuando ves algo o alguien que te parece increíble y te encanta."
             }
           },
@@ -871,11 +871,11 @@
           },
           {
             "id_opcion": 2,
-            "opcion_texto": "Frustración",
+            "opcion_texto": "frustracion",
             "es_correcto": false,
             "emocion": {
-              "imagen_local": "frustración.png",
-              "nombre_emocion": "Frustración"
+              "imagen_local": "frustracion.png",
+              "nombre_emocion": "frustracion"
             }
           },
           {
@@ -986,11 +986,11 @@
           },
           {
             "id_opcion": 3,
-            "opcion_texto": "Preocupación",
+            "opcion_texto": "preocupacion",
             "es_correcto": false,
             "emocion": {
-              "imagen_local": "preocupación.png",
-              "nombre_emocion": "Preocupación"
+              "imagen_local": "preocupacion.png",
+              "nombre_emocion": "preocupacion"
             }
           }
         ]
@@ -1069,11 +1069,11 @@
         "opciones": [
           {
             "id_opcion": 1,
-            "opcion_texto": "Preocupación",
+            "opcion_texto": "preocupacion",
             "es_correcto": true,
             "emocion": {
-              "imagen_local": "preocupación.png",
-              "nombre_emocion": "Preocupación",
+              "imagen_local": "preocupacion.png",
+              "nombre_emocion": "preocupacion",
               "descripcion": "Es cuando no dejas de pensar que algo malo puede pasar."
             }
           },
@@ -1113,11 +1113,11 @@
           },
           {
             "id_opcion": 2,
-            "opcion_texto": "Preocupación",
+            "opcion_texto": "preocupacion",
             "es_correcto": false,
             "emocion": {
-              "imagen_local": "preocupación.png",
-              "nombre_emocion": "Preocupación"
+              "imagen_local": "preocupacion.png",
+              "nombre_emocion": "preocupacion"
             }
           },
           {
@@ -1161,6 +1161,40 @@
             "emocion": {
               "imagen_local": "inseguridad.png",
               "nombre_emocion": "Inseguridad"
+            }
+          }
+        ]
+      },
+      {
+        "pregunta": "¿Cuál de estas imágenes representa la emoción de Culpa?",
+        "id_pregunta": 20,
+        "opciones": [
+          {
+            "id_opcion": 1,
+            "opcion_texto": "Gratitud",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "gratitud.png",
+              "nombre_emocion": "Gratitud"
+            }
+          },
+          {
+            "id_opcion": 2,
+            "opcion_texto": "Enfado",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "enfado.png",
+              "nombre_emocion": "Enfado"
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "Culpa",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "culpa.png",
+              "nombre_emocion": "Culpa",
+              "descripcion": "Es cuando hiciste algo que crees que estuvo mal y te pesa."
             }
           }
         ]

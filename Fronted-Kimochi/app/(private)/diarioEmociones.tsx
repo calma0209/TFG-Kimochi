@@ -92,7 +92,7 @@ const DiarioEmociones = () => {
 
   const obtenerEmociones = async () => {
     try {
-      const res = await fetch("http://192.168.1.135:8080/api/emociones");
+      const res = await fetch("http://192.168.1.45:8080/api/emociones");
       const data = await res.json();
       setEmociones(data);
     } catch (error) {
@@ -104,7 +104,7 @@ const DiarioEmociones = () => {
   const obtenerEntradas = async (id: number) => {
     try {
       const res = await fetch(
-        `http://192.168.1.135:8080/api/diario/usuario/${id}`
+        `http://192.168.1.45:8080/api/diario/usuario/${id}`
       );
       const data = await res.json();
 
@@ -122,7 +122,7 @@ const DiarioEmociones = () => {
 
   const eliminarEntrada = async (id: number) => {
     try {
-      await fetch(`http://192.168.1.135:8080/api/diario/eliminar/${id}`, {
+      await fetch(`http://192.168.1.45:8080/api/diario/eliminar/${id}`, {
         method: "DELETE",
       });
       alert("Entrada eliminada");
@@ -146,7 +146,7 @@ const DiarioEmociones = () => {
       }
 
       await fetch(
-        `http://192.168.1.135:8080/api/diario/crear/${usuario.id_usuario}`,
+        `http://192.168.1.45:8080/api/diario/crear/${usuario.id_usuario}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
