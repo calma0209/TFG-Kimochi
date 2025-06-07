@@ -12,6 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpMethod.DELETE;
 import static org.springframework.http.HttpMethod.PUT;
+import static org.springframework.http.HttpMethod.POST;
 @Configuration
 public class SecurityConfig {
 
@@ -43,10 +44,14 @@ public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Excepti
         .authorizeHttpRequests(auth -> auth
           
             .requestMatchers("/api/usuarios/login").permitAll()
-            .requestMatchers("/api/usuarios").permitAll()               
+            .requestMatchers("/api/usuarios").permitAll()     
+            .requestMatchers(POST, "/api/usuarios/*/monedas/sumar").permitAll()
+          
             .requestMatchers("/api/usuarios/forgot-password").permitAll()
             .requestMatchers("/api/usuarios/reset-password").permitAll()
-          
+            
+            .requestMatchers("/api/usuarios/**").permitAll()
+          .requestMatchers(GET,"/api/usuarios/**").permitAll()
              .requestMatchers(GET, "/api/emociones/**").permitAll()
             .requestMatchers(GET, "/api/diario/usuario/**").permitAll()
             

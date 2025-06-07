@@ -31,6 +31,7 @@ public class usuarioService {
     private final EmailService emailService;
     public usuario crearUsuario(usuario user) {
         user.setContraseña(passwordEncoder.encode(user.getContraseña()));
+        user.setNivel(1); 
         return usuarioR.save(user);
     }
 
@@ -50,6 +51,17 @@ public class usuarioService {
             usuarioR.save(usuario);
         }
     }
+    public void sumarMonedas(int id, int cantidad) {
+    Optional<usuario> usuarioOpt = usuarioR.findById(id);
+    if (usuarioOpt.isPresent()) {
+        usuario u = usuarioOpt.get();
+        u.setMonedas(u.getMonedas() + cantidad);
+        usuarioR.save(u);
+    } else {
+        throw new IllegalArgumentException("Usuario no encontrado con ID: " + id);
+    }
+}
+
     public void forgotPassword(String email) {
     Optional<usuario> optUser = usuarioR.findByEmail(email);
     if (optUser.isEmpty()) {

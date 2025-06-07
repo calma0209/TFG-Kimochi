@@ -146,7 +146,7 @@ const EmpatiaScreen = () => {
                   color={COLORS.purple}
                   style={{ marginRight: 6 }}
                 />
-                <Text style={[styles.feedbackText, { maxWidth: width * 0.8 }]}>
+                <Text style={styles.feedbackText}>
                   {respuestaSeleccionada.reflexion}
                 </Text>
               </View>
