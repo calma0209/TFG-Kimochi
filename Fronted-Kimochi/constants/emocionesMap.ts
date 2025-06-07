@@ -1,4 +1,5 @@
 const imageMap: Record<string, any> = {
+  //EMOCIONES IMAGENES
   "alegria.png": require("../assets/images/emociones/alegria.png"),
   "tristeza.png": require("../assets/images/emociones/tristeza.png"),
   "enfado.png": require("../assets/images/emociones/enfado.png"),
@@ -34,11 +35,50 @@ const imageMap: Record<string, any> = {
   "pena.png": require("../assets/images/emociones/pena.png"),
   "rechazo.png": require("../assets/images/emociones/rechazo.png"),
   "gracia.png": require("../assets/images/emociones/gracia.png"),
+
+  //CASOS IMAGENES
   "caso1.png": require("../assets/images/casos/caso1.png"),
   "caso2.png": require("../assets/images/casos/caso2.png"),
   "caso3.png": require("../assets/images/casos/caso3.png"),
   "caso4.png": require("../assets/images/casos/caso4.png"),
   "caso5.png": require("../assets/images/casos/caso5.png"),
+  "caso6.png": require("../assets/images/casos/caso6.png"),
+  "caso7.png": require("../assets/images/casos/caso7.png"),
+  "caso8.png": require("../assets/images/casos/caso8.png"),
+  "caso9.png": require("../assets/images/casos/caso9.png"),
+  "caso10.png": require("../assets/images/casos/caso10.png"),
+  "caso11.png": require("../assets/images/casos/caso11.png"),
+  "caso12.png": require("../assets/images/casos/caso12.png"),
+  "caso13.png": require("../assets/images/casos/caso13.png"),
+  "caso14.png": require("../assets/images/casos/caso14.png"),
+  "caso15.png": require("../assets/images/casos/caso15.png"),
+  "caso16.png": require("../assets/images/casos/caso16.png"),
+  "caso17.png": require("../assets/images/casos/caso17.png"),
+  "caso18.png": require("../assets/images/casos/caso18.png"),
+  "caso19.png": require("../assets/images/casos/caso19.png"),
+  "caso20.png": require("../assets/images/casos/caso20.png"),
+
+  //EMPATIA IMAGENES
+  "empatia1.png": require("../assets/images/empatia/empatia1.png"),
+  "empatia2.png": require("../assets/images/empatia/empatia2.png"),
+  "empatia3.png": require("../assets/images/empatia/empatia3.png"),
+  "empatia4.png": require("../assets/images/empatia/empatia4.png"),
+  "empatia5.png": require("../assets/images/empatia/empatia5.png"),
+  "empatia6.png": require("../assets/images/empatia/empatia6.png"),
+  "empatia7.png": require("../assets/images/empatia/empatia7.png"),
+  "empatia8.png": require("../assets/images/empatia/empatia8.png"),
+  "empatia9.png": require("../assets/images/empatia/empatia9.png"),
+  "empatia10.png": require("../assets/images/empatia/empatia10.png"),
+  "empatia11.png": require("../assets/images/empatia/empatia11.png"),
+  "empatia12.png": require("../assets/images/empatia/empatia12.png"),
+  "empatia13.png": require("../assets/images/empatia/empatia13.png"),
+  "empatia14.png": require("../assets/images/empatia/empatia14.png"),
+  "empatia15.png": require("../assets/images/empatia/empatia15.png"),
+  "empatia16.png": require("../assets/images/empatia/empatia16.png"),
+  "empatia17.png": require("../assets/images/empatia/empatia17.png"),
+  "empatia18.png": require("../assets/images/empatia/empatia18.png"),
+  "empatia19.png": require("../assets/images/empatia/empatia19.png"),
+  "empatia20.png": require("../assets/images/empatia/empatia20.png"),
 };
 
 export default imageMap;

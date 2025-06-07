@@ -7,6 +7,7 @@ import {
   Dimensions,
   TouchableOpacity,
   Image,
+  ScrollView,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -17,23 +18,24 @@ export default function OpcionesJuegos() {
         <View style={styles.header}>
           <Text style={styles.title}>Juegos</Text>
         </View>
-        <View style={styles.contenedor}>
-          {/* <View
-            style={{
-              flexDirection: "column",
 
-              marginTop: isTablet ? 50 : 30,
-              gap: 40,
-            }}
-          > */}
+        <ScrollView contentContainerStyle={styles.scrollContent}>
           <Card
-            imagen={require("../../assets/images/emociones/alegria.png")}
+            imagen={require("../../assets/images/emociones/curiosidad.png")}
+            title="Biblioteca de Emociones"
+            description="Las emociones y sus significados"
+            onPress={() =>
+              router.push("/(private)/opcionesJuegos/biblioEmociones")
+            }
+          />
+          <Card
+            imagen={require("../../assets/images/emociones/calma.png")}
             title="Juego Emociones"
             description="Juego para identificar las emociones"
             onPress={() => router.push("/(private)/opcionesJuegos/emociones")}
           />
           <Card
-            imagen={require("../../assets/images/casos/caso2.png")} // usa la imagen que prefieras
+            imagen={require("../../assets/images/casos/caso2.png")}
             title="¿Cómo me siento si...?"
             description="Piensa en cómo te sentirías en distintas situaciones"
             onPress={() =>
@@ -42,12 +44,11 @@ export default function OpcionesJuegos() {
           />
           <Card
             imagen={require("../../assets/images/casos/caso2.png")}
-            title="Juego Empatia"
-            description="Juego para mejorar tu empatia con el entorno"
+            title="Juego Empatía"
+            description="Juego para mejorar tu empatía con el entorno"
             onPress={() => router.push("/(private)/opcionesJuegos/empatia")}
           />
-          {/* </View> */}
-        </View>
+        </ScrollView>
       </View>
     </SafeAreaView>
   );
@@ -80,10 +81,7 @@ const styles = StyleSheet.create({
   },
   contenedor: {
     flex: 1,
-    // justifyContent: "space-evenly",
-    gap: 60,
     paddingTop: isTablet ? 50 : 0,
-    justifyContent: "center",
   },
   card: {
     backgroundColor: "#f4f4f4",
@@ -117,5 +115,10 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "#fff",
     fontWeight: "bold",
+  },
+  scrollContent: {
+    paddingVertical: 35,
+    gap: 40,
+    paddingBottom: 100,
   },
 });
