@@ -83,7 +83,7 @@ const EmpatiaScreen: React.FC = () => {
   const manejarRespuesta = async (op: Opcion) => {
     if (opcionSeleccionada) return;
     setOpcionSeleccionada(op);
-
+    //opcion correcta
     if (op.es_correcta) {
       const userRaw = await AsyncStorage.getItem("user");
       const user = JSON.parse(userRaw || "{}");
