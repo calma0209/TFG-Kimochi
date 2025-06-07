@@ -46,7 +46,7 @@ const DiarioEmociones = () => {
     useState<Entrada | null>(null);
   const [entradas, setEntradas] = useState<Entrada[]>([]);
   const [usuario, setUsuario] = useState<any>(null);
-
+  const [editandoId, setEditandoId] = useState<number | null>(null);
   const router = useRouter();
 
   // 🔄 Cargar usuario al montar el componente
@@ -92,7 +92,9 @@ const DiarioEmociones = () => {
 
   const obtenerEmociones = async () => {
     try {
-      const res = await fetch("http://192.168.1.135:8080/api/emociones");
+      const res = await fetch(
+        `${process.env.EXPO_PUBLIC_API_BASE}/api/emociones`
+      );
       const data = await res.json();
       setEmociones(data);
     } catch (error) {
@@ -104,7 +106,7 @@ const DiarioEmociones = () => {
   const obtenerEntradas = async (id: number) => {
     try {
       const res = await fetch(
-        `http://192.168.1.135:8080/api/diario/usuario/${id}`
+        `${process.env.EXPO_PUBLIC_API_BASE}/api/diario/usuario/${id}`
       );
       const data = await res.json();
 
@@ -122,7 +124,7 @@ const DiarioEmociones = () => {
 
   const eliminarEntrada = async (id: number) => {
     try {
-      await fetch(`http://192.168.1.135:8080/api/diario/eliminar/${id}`, {
+      await fetch(`${process.env.EXPO_PUBLIC_API_BASE}/api/diario/${id}`, {
         method: "DELETE",
       });
       alert("Entrada eliminada");
@@ -134,35 +136,47 @@ const DiarioEmociones = () => {
 
   const handleGuardar = async () => {
     if (!usuario) return;
+    if (!emocionSeleccionada) return alert("Selecciona una emoción.");
+    if (!texto.trim()) return alert("Escribe cómo te sientes.");
+
+    const urlBase = process.env.EXPO_PUBLIC_API_BASE;
+    const payload = {
+      nota: texto,
+      emocion: { id_emocion: emocionSeleccionada },
+    };
 
     try {
-      if (!emocionSeleccionada) {
-        alert("Selecciona una emoción antes de guardar.");
-        return;
-      }
-      if (!texto.trim()) {
-        alert("Escribe cómo te sientes antes de guardar.");
-        return;
+      if (editandoId !== null) {
+        // UPDATE
+        await fetch(
+          `${process.env.EXPO_PUBLIC_API_BASE}/api/diario/${editandoId}`,
+          {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          }
+        );
+        alert("Entrada actualizada");
+      } else {
+        // CREATE
+        await fetch(
+          `${process.env.EXPO_PUBLIC_API_BASE}/api/diario/crear/${usuario.id_usuario}`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          }
+        );
+        alert("Entrada guardada");
       }
 
-      await fetch(
-        `http://192.168.1.135:8080/api/diario/crear/${usuario.id_usuario}`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            nota: texto,
-            emocion: { id_emocion: emocionSeleccionada },
-          }),
-        }
-      );
-
-      alert("Entrada guardada");
+      // limpiar y recargar
       setTexto("");
       setEmocionSeleccionada(null);
+      setEditandoId(null);
       obtenerEntradas(usuario.id_usuario);
-    } catch (error) {
-      console.error("Error al guardar:", error);
+    } catch (err) {
+      console.error("Error al guardar/actualizar:", err);
     }
   };
 
@@ -262,6 +276,7 @@ const DiarioEmociones = () => {
                       onPress={() => {
                         setTexto(item.nota);
                         setEmocionSeleccionada(item.emocion.id_emocion);
+                        setEditandoId(item.id_registro);
                       }}
                     >
                       <Text style={styles.textoBoton}>Editar</Text>

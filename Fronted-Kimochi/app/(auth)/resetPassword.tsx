@@ -1,21 +1,66 @@
-// app/reset-password.tsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  Alert,
+  Linking,
 } from "react-native";
-import { router } from "expo-router";
 
+import { router, useLocalSearchParams } from "expo-router";
 export default function ResetPasswordScreen() {
-  const [password, setPassword] = useState("");
-  const [confirm, setConfirm] = useState("");
+  const [email, setEmail] = useState<string>("");
+  const [token, setToken] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [confirm, setConfirm] = useState<string>("");
 
-  const handleReset = () => {
-    // Aquí validas y haces el cambio de contraseña
-    router.replace("/login"); // Redirige al login después de resetear
+  const { email: emailP, token: tokenP } = useLocalSearchParams<{
+    email?: string;
+    token?: string;
+  }>();
+
+  useEffect(() => {
+    if (emailP && tokenP) {
+      setEmail(String(emailP));
+      setToken(String(tokenP));
+    } else {
+      Alert.alert("Error", "Enlace inválido.");
+      router.replace("/login");
+    }
+  }, [emailP, tokenP]);
+
+  const handleReset = async () => {
+    if (!password || password !== confirm) {
+      Alert.alert("Error", "Las contraseñas no coinciden.");
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `${process.env.EXPO_PUBLIC_API_BASE}/api/usuarios/reset-password`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email,
+            token,
+            nuevaPassword: password,
+          }),
+        }
+      );
+
+      if (response.ok) {
+        Alert.alert("Éxito", "Contraseña actualizada.");
+        router.replace("/login");
+      } else {
+        const text = await response.text();
+        Alert.alert("Error", text || "Ocurrió un error.");
+      }
+    } catch (err) {
+      Alert.alert("Error de red", "No se pudo conectar al servidor.");
+    }
   };
 
   return (

@@ -19,6 +19,8 @@ import * as ScreenOrientation from "expo-screen-orientation";
 import { useEffect } from "react";
 
 export default function LoginScreen() {
+  console.log("🔧 API_BASE =", process.env.EXPO_PUBLIC_API_BASE);
+
   useEffect(() => {
     console.log("⚠️ useEffect arrancó");
     AsyncStorage.getItem("user")
@@ -34,25 +36,25 @@ export default function LoginScreen() {
   //
 
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [contraseña, setPassword] = useState("");
   const [error, setError] = useState("");
 
   // función para manejar el inicio de sesión
   const handleLogin = async () => {
     setError("");
 
-    if (!email || !password) {
+    if (!email || !contraseña) {
       setError("Por favor, completa todos los campos.");
       return;
     }
 
     try {
       const response = await fetch(
-        "http://192.168.1.135:8080/api/usuarios/login",
+        `${process.env.EXPO_PUBLIC_API_BASE}/api/usuarios/login`, // ← endpoint correcto
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, contraseña: password }),
+          body: JSON.stringify({ email, contraseña }), // ← clave correcta
         }
       );
 
@@ -102,7 +104,7 @@ export default function LoginScreen() {
               style={styles.input}
               placeholderTextColor="#555"
               secureTextEntry
-              value={password}
+              value={contraseña}
               onChangeText={setPassword}
             />
 

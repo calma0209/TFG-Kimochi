@@ -7,7 +7,7 @@ import {
   StyleSheet,
 } from "react-native";
 import { sendPasswordResetEmail } from "firebase/auth";
-import { auth } from "../../config/firebaseConfig";
+// import { auth } from "../../config/firebaseConfig";
 import Toast from "react-native-toast-message";
 import { router } from "expo-router";
 
@@ -24,22 +24,34 @@ export default function ForgotPassword() {
     }
 
     try {
-      await sendPasswordResetEmail(auth, email);
-      Toast.show({
-        type: "success",
-        text1: "Correo enviado!",
-        text2: "Revisa tu bandeja de entrada.",
-        position: "bottom",
-      });
+      const response = await fetch(
+        `${process.env.EXPO_PUBLIC_API_BASE}/api/usuarios/forgot-password`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+        }
+      );
 
-      setTimeout(() => {
-        router.replace("/login");
-      }, 1000);
-    } catch (error: any) {
+      console.log("🔍 Código de estado:", response.status);
+      if (response.ok) {
+        Toast.show({
+          type: "success",
+          text1: "Correo enviado!",
+          text2: "Revisa tu bandeja de entrada.",
+          position: "bottom",
+        });
+        setTimeout(() => {
+          router.replace("/login");
+        }, 1000);
+      } else {
+        setError("No se pudo enviar el correo. Intenta de nuevo.");
+        console.log(await response.text());
+      }
+    } catch (error) {
       console.error(error);
-      setError("No se pudo enviar el correo.");
+      setError("Error del servidor. Intenta más tarde.");
     }
-    // router.push("/resetPassword"); // o mostrar confirmación
   };
 
   return (

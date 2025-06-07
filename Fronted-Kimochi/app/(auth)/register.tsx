@@ -33,18 +33,21 @@ export default function RegisterScreen() {
 
     try {
       // await sirve para esperar a que se complete la promesa (fetch)
-      const response = await fetch("http://192.168.1.135:8080/api/usuarios", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          nombre_usuario: nombre,
-          email: email,
-          contraseña: password,
-          rol: "usuario",
-        }),
-      });
+      const response = await fetch(
+        `${process.env.EXPO_PUBLIC_API_BASE}/api/usuarios`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            nombre_usuario: nombre,
+            email: email,
+            contraseña: password,
+            rol: "usuario",
+          }),
+        }
+      );
       if (response.ok) {
         setError("");
         Toast.show({

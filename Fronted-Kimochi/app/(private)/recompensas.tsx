@@ -10,6 +10,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { useIsTablet } from "@/hooks/useIsTablet";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type Recompensa = {
   id: number;
@@ -29,21 +30,56 @@ const RecompensasScreen: React.FC = () => {
   const [insignias, setInsignias] = useState<RecompensaUsuario[]>([]);
   const [monedas, setMonedas] = useState<number>(0);
   const isTablet = useIsTablet();
-  const usuarioId = 27; // reemplaza por auth si lo necesitas
 
   useEffect(() => {
-    fetch(
-      `http://192.168.1.135:8080/api/recompensas-usuarios/usuario/${usuarioId}`
-    )
-      .then((res) => res.json())
-      .then((data: RecompensaUsuario[]) => {
+    const fetchRecompensas = async () => {
+      try {
+        const userString = await AsyncStorage.getItem("user");
+
+        if (!userString) {
+          console.warn("No hay usuario guardado en AsyncStorage.");
+          return;
+        }
+
+        const user = JSON.parse(userString);
+        const usuarioId = user?.id_usuario;
+
+        if (!usuarioId) {
+          console.warn("ID de usuario no válido.");
+          return;
+        }
+
+        const res = await fetch(
+          `${process.env.EXPO_PUBLIC_API_BASE}/api/recompensas-usuarios/usuario/${usuarioId}`
+        );
+
+        if (!res.ok) {
+          console.warn(`Respuesta HTTP no OK: ${res.status}`);
+          return;
+        }
+
+        const text = await res.text();
+
+        if (!text) {
+          console.warn("Respuesta vacía de la API.");
+          return;
+        }
+
+        const data: RecompensaUsuario[] = JSON.parse(text);
+
         setInsignias(data);
+
         const totalMonedas = data
           .filter((r) => r.recompensa.tipo === "moneda")
           .reduce((acc, cur) => acc + cur.cantidad_monedas, 0);
+
         setMonedas(totalMonedas);
-      })
-      .catch((err) => console.error("Error cargando recompensas:", err));
+      } catch (err) {
+        console.error("Error cargando recompensas:", err);
+      }
+    };
+
+    fetchRecompensas();
   }, []);
 
   const renderInsignia = ({ item }: { item: RecompensaUsuario }) => {
