@@ -42,6 +42,10 @@ public class usuario {
     @Temporal(TemporalType.TIMESTAMP)
     @org.hibernate.annotations.CreationTimestamp
     private Timestamp fecha_creacion;
+
+    @Column(name = "monedas", nullable = false)
+    private int monedas = 0;
+    
     @Column(nullable = false)
     private int Nivel;
 

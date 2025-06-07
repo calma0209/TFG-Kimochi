@@ -26,7 +26,7 @@ import lombok.RequiredArgsConstructor;
 public class usuarioController {
 
     private final usuarioService userS;
-
+    private final com.example.proyectoAppi.repository.usuarioRepository usuarioR;
     @PostMapping
     @Operation(summary = "Crear un nuevo usuario", description = "Registra un nuevo usuario en la base de datos")
     @ApiResponses(value = {
@@ -58,6 +58,24 @@ public class usuarioController {
     public void nivelCompletado(@PathVariable int id, @RequestParam int nuevoNivel) {
         userS.completarNivel(id, nuevoNivel);
     }
+    @PostMapping("/{id}/monedas/sumar")
+public ResponseEntity<String> sumarMonedas(@PathVariable int id, @RequestParam int cantidad) {
+    try {
+        userS.sumarMonedas(id, cantidad);
+        return ResponseEntity.ok("Monedas sumadas correctamente");
+    } catch (IllegalArgumentException e) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+    }
+}
+@GetMapping("/{id}/monedas")
+public ResponseEntity<Integer> obtenerMonedas(@PathVariable int id) {
+    Optional<usuario> uOpt = usuarioR.findById(id);
+    if (uOpt.isEmpty()) {
+        return ResponseEntity.notFound().build();
+    }
+    return ResponseEntity.ok(uOpt.get().getMonedas());
+}
+
 
     @Operation(summary = "Iniciar sesión", description = "Verifica las credenciales del usuario y devuelve sus datos si son correctas.")
     @ApiResponses(value = {

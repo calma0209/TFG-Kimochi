@@ -91,7 +91,7 @@ const EmocionesScreen = () => {
   const obtenerNivel = async (id: number) => {
     try {
       const res = await fetch(
-        `http://192.168.1.45:8080/api/usuarios/${id}/nivel`
+        `${process.env.EXPO_PUBLIC_API_BASE}/api/usuarios/${id}/nivel`
       );
       const nivel = await res.json();
       if (nivel > 0) setNivelActual(nivel);
@@ -100,9 +100,6 @@ const EmocionesScreen = () => {
     }
   };
 
-  /* -------------------------
-   * 📝  CARGAR PREGUNTAS
-   * ------------------------- */
   const cargarPreguntas = () => {
     const preguntasNivel =
       (preguntasData as any)[`nivel_${nivelActual}`]?.preguntas || [];
@@ -146,7 +143,7 @@ const EmocionesScreen = () => {
       setNivelCompletadoMensaje(true);
 
       await fetch(
-        `http://192.168.1.45:8080/api/usuarios/${usuario.id_usuario}/nivel-completado?nuevoNivel=${siguienteNivel}`,
+        `${process.env.EXPO_PUBLIC_API_BASE}/api/usuarios/${usuario.id_usuario}/nivel-completado?nuevoNivel=${siguienteNivel}`,
         { method: "POST" }
       );
 

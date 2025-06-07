@@ -12,6 +12,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import preguntasJSON from "@/assets/data/preguntasComoMeSiento.json";
 import imageMap from "@/constants/emocionesMap";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 /***************************
  * 🎨  PALETA DE COLORES  *
@@ -75,7 +76,7 @@ const ComoMeSientoScreen = () => {
     setFeedback(opcion.reflexion);
   };
 
-  const avanzar = () => {
+  const avanzar = async () => {
     const siguiente = currentIndex + 1;
     if (siguiente < preguntas.length) {
       setCurrentIndex(siguiente);
@@ -83,6 +84,19 @@ const ComoMeSientoScreen = () => {
       setFeedback("");
       setMostrarBotonSiguiente(false);
     } else {
+      // 👇 Juego terminado → Dar recompensa
+      const userRaw = await AsyncStorage.getItem("user");
+      const user = JSON.parse(userRaw || "{}");
+      const userId = user.id_usuario;
+      if (userId) {
+        fetch(
+          `${process.env.EXPO_PUBLIC_API_BASE}/api/usuarios/${userId}/monedas/sumar?cantidad=100`,
+          {
+            method: "POST",
+          }
+        ).catch((err) => console.error("Error al sumar monedas:", err));
+      }
+
       setJuegoTerminado(true);
     }
   };

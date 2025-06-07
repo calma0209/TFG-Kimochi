@@ -48,6 +48,16 @@ const RecompensasScreen: React.FC = () => {
           console.warn("ID de usuario no válido.");
           return;
         }
+        const monedasRes = await fetch(
+          `${process.env.EXPO_PUBLIC_API_BASE}/api/usuarios/${usuarioId}/monedas`
+        );
+
+        if (monedasRes.ok) {
+          const monedasActuales = await monedasRes.json();
+          setMonedas(monedasActuales);
+        } else {
+          console.warn("No se pudieron cargar las monedas del usuario");
+        }
 
         const res = await fetch(
           `${process.env.EXPO_PUBLIC_API_BASE}/api/recompensas-usuarios/usuario/${usuarioId}`
@@ -68,12 +78,6 @@ const RecompensasScreen: React.FC = () => {
         const data: RecompensaUsuario[] = JSON.parse(text);
 
         setInsignias(data);
-
-        const totalMonedas = data
-          .filter((r) => r.recompensa.tipo === "moneda")
-          .reduce((acc, cur) => acc + cur.cantidad_monedas, 0);
-
-        setMonedas(totalMonedas);
       } catch (err) {
         console.error("Error cargando recompensas:", err);
       }

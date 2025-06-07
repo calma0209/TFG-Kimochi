@@ -13,6 +13,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import preguntasJSON from "@/assets/data/preguntasEmpatia.json";
 import imageMap from "@/constants/emocionesMap"; // usa la misma lógica de mapeo de imágenes que en Emociones
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 /***************************
  * 🎨  PALETA DE COLORES  *
@@ -79,9 +80,24 @@ const EmpatiaScreen: React.FC = () => {
   /* -------------------------
    * 🎯  HANDLERS
    * ------------------------- */
-  const manejarRespuesta = (op: Opcion) => {
+  const manejarRespuesta = async (op: Opcion) => {
     if (opcionSeleccionada) return;
     setOpcionSeleccionada(op);
+
+    if (op.es_correcta) {
+      const userRaw = await AsyncStorage.getItem("user");
+      const user = JSON.parse(userRaw || "{}");
+      const userId = user?.id_usuario;
+
+      if (userId) {
+        fetch(
+          `${process.env.EXPO_PUBLIC_API_BASE}/api/usuarios/${userId}/monedas/sumar?cantidad=5`,
+          {
+            method: "POST",
+          }
+        ).catch((err) => console.error("Error al sumar monedas:", err));
+      }
+    }
   };
 
   const siguiente = () => {
