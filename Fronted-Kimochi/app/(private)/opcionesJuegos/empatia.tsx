@@ -5,74 +5,47 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
-  Dimensions,
   Animated,
-  Easing,
+  useWindowDimensions,
+  ScrollView,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import preguntasJSON from "@/assets/data/preguntasEmpatia.json";
-import imageMap from "@/constants/emocionesMap"; // usa la misma lógica de mapeo de imágenes que en Emociones
+import imageMap from "@/constants/emocionesMap";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-/***************************
- * 🎨  PALETA DE COLORES  *
- ***************************/
 const COLORS = {
   purple: "#6a1b9a",
   yellow: "#FFB800",
   lavender: "#f3e5f5",
   white: "#FFFFFF",
-  green: "#C8E6C9", // verde suave
-  red: "#FFCDD2", // rojo claro
+  green: "#C8E6C9",
+  red: "#FFCDD2",
 };
 
-interface Opcion {
-  texto: string;
-  es_correcta: boolean;
-  reflexion: string;
-}
+const EmpatiaScreen = () => {
+  const { width, height } = useWindowDimensions();
+  const isTablet = width > 700;
 
-interface Pregunta {
-  situacion: string;
-  imagen?: string;
-  opciones: Opcion[];
-}
+  const [preguntas, setPreguntas] = useState<any[]>([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [respuestaSeleccionada, setRespuestaSeleccionada] = useState<
+    any | null
+  >(null);
 
-const barajar = <T,>(array: T[]): T[] =>
-  [...array].sort(() => Math.random() - 0.5);
-
-const EmpatiaScreen: React.FC = () => {
-  // Estado principal
-  const [preguntas] = useState<Pregunta[]>(
-    barajar(preguntasJSON as Pregunta[])
-  );
-  const [indice, setIndice] = useState(0);
-  const [opcionSeleccionada, setOpcionSeleccionada] = useState<Opcion | null>(
-    null
-  );
-
-  const preguntaActual = preguntas[indice];
-  const correcta = opcionSeleccionada?.es_correcta ?? false;
-
-  /* -------------------------
-   * 🎞️  ANIMACIÓN OPCIONES
-   * ------------------------- */
   const scaleAnim = useRef(new Animated.Value(1)).current;
-  const animar = () => {
-    scaleAnim.setValue(1);
+  const animateOption = () => {
     Animated.sequence([
       Animated.timing(scaleAnim, {
         toValue: 0.95,
         duration: 100,
         useNativeDriver: true,
-        easing: Easing.out(Easing.ease),
       }),
       Animated.timing(scaleAnim, {
         toValue: 1,
         duration: 100,
         useNativeDriver: true,
-        easing: Easing.out(Easing.ease),
       }),
     ]).start();
   };
@@ -80,9 +53,15 @@ const EmpatiaScreen: React.FC = () => {
   /* -------------------------
    * 🎯  HANDLERS
    * ------------------------- */
+  type Opcion = {
+    texto: string;
+    es_correcta: boolean;
+    reflexion: string;
+  };
+
   const manejarRespuesta = async (op: Opcion) => {
-    if (opcionSeleccionada) return;
-    setOpcionSeleccionada(op);
+    if (respuestaSeleccionada) return;
+    setRespuestaSeleccionada(op);
     //opcion correcta
     if (op.es_correcta) {
       const userRaw = await AsyncStorage.getItem("user");
@@ -100,231 +79,191 @@ const EmpatiaScreen: React.FC = () => {
     }
   };
 
-  const siguiente = () => {
-    if (indice < preguntas.length - 1) {
-      setIndice(indice + 1);
-      setOpcionSeleccionada(null);
+  const avanzar = () => {
+    const siguiente = currentIndex + 1;
+    if (siguiente < preguntas.length) {
+      setCurrentIndex(siguiente);
+      setRespuestaSeleccionada(null);
     } else {
-      // reiniciar juego
-      setIndice(0);
-      setOpcionSeleccionada(null);
+      setCurrentIndex(0);
+      setRespuestaSeleccionada(null);
     }
   };
 
-  const reintentar = () => setOpcionSeleccionada(null);
+  if (preguntas.length === 0) return null;
+
+  const preguntaActual = preguntas[currentIndex];
+  const correcta = respuestaSeleccionada?.es_correcta;
 
   return (
-    <SafeAreaView style={styles.containerSafe}>
-      <View style={styles.container}>
-        {/* Imagen de la situación */}
-        {preguntaActual.imagen && (
-          <Image
-            source={imageMap[preguntaActual.imagen]}
-            style={styles.imagen}
-          />
-        )}
-
-        {/* Texto de la situación */}
-        <Text style={styles.situacion}>{preguntaActual.situacion}</Text>
-
-        {/* Opciones */}
-        <View style={styles.grid}>
-          {preguntaActual.opciones.map((op, idx) => (
-            <OptionCard
-              key={idx}
-              opcion={op}
-              deshabilitado={!!opcionSeleccionada}
-              onPress={() => manejarRespuesta(op)}
-            />
-          ))}
-        </View>
-
-        {/* Feedback */}
-        {opcionSeleccionada && (
-          <>
-            <View
+    <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lavender }}>
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        <View
+          style={[
+            styles.container,
+            { minHeight: height - 40, justifyContent: "space-evenly" },
+          ]}
+        >
+          {preguntaActual.imagen && (
+            <Image
+              source={imageMap[preguntaActual.imagen]}
               style={[
-                styles.feedbackCard,
-                { backgroundColor: correcta ? COLORS.green : COLORS.red },
+                styles.imagen,
+                { width: isTablet ? 260 : 180, height: isTablet ? 220 : 150 },
               ]}
-            >
-              <Text style={styles.feedbackText}>
-                {opcionSeleccionada.reflexion}
-              </Text>
-            </View>
+            />
+          )}
 
-            {/* Botón acción */}
-            <TouchableOpacity
-              style={styles.nextButton}
-              onPress={correcta ? siguiente : reintentar}
-              activeOpacity={0.8}
-            >
-              <Ionicons
-                name={correcta ? "arrow-forward" : "refresh"}
-                size={24}
-                color={COLORS.purple}
-              />
-              <Text style={styles.nextText}>
-                {correcta ? "Siguiente" : "Reintentar"}
-              </Text>
-            </TouchableOpacity>
-          </>
-        )}
-      </View>
+          <Text style={[styles.situacion, { fontSize: isTablet ? 22 : 18 }]}>
+            {preguntaActual.situacion}
+          </Text>
+
+          <View style={styles.grid}>
+            {preguntaActual.opciones.map((opcion: any, idx: number) => {
+              const seleccionado =
+                respuestaSeleccionada?.texto === opcion.texto;
+              const borderColor = seleccionado ? COLORS.yellow : COLORS.purple;
+              return (
+                <Animated.View
+                  key={idx}
+                  style={{ transform: [{ scale: scaleAnim }] }}
+                >
+                  <TouchableOpacity
+                    style={[
+                      styles.opcion,
+                      { borderColor, minWidth: width / 2.4 },
+                    ]}
+                    onPress={() => manejarRespuesta(opcion)}
+                    disabled={!!respuestaSeleccionada}
+                    activeOpacity={0.9}
+                  >
+                    <Text
+                      style={[
+                        styles.opcionTexto,
+                        { fontSize: isTablet ? 20 : 16 },
+                      ]}
+                    >
+                      {opcion.texto}
+                    </Text>
+                  </TouchableOpacity>
+                </Animated.View>
+              );
+            })}
+          </View>
+
+          {respuestaSeleccionada && (
+            <>
+              <View
+                style={[
+                  styles.feedbackCard,
+                  { backgroundColor: correcta ? COLORS.green : COLORS.red },
+                ]}
+              >
+                <Ionicons
+                  name={correcta ? "checkmark-circle" : "close-circle"}
+                  size={24}
+                  color={COLORS.purple}
+                  style={{ marginRight: 6 }}
+                />
+                <Text style={styles.feedbackText}>
+                  {respuestaSeleccionada.reflexion}
+                </Text>
+              </View>
+
+              <TouchableOpacity style={styles.ctaButton} onPress={avanzar}>
+                <Ionicons
+                  name="arrow-forward"
+                  size={20}
+                  color={COLORS.purple}
+                />
+                <Text style={styles.ctaText}>Siguiente</Text>
+              </TouchableOpacity>
+            </>
+          )}
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
 
-/***************************
- * 📦  COMPONENTE OPCIÓN
- ***************************/
-interface OptionCardProps {
-  opcion: Opcion;
-  deshabilitado: boolean;
-  onPress: () => void;
-}
-
-const OptionCard: React.FC<OptionCardProps> = ({
-  opcion,
-  deshabilitado,
-  onPress,
-}) => {
-  const scale = useRef(new Animated.Value(1)).current;
-
-  const pulse = () => {
-    scale.setValue(1);
-    Animated.sequence([
-      Animated.timing(scale, {
-        toValue: 0.95,
-        duration: 100,
-        useNativeDriver: true,
-      }),
-      Animated.timing(scale, {
-        toValue: 1,
-        duration: 100,
-        useNativeDriver: true,
-      }),
-    ]).start();
-  };
-
-  const handlePress = () => {
-    if (deshabilitado) return;
-    pulse();
-    onPress();
-  };
-
-  return (
-    <Animated.View style={[styles.card, { transform: [{ scale }] }]}>
-      <TouchableOpacity
-        style={styles.cardTouchable}
-        activeOpacity={0.8}
-        onPress={handlePress}
-      >
-        <Text style={styles.cardText}>{opcion.texto}</Text>
-      </TouchableOpacity>
-    </Animated.View>
-  );
-};
-
-/***************************
- * 💅  ESTILOS
- ***************************/
-const { width } = Dimensions.get("window");
-const isTablet = width > 600;
-
 const styles = StyleSheet.create({
-  containerSafe: {
-    flex: 1,
-    backgroundColor: COLORS.lavender,
-  },
   container: {
-    flex: 1,
-    padding: isTablet ? 40 : 20,
+    paddingHorizontal: 24,
     alignItems: "center",
   },
   imagen: {
-    width: isTablet ? 250 : 180,
-    height: isTablet ? 200 : 150,
     resizeMode: "contain",
   },
   situacion: {
-    fontSize: isTablet ? 22 : 18,
     textAlign: "center",
-    marginVertical: 16,
-    fontWeight: "700",
+    fontWeight: "bold",
     color: COLORS.purple,
   },
   grid: {
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "center",
+    gap: 18,
   },
-  card: {
-    margin: 10,
-    borderRadius: 20,
-    backgroundColor: COLORS.white,
+  opcion: {
+    paddingVertical: 16,
+    paddingHorizontal: 8,
     borderWidth: 3,
-    borderColor: COLORS.purple,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
-  },
-  cardTouchable: {
-    paddingVertical: isTablet ? 18 : 14,
-    paddingHorizontal: isTablet ? 28 : 20,
+    borderRadius: 18,
     alignItems: "center",
-    justifyContent: "center",
-    minWidth: width / 2.4,
+    backgroundColor: COLORS.white,
+    shadowColor: "#000",
+    shadowOpacity: 0.15,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 4,
+    elevation: 4,
+    margin: 6,
   },
-  cardText: {
-    fontSize: isTablet ? 20 : 16,
+  opcionTexto: {
+    textAlign: "center",
     color: COLORS.purple,
     fontWeight: "600",
-    textAlign: "center",
   },
   feedbackCard: {
     flexDirection: "row",
     alignItems: "center",
     alignSelf: "center",
-    paddingHorizontal: 24,
-    paddingVertical: 12,
-    borderRadius: 20,
-    marginTop: 24,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    borderRadius: 14,
     shadowColor: "#000",
+    shadowOpacity: 0.25,
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
     shadowRadius: 4,
-    elevation: 3,
+    elevation: 6,
   },
   feedbackText: {
-    marginLeft: 8,
-    fontSize: 18,
-    fontWeight: "700",
+    fontSize: 16,
     color: COLORS.purple,
+    fontWeight: "bold",
     textAlign: "center",
   },
-  nextButton: {
+  ctaButton: {
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "center",
     alignSelf: "center",
     backgroundColor: COLORS.yellow,
-    paddingHorizontal: 24,
     paddingVertical: 12,
-    borderRadius: 24,
+    paddingHorizontal: 28,
+    borderRadius: 16,
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
+    shadowOpacity: 0.25,
+    shadowOffset: { width: 0, height: 3 },
     shadowRadius: 4,
-    elevation: 3,
-    marginTop: 24,
+    elevation: 5,
+    marginTop: 20,
   },
-  nextText: {
-    marginLeft: 8,
-    fontSize: 18,
-    fontWeight: "700",
+  ctaText: {
     color: COLORS.purple,
+    fontSize: 18,
+    fontWeight: "bold",
+    marginLeft: 6,
   },
 });
 

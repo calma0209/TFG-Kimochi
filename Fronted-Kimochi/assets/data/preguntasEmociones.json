@@ -41,16 +41,6 @@
         "opciones": [
           {
             "id_opcion": 1,
-            "opcion_texto": "Miedo",
-            "es_correcto": true,
-            "emocion": {
-              "imagen_local": "miedo.png",
-              "nombre_emocion": "Miedo",
-              "descripcion": "Es cuando algo te asusta y quieres protegerte o alejarte."
-            }
-          },
-          {
-            "id_opcion": 2,
             "opcion_texto": "Alegría",
             "es_correcto": false,
             "emocion": {
@@ -59,12 +49,22 @@
             }
           },
           {
-            "id_opcion": 3,
+            "id_opcion": 2,
             "opcion_texto": "Enfado",
             "es_correcto": false,
             "emocion": {
               "imagen_local": "enfado.png",
               "nombre_emocion": "Enfado"
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "Miedo",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "miedo.png",
+              "nombre_emocion": "Miedo",
+              "descripcion": "Es cuando algo te asusta y quieres protegerte o alejarte."
             }
           }
         ]
@@ -323,11 +323,11 @@
           },
           {
             "id_opcion": 2,
-            "opcion_texto": "Sorpresa",
+            "opcion_texto": "pena",
             "es_correcto": false,
             "emocion": {
-              "imagen_local": "sorpresa.png",
-              "nombre_emocion": "Sorpresa"
+              "imagen_local": "pena.png",
+              "nombre_emocion": "pena"
             }
           },
           {
@@ -347,16 +347,6 @@
         "opciones": [
           {
             "id_opcion": 1,
-            "opcion_texto": "Orgullo",
-            "es_correcto": true,
-            "emocion": {
-              "imagen_local": "orgullo.png",
-              "nombre_emocion": "Orgullo",
-              "descripcion": "Es cuando te sientes bien contigo mismo por haber hecho algo bueno."
-            }
-          },
-          {
-            "id_opcion": 2,
             "opcion_texto": "Curiosidad",
             "es_correcto": false,
             "emocion": {
@@ -365,12 +355,22 @@
             }
           },
           {
-            "id_opcion": 3,
+            "id_opcion": 2,
             "opcion_texto": "Gracia",
             "es_correcto": false,
             "emocion": {
               "imagen_local": "gracia.png",
               "nombre_emocion": "Gracia"
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "Orgullo",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "orgullo.png",
+              "nombre_emocion": "Orgullo",
+              "descripcion": "Es cuando te sientes bien contigo mismo por haber hecho algo bueno."
             }
           }
         ]
@@ -555,21 +555,21 @@
         "opciones": [
           {
             "id_opcion": 1,
+            "opcion_texto": "Rabia",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "rabia.png",
+              "nombre_emocion": "Rabia"
+            }
+          },
+          {
+            "id_opcion": 2,
             "opcion_texto": "Cariño",
             "es_correcto": true,
             "emocion": {
               "imagen_local": "cariño.png",
               "nombre_emocion": "Cariño",
               "descripcion": "Es cuando te gusta mucho alguien y quieres demostrarle afecto."
-            }
-          },
-          {
-            "id_opcion": 2,
-            "opcion_texto": "Rabia",
-            "es_correcto": false,
-            "emocion": {
-              "imagen_local": "rabia.png",
-              "nombre_emocion": "Rabia"
             }
           },
           {
@@ -589,21 +589,21 @@
         "opciones": [
           {
             "id_opcion": 1,
+            "opcion_texto": "Esperanza",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "esperanza.png",
+              "nombre_emocion": "Esperanza"
+            }
+          },
+          {
+            "id_opcion": 2,
             "opcion_texto": "frustracion",
             "es_correcto": true,
             "emocion": {
               "imagen_local": "frustracion.png",
               "nombre_emocion": "frustracion",
               "descripcion": "Es cuando intentas algo y no sale como quieres, y te enfadas o te pones triste."
-            }
-          },
-          {
-            "id_opcion": 2,
-            "opcion_texto": "Esperanza",
-            "es_correcto": false,
-            "emocion": {
-              "imagen_local": "esperanza.png",
-              "nombre_emocion": "Esperanza"
             }
           },
           {
@@ -623,16 +623,6 @@
         "opciones": [
           {
             "id_opcion": 1,
-            "opcion_texto": "ilusion",
-            "es_correcto": true,
-            "emocion": {
-              "imagen_local": "ilusion.png",
-              "nombre_emocion": "ilusion",
-              "descripcion": "Es cuando estás muy emocionado porque algo bonito va a pasar."
-            }
-          },
-          {
-            "id_opcion": 2,
             "opcion_texto": "Agobio",
             "es_correcto": false,
             "emocion": {
@@ -641,12 +631,22 @@
             }
           },
           {
-            "id_opcion": 3,
+            "id_opcion": 2,
             "opcion_texto": "Rabia",
             "es_correcto": false,
             "emocion": {
               "imagen_local": "rabia.png",
               "nombre_emocion": "Rabia"
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "ilusion",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "ilusion.png",
+              "nombre_emocion": "ilusion",
+              "descripcion": "Es cuando estás muy emocionado porque algo bonito va a pasar."
             }
           }
         ]
@@ -691,21 +691,21 @@
         "opciones": [
           {
             "id_opcion": 1,
+            "opcion_texto": "frustracion",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "frustracion.png",
+              "nombre_emocion": "frustracion"
+            }
+          },
+          {
+            "id_opcion": 2,
             "opcion_texto": "Esperanza",
             "es_correcto": true,
             "emocion": {
               "imagen_local": "esperanza.png",
               "nombre_emocion": "Esperanza",
               "descripcion": "Es cuando crees que algo bueno puede pasar pronto."
-            }
-          },
-          {
-            "id_opcion": 2,
-            "opcion_texto": "frustracion",
-            "es_correcto": false,
-            "emocion": {
-              "imagen_local": "frustracion.png",
-              "nombre_emocion": "frustracion"
             }
           },
           {
@@ -725,16 +725,6 @@
         "opciones": [
           {
             "id_opcion": 1,
-            "opcion_texto": "Rabia",
-            "es_correcto": true,
-            "emocion": {
-              "imagen_local": "rabia.png",
-              "nombre_emocion": "Rabia",
-              "descripcion": "Es un enfado muy fuerte que hace que quieras gritar o golpear algo."
-            }
-          },
-          {
-            "id_opcion": 2,
             "opcion_texto": "confusion",
             "es_correcto": false,
             "emocion": {
@@ -742,13 +732,24 @@
               "nombre_emocion": "confusion"
             }
           },
+
           {
-            "id_opcion": 3,
+            "id_opcion": 2,
             "opcion_texto": "Celos",
             "es_correcto": false,
             "emocion": {
               "imagen_local": "celos.png",
               "nombre_emocion": "Celos"
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "Rabia",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "rabia.png",
+              "nombre_emocion": "Rabia",
+              "descripcion": "Es un enfado muy fuerte que hace que quieras gritar o golpear algo."
             }
           }
         ]
@@ -759,21 +760,21 @@
         "opciones": [
           {
             "id_opcion": 1,
+            "opcion_texto": "Ansiedad",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "ansiedad.png",
+              "nombre_emocion": "Ansiedad"
+            }
+          },
+          {
+            "id_opcion": 2,
             "opcion_texto": "empatia",
             "es_correcto": true,
             "emocion": {
               "imagen_local": "empatia.png",
               "nombre_emocion": "empatia",
               "descripcion": "Es cuando entiendes cómo se siente otra persona y quieres ayudarla."
-            }
-          },
-          {
-            "id_opcion": 2,
-            "opcion_texto": "Ansiedad",
-            "es_correcto": false,
-            "emocion": {
-              "imagen_local": "ansiedad.png",
-              "nombre_emocion": "Ansiedad"
             }
           },
           {
@@ -861,21 +862,21 @@
         "opciones": [
           {
             "id_opcion": 1,
+            "opcion_texto": "frustracion",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "frustracion.png",
+              "nombre_emocion": "frustracion"
+            }
+          },
+          {
+            "id_opcion": 2,
             "opcion_texto": "Agobio",
             "es_correcto": true,
             "emocion": {
               "imagen_local": "agobio.png",
               "nombre_emocion": "Agobio",
               "descripcion": "Es cuando tienes demasiadas cosas en la cabeza y te sientes muy presionado."
-            }
-          },
-          {
-            "id_opcion": 2,
-            "opcion_texto": "frustracion",
-            "es_correcto": false,
-            "emocion": {
-              "imagen_local": "frustracion.png",
-              "nombre_emocion": "frustracion"
             }
           },
           {
@@ -1001,16 +1002,6 @@
         "opciones": [
           {
             "id_opcion": 1,
-            "opcion_texto": "Serenidad",
-            "es_correcto": true,
-            "emocion": {
-              "imagen_local": "serenidad.png",
-              "nombre_emocion": "Serenidad",
-              "descripcion": "Es una calma profunda, como cuando todo está en paz a tu alrededor."
-            }
-          },
-          {
-            "id_opcion": 2,
             "opcion_texto": "Rechazo",
             "es_correcto": false,
             "emocion": {
@@ -1019,12 +1010,22 @@
             }
           },
           {
-            "id_opcion": 3,
+            "id_opcion": 2,
             "opcion_texto": "Euforia",
             "es_correcto": false,
             "emocion": {
               "imagen_local": "euforia.png",
               "nombre_emocion": "Euforia"
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "Serenidad",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "serenidad.png",
+              "nombre_emocion": "Serenidad",
+              "descripcion": "Es una calma profunda, como cuando todo está en paz a tu alrededor."
             }
           }
         ]
@@ -1103,21 +1104,21 @@
         "opciones": [
           {
             "id_opcion": 1,
+            "opcion_texto": "preocupacion",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "preocupacion.png",
+              "nombre_emocion": "preocupacion"
+            }
+          },
+          {
+            "id_opcion": 2,
             "opcion_texto": "Rechazo",
             "es_correcto": true,
             "emocion": {
               "imagen_local": "rechazo.png",
               "nombre_emocion": "Rechazo",
               "descripcion": "Es cuando alguien no te acepta o no quiere que estés allí."
-            }
-          },
-          {
-            "id_opcion": 2,
-            "opcion_texto": "preocupacion",
-            "es_correcto": false,
-            "emocion": {
-              "imagen_local": "preocupacion.png",
-              "nombre_emocion": "preocupacion"
             }
           },
           {
@@ -1137,16 +1138,6 @@
         "opciones": [
           {
             "id_opcion": 1,
-            "opcion_texto": "Desconfianza",
-            "es_correcto": true,
-            "emocion": {
-              "imagen_local": "desconfianza.png",
-              "nombre_emocion": "Desconfianza",
-              "descripcion": "Es cuando no crees del todo en lo que alguien dice o hace."
-            }
-          },
-          {
-            "id_opcion": 2,
             "opcion_texto": "Soledad",
             "es_correcto": false,
             "emocion": {
@@ -1155,12 +1146,22 @@
             }
           },
           {
-            "id_opcion": 3,
+            "id_opcion": 2,
             "opcion_texto": "Inseguridad",
             "es_correcto": false,
             "emocion": {
               "imagen_local": "inseguridad.png",
               "nombre_emocion": "Inseguridad"
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "Desconfianza",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "desconfianza.png",
+              "nombre_emocion": "Desconfianza",
+              "descripcion": "Es cuando no crees del todo en lo que alguien dice o hace."
             }
           }
         ]

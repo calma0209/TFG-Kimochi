@@ -270,8 +270,8 @@
       },
       {
         "texto": "Lo observas callado",
-        "es_correcta": false,
-        "reflexion": "Mirarlo sin hablar puede incomodarlo."
+        "es_correcta": true,
+        "reflexion": "Está bien ser tímido, le puedes hablar mas adelante."
       },
       {
         "texto": "Lo invitas a tu mesa",
