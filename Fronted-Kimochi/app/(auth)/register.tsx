@@ -128,19 +128,6 @@ export default function RegisterScreen() {
         >
           <Text style={styles.registerText}>Crear cuenta</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.registerButton, { backgroundColor: "#6a1b9a" }]}
-          onPress={() =>
-            Toast.show({
-              type: "success",
-              text1: "Registro exitoso",
-              text2: "Tu cuenta ha sido creada! 🎉",
-              position: "bottom",
-            })
-          }
-        >
-          <Text style={styles.registerText}>Probar Toast</Text>
-        </TouchableOpacity>
       </View>
 
       {/* Opción de volver al login */}

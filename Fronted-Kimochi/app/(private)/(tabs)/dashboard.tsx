@@ -15,7 +15,7 @@ import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import Dock from "@/components/dock";
 
-import consejos from "@/constants/consejos.json";
+import consejos from "@/assets/data/consejos.json"; // Asegúrate de que la ruta sea correcta
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";

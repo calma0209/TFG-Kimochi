@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
   View,
   Text,
@@ -6,78 +6,101 @@ import {
   TouchableOpacity,
   Image,
   Dimensions,
+  Animated,
+  Easing,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { Ionicons } from "@expo/vector-icons";
 import preguntasJSON from "@/assets/data/preguntasEmpatia.json";
-import imageMap from "@/constants/emocionesMap";
+import imageMap from "@/constants/emocionesMap"; // usa la misma lógica de mapeo de imágenes que en Emociones
 
-const EmpatiaSituacional = () => {
-  const [preguntas, setPreguntas] = useState<any[]>([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [respuestaSeleccionada, setRespuestaSeleccionada] = useState<
-    string | null
-  >(null);
-  const [feedback, setFeedback] = useState<string>("");
-  const [juegoTerminado, setJuegoTerminado] = useState(false);
+/***************************
+ * 🎨  PALETA DE COLORES  *
+ ***************************/
+const COLORS = {
+  purple: "#6a1b9a",
+  yellow: "#FFB800",
+  lavender: "#f3e5f5",
+  white: "#FFFFFF",
+  green: "#C8E6C9", // verde suave
+  red: "#FFCDD2", // rojo claro
+};
 
-  useEffect(() => {
-    iniciarJuego();
-  }, []);
+interface Opcion {
+  texto: string;
+  es_correcta: boolean;
+  reflexion: string;
+}
 
-  const iniciarJuego = () => {
-    const barajadas = shuffleArray([...preguntasJSON]);
-    setPreguntas(barajadas);
-    setCurrentIndex(0);
-    setRespuestaSeleccionada(null);
-    setFeedback("");
-    setJuegoTerminado(false);
+interface Pregunta {
+  situacion: string;
+  imagen?: string;
+  opciones: Opcion[];
+}
+
+const barajar = <T,>(array: T[]): T[] =>
+  [...array].sort(() => Math.random() - 0.5);
+
+const EmpatiaScreen: React.FC = () => {
+  // Estado principal
+  const [preguntas] = useState<Pregunta[]>(
+    barajar(preguntasJSON as Pregunta[])
+  );
+  const [indice, setIndice] = useState(0);
+  const [opcionSeleccionada, setOpcionSeleccionada] = useState<Opcion | null>(
+    null
+  );
+
+  const preguntaActual = preguntas[indice];
+  const correcta = opcionSeleccionada?.es_correcta ?? false;
+
+  /* -------------------------
+   * 🎞️  ANIMACIÓN OPCIONES
+   * ------------------------- */
+  const scaleAnim = useRef(new Animated.Value(1)).current;
+  const animar = () => {
+    scaleAnim.setValue(1);
+    Animated.sequence([
+      Animated.timing(scaleAnim, {
+        toValue: 0.95,
+        duration: 100,
+        useNativeDriver: true,
+        easing: Easing.out(Easing.ease),
+      }),
+      Animated.timing(scaleAnim, {
+        toValue: 1,
+        duration: 100,
+        useNativeDriver: true,
+        easing: Easing.out(Easing.ease),
+      }),
+    ]).start();
   };
 
-  const shuffleArray = (array: any[]) => {
-    return array.sort(() => Math.random() - 0.5);
+  /* -------------------------
+   * 🎯  HANDLERS
+   * ------------------------- */
+  const manejarRespuesta = (op: Opcion) => {
+    if (opcionSeleccionada) return;
+    setOpcionSeleccionada(op);
   };
 
-  const manejarRespuesta = (opcion: any) => {
-    setRespuestaSeleccionada(opcion.texto);
-    setFeedback(opcion.es_correcta ? "¡Correcto!" : "Incorrecto.");
-
-    setTimeout(() => {
-      const siguiente = currentIndex + 1;
-      if (siguiente < preguntas.length) {
-        setCurrentIndex(siguiente);
-        setRespuestaSeleccionada(null);
-        setFeedback("");
-      } else {
-        setJuegoTerminado(true);
-      }
-    }, 2000);
+  const siguiente = () => {
+    if (indice < preguntas.length - 1) {
+      setIndice(indice + 1);
+      setOpcionSeleccionada(null);
+    } else {
+      // reiniciar juego
+      setIndice(0);
+      setOpcionSeleccionada(null);
+    }
   };
 
-  if (preguntas.length === 0) return null;
-  if (juegoTerminado) {
-    return (
-      <SafeAreaView
-        style={{
-          flex: 1,
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor: "#fff",
-        }}
-      >
-        <Text style={styles.title}>🎉 ¡Fin del juego!</Text>
-        <TouchableOpacity style={styles.button} onPress={iniciarJuego}>
-          <Text style={styles.buttonText}>Volver a jugar</Text>
-        </TouchableOpacity>
-      </SafeAreaView>
-    );
-  }
-
-  const preguntaActual = preguntas[currentIndex];
+  const reintentar = () => setOpcionSeleccionada(null);
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "black" }}>
+    <SafeAreaView style={styles.containerSafe}>
       <View style={styles.container}>
-        {/* Imagen opcional */}
+        {/* Imagen de la situación */}
         {preguntaActual.imagen && (
           <Image
             source={imageMap[preguntaActual.imagen]}
@@ -85,46 +108,123 @@ const EmpatiaSituacional = () => {
           />
         )}
 
+        {/* Texto de la situación */}
         <Text style={styles.situacion}>{preguntaActual.situacion}</Text>
 
+        {/* Opciones */}
         <View style={styles.grid}>
-          {preguntaActual.opciones.map((opcion: any, idx: number) => {
-            const seleccionado = opcion.texto === respuestaSeleccionada;
-            const color = seleccionado
-              ? opcion.es_correcta
-                ? "green"
-                : "red"
-              : "#ccc";
-
-            return (
-              <TouchableOpacity
-                key={idx}
-                style={[styles.opcion, { borderColor: color }]}
-                onPress={() => manejarRespuesta(opcion)}
-                disabled={!!respuestaSeleccionada}
-              >
-                <Text style={styles.opcionTexto}>{opcion.texto}</Text>
-              </TouchableOpacity>
-            );
-          })}
+          {preguntaActual.opciones.map((op, idx) => (
+            <OptionCard
+              key={idx}
+              opcion={op}
+              deshabilitado={!!opcionSeleccionada}
+              onPress={() => manejarRespuesta(op)}
+            />
+          ))}
         </View>
 
-        {feedback !== "" && <Text style={styles.feedback}>{feedback}</Text>}
+        {/* Feedback */}
+        {opcionSeleccionada && (
+          <>
+            <View
+              style={[
+                styles.feedbackCard,
+                { backgroundColor: correcta ? COLORS.green : COLORS.red },
+              ]}
+            >
+              <Text style={styles.feedbackText}>
+                {opcionSeleccionada.reflexion}
+              </Text>
+            </View>
+
+            {/* Botón acción */}
+            <TouchableOpacity
+              style={styles.nextButton}
+              onPress={correcta ? siguiente : reintentar}
+              activeOpacity={0.8}
+            >
+              <Ionicons
+                name={correcta ? "arrow-forward" : "refresh"}
+                size={24}
+                color={COLORS.purple}
+              />
+              <Text style={styles.nextText}>
+                {correcta ? "Siguiente" : "Reintentar"}
+              </Text>
+            </TouchableOpacity>
+          </>
+        )}
       </View>
     </SafeAreaView>
   );
 };
 
+/***************************
+ * 📦  COMPONENTE OPCIÓN
+ ***************************/
+interface OptionCardProps {
+  opcion: Opcion;
+  deshabilitado: boolean;
+  onPress: () => void;
+}
+
+const OptionCard: React.FC<OptionCardProps> = ({
+  opcion,
+  deshabilitado,
+  onPress,
+}) => {
+  const scale = useRef(new Animated.Value(1)).current;
+
+  const pulse = () => {
+    scale.setValue(1);
+    Animated.sequence([
+      Animated.timing(scale, {
+        toValue: 0.95,
+        duration: 100,
+        useNativeDriver: true,
+      }),
+      Animated.timing(scale, {
+        toValue: 1,
+        duration: 100,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  };
+
+  const handlePress = () => {
+    if (deshabilitado) return;
+    pulse();
+    onPress();
+  };
+
+  return (
+    <Animated.View style={[styles.card, { transform: [{ scale }] }]}>
+      <TouchableOpacity
+        style={styles.cardTouchable}
+        activeOpacity={0.8}
+        onPress={handlePress}
+      >
+        <Text style={styles.cardText}>{opcion.texto}</Text>
+      </TouchableOpacity>
+    </Animated.View>
+  );
+};
+
+/***************************
+ * 💅  ESTILOS
+ ***************************/
 const { width } = Dimensions.get("window");
 const isTablet = width > 600;
 
 const styles = StyleSheet.create({
+  containerSafe: {
+    flex: 1,
+    backgroundColor: COLORS.lavender,
+  },
   container: {
     flex: 1,
     padding: isTablet ? 40 : 20,
-    justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "white",
   },
   imagen: {
     width: isTablet ? 250 : 180,
@@ -134,54 +234,82 @@ const styles = StyleSheet.create({
   situacion: {
     fontSize: isTablet ? 22 : 18,
     textAlign: "center",
-    marginBottom: 30,
-    fontWeight: "bold",
-    color: "#333",
+    marginVertical: 16,
+    fontWeight: "700",
+    color: COLORS.purple,
   },
   grid: {
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "center",
-    gap: 20,
   },
-  opcion: {
-    width: width / 2.5,
-    paddingVertical: 15,
-    borderWidth: 2,
-    borderRadius: 12,
-    alignItems: "center",
+  card: {
     margin: 10,
-    backgroundColor: "#f0f0f0",
+    borderRadius: 20,
+    backgroundColor: COLORS.white,
+    borderWidth: 3,
+    borderColor: COLORS.purple,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
-  opcionTexto: {
+  cardTouchable: {
+    paddingVertical: isTablet ? 18 : 14,
+    paddingHorizontal: isTablet ? 28 : 20,
+    alignItems: "center",
+    justifyContent: "center",
+    minWidth: width / 2.4,
+  },
+  cardText: {
     fontSize: isTablet ? 20 : 16,
+    color: COLORS.purple,
+    fontWeight: "600",
     textAlign: "center",
   },
-  feedback: {
-    fontSize: 20,
-    marginTop: 30,
-    color: "#6a1b9a",
-    fontWeight: "bold",
-  },
-  title: {
-    fontSize: isTablet ? 28 : 22,
-    fontWeight: "bold",
-    textAlign: "center",
-    color: "#6a1b9a",
-    marginBottom: 20,
-  },
-  button: {
-    marginTop: 20,
-    backgroundColor: "#6a1b9a",
+  feedbackCard: {
+    flexDirection: "row",
+    alignItems: "center",
+    alignSelf: "center",
+    paddingHorizontal: 24,
     paddingVertical: 12,
-    paddingHorizontal: 30,
-    borderRadius: 10,
+    borderRadius: 20,
+    marginTop: 24,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
-  buttonText: {
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: "bold",
+  feedbackText: {
+    marginLeft: 8,
+    fontSize: 18,
+    fontWeight: "700",
+    color: COLORS.purple,
+    textAlign: "center",
+  },
+  nextButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    alignSelf: "center",
+    backgroundColor: COLORS.yellow,
+    paddingHorizontal: 24,
+    paddingVertical: 12,
+    borderRadius: 24,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+    marginTop: 24,
+  },
+  nextText: {
+    marginLeft: 8,
+    fontSize: 18,
+    fontWeight: "700",
+    color: COLORS.purple,
   },
 });
 
-export default EmpatiaSituacional;
+export default EmpatiaScreen;

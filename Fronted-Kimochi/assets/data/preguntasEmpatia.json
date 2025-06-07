@@ -1,52 +1,522 @@
 [
   {
-    "imagen": "caso1.png",
-    "situacion": "¿Cómo te sentirías si un amigo te empuja sin querer?",
+    "imagen": "empatia1.png",
+    "situacion": "Tu amigo se cae y llora. ¿Qué haces?",
     "opciones": [
-      { "texto": "Enfadado", "es_correcta": true },
-      { "texto": "Contento", "es_correcta": false },
-      { "texto": "Triste", "es_correcta": false },
-      { "texto": "Hambriento", "es_correcta": false }
+      {
+        "texto": "Te ríes",
+        "es_correcta": false,
+        "reflexion": "Debemos pensar en cómo se siente la otra persona."
+      },
+      {
+        "texto": "Le preguntas: ¿Estás bien?",
+        "es_correcta": true,
+        "reflexion": "Preguntar es una buena forma de ayudar."
+      },
+      {
+        "texto": "Lo ignoras",
+        "es_correcta": false,
+        "reflexion": "Ignorar a alguien puede hacerlo sentir peor."
+      },
+      {
+        "texto": "Le ayudas a levantarse",
+        "es_correcta": true,
+        "reflexion": "Ayudar muestra cariño y empatía."
+      }
     ]
   },
   {
-    "imagen": "caso2.png",
-    "situacion": "¿Cómo te sentirías si alguien te da un abrazo?",
+    "imagen": "empatia2.png",
+    "situacion": "Una compañera está sola en el recreo. ¿Qué haces?",
     "opciones": [
-      { "texto": "Feliz", "es_correcta": true },
-      { "texto": "Asustado", "es_correcta": false },
-      { "texto": "Enfadado", "es_correcta": false },
-      { "texto": "Confundido", "es_correcta": false }
+      {
+        "texto": "La invitas a jugar",
+        "es_correcta": true,
+        "reflexion": "Invitarla la hace sentir parte del grupo."
+      },
+      {
+        "texto": "La señalas con amigos",
+        "es_correcta": false,
+        "reflexion": "Señalarla puede avergonzarla."
+      },
+      {
+        "texto": "Te vas",
+        "es_correcta": false,
+        "reflexion": "Irte la puede dejar triste."
+      },
+      {
+        "texto": "Le sonríes",
+        "es_correcta": true,
+        "reflexion": "Una sonrisa muestra que te importa."
+      }
     ]
   },
   {
-    "imagen": "caso3.png",
-    "situacion": "¿Cómo te sentirías si alguien te ha pegado?",
+    "imagen": "empatia3.png",
+    "situacion": "Tu amigo va a hablar en clase y está nervioso. ¿Qué haces?",
     "opciones": [
-      { "texto": "Triste", "es_correcta": true },
-      { "texto": "Contento", "es_correcta": false },
-      { "texto": "Asustado", "es_correcta": true },
-      { "texto": "Hambriento", "es_correcta": false }
+      {
+        "texto": "Le das ánimos",
+        "es_correcta": true,
+        "reflexion": "Animarlo puede darle confianza."
+      },
+      {
+        "texto": "Le dices que fallará",
+        "es_correcta": false,
+        "reflexion": "Desanimarlo aumenta sus nervios."
+      },
+      {
+        "texto": "Te burlas",
+        "es_correcta": false,
+        "reflexion": "La burla hiere y no ayuda."
+      },
+      {
+        "texto": "Le dices que tú también",
+        "es_correcta": true,
+        "reflexion": "Compartir tu nerviosismo lo hace sentirse comprendido."
+      }
     ]
   },
   {
-    "imagen": "caso4.png",
-    "situacion": "¿Cómo te sentirías si pierdes tu juguete favorito?",
+    "imagen": "empatia4.png",
+    "situacion": "Llega un niño nuevo a clase que no entiende el idioma. ¿Qué haces?",
     "opciones": [
-      { "texto": "Triste", "es_correcta": true },
-      { "texto": "Feliz", "es_correcta": false },
-      { "texto": "Sorprendido", "es_correcta": false },
-      { "texto": "Relajado", "es_correcta": false }
+      {
+        "texto": "Hablas despacio y con gestos",
+        "es_correcta": true,
+        "reflexion": "Hablar claro y con gestos le ayuda a entender."
+      },
+      {
+        "texto": "Te burlas de cómo habla",
+        "es_correcta": false,
+        "reflexion": "Burlarse lo puede hacer sentir mal y solo."
+      },
+      {
+        "texto": "Le invitas a tu mesa",
+        "es_correcta": true,
+        "reflexion": "Invitarlo lo puede hacer sentir bienvenido."
+      },
+      {
+        "texto": "No haces nada",
+        "es_correcta": true,
+        "reflexion": "Está bien ser tímido, le puedes hablar mas adelante."
+      }
     ]
   },
   {
-    "imagen": "caso5.png",
-    "situacion": "¿Cómo te sentirías si escuchas un ruido raro por la noche?",
+    "imagen": "empatia5.png",
+    "situacion": "Un compañero rompe tu juguete sin querer. ¿Qué haces?",
     "opciones": [
-      { "texto": "Asustado", "es_correcta": true },
-      { "texto": "Tranquilo", "es_correcta": false },
-      { "texto": "Feliz", "es_correcta": false },
-      { "texto": "Con sueño", "es_correcta": false }
+      {
+        "texto": "Le gritas",
+        "es_correcta": false,
+        "reflexion": "Gritar añade más dolor."
+      },
+      {
+        "texto": "Dices que fue un accidente",
+        "es_correcta": true,
+        "reflexion": "Reconocer el accidente calma la situación."
+      },
+      {
+        "texto": "Lo culpas delante de todos",
+        "es_correcta": false,
+        "reflexion": "Avergonzarlo lo hace sentir peor."
+      },
+      {
+        "texto": "Lo perdonas",
+        "es_correcta": true,
+        "reflexion": "Perdonar muestra comprensión y amistad."
+      }
+    ]
+  },
+  {
+    "imagen": "empatia6.png",
+    "situacion": "Tu amiga pierde su lápiz y está triste. ¿Qué haces?",
+    "opciones": [
+      {
+        "texto": "Le prestas uno",
+        "es_correcta": true,
+        "reflexion": "Prestarle un lápiz muestra generosidad."
+      },
+      {
+        "texto": "Le dices que no es para tanto",
+        "es_correcta": false,
+        "reflexion": "Restar importancia la puede hacer sentir ignorada."
+      },
+      {
+        "texto": "La ignoras",
+        "es_correcta": false,
+        "reflexion": "Ignorarla la puede hacer sentir peor."
+      },
+      {
+        "texto": "Le cuentas que a ti también te pasó",
+        "es_correcta": true,
+        "reflexion": "Compartir una experiencia la puede consolar."
+      }
+    ]
+  },
+  {
+    "imagen": "empatia7.png",
+    "situacion": "Un niño se cae jugando fútbol. ¿Qué haces?",
+    "opciones": [
+      {
+        "texto": "Le preguntas si está bien",
+        "es_correcta": true,
+        "reflexion": "Preguntar demuestra que te importa."
+      },
+      {
+        "texto": "Le dices que fue su culpa",
+        "es_correcta": false,
+        "reflexion": "Culparlo lo hará sentir peor."
+      },
+      {
+        "texto": "Te alejas",
+        "es_correcta": false,
+        "reflexion": "Alejarte lo puede dejar sin ayuda."
+      },
+      {
+        "texto": "Le ayudas a levantarse",
+        "es_correcta": true,
+        "reflexion": "Ayudarlo muestra amistad."
+      }
+    ]
+  },
+  {
+    "imagen": "empatia8.png",
+    "situacion": "Una compañera llora porque peleó con su amiga. ¿Qué haces?",
+    "opciones": [
+      {
+        "texto": "Le preguntas si quiere hablar",
+        "es_correcta": true,
+        "reflexion": "Escucharla le da un espacio seguro."
+      },
+      {
+        "texto": "Le dices que no tienes tiempo",
+        "es_correcta": false,
+        "reflexion": "Negarle atención puede aumentar su tristeza."
+      },
+      {
+        "texto": "La invitas a jugar",
+        "es_correcta": true,
+        "reflexion": "Jugar puede animarla."
+      },
+      {
+        "texto": "Te ríes",
+        "es_correcta": false,
+        "reflexion": "Burlarse hiere sus sentimientos."
+      }
+    ]
+  },
+  {
+    "imagen": "empatia9.png",
+    "situacion": "Tu compañero está nervioso antes del examen. ¿Qué haces?",
+    "opciones": [
+      {
+        "texto": "Le deseas suerte",
+        "es_correcta": true,
+        "reflexion": "Un buen deseo le da confianza."
+      },
+      {
+        "texto": "Le dices que suspenderá",
+        "es_correcta": false,
+        "reflexion": "Asustarlo empeora sus nervios."
+      },
+      {
+        "texto": "Le prestas un lápiz bonito",
+        "es_correcta": true,
+        "reflexion": "Un detalle amable puede calmarlo."
+      },
+      {
+        "texto": "Dices que no te importa",
+        "es_correcta": false,
+        "reflexion": "Eso lo puede hacer sentir solo."
+      }
+    ]
+  },
+  {
+    "imagen": "empatia10.png",
+    "situacion": "Tu amigo está triste y callado. ¿Qué haces?",
+    "opciones": [
+      {
+        "texto": "Dices que estás cerca",
+        "es_correcta": true,
+        "reflexion": "Ofrecer compañía le da consuelo."
+      },
+      {
+        "texto": "Insistes en que hable",
+        "es_correcta": false,
+        "reflexion": "Presionarlo puede agobiarlo."
+      },
+      {
+        "texto": "Le das un abrazo",
+        "es_correcta": true,
+        "reflexion": "Un abrazo reconforta."
+      },
+      {
+        "texto": "Le dices que no sea tonto",
+        "es_correcta": false,
+        "reflexion": "Insultarlo empeora sus sentimientos."
+      }
+    ]
+  },
+  {
+    "imagen": "empatia11.png",
+    "situacion": "Llega un niño nuevo a clase y está callado. ¿Qué haces?",
+    "opciones": [
+      {
+        "texto": "Le sonríes y saludas",
+        "es_correcta": true,
+        "reflexion": "Saludarlo le muestra que es bienvenido."
+      },
+      {
+        "texto": "Lo observas callado",
+        "es_correcta": false,
+        "reflexion": "Mirarlo sin hablar puede incomodarlo."
+      },
+      {
+        "texto": "Lo invitas a tu mesa",
+        "es_correcta": true,
+        "reflexion": "Invitarlo le puede ayudar a integrarse."
+      },
+      {
+        "texto": "Le haces una pregunta fácil",
+        "es_correcta": true,
+        "reflexion": "Una pregunta puede romper el hielo."
+      }
+    ]
+  },
+  {
+    "imagen": "empatia12.png",
+    "situacion": "Un compañero enfadado tira su cuaderno. ¿Qué haces?",
+    "opciones": [
+      {
+        "texto": "Preguntas si necesita ayuda",
+        "es_correcta": true,
+        "reflexion": "Preguntar muestra apoyo."
+      },
+      {
+        "texto": "Te ríes y lo llamas loco",
+        "es_correcta": false,
+        "reflexion": "Burlarse puede aumentar su enojo."
+      },
+      {
+        "texto": "Lo dejas solo un rato",
+        "es_correcta": true,
+        "reflexion": "A veces un momento a solas ayuda a calmarse."
+      },
+      {
+        "texto": "Le gritas que se calme",
+        "es_correcta": false,
+        "reflexion": "Gritar puede empeorar la situación."
+      }
+    ]
+  },
+  {
+    "imagen": "empatia13.png",
+    "situacion": "Una compañera está contenta por una buena nota. ¿Qué haces?",
+    "opciones": [
+      {
+        "texto": "La felicitas",
+        "es_correcta": true,
+        "reflexion": "Felicitarla comparte su alegría."
+      },
+      {
+        "texto": "Dices que fue suerte",
+        "es_correcta": false,
+        "reflexion": "Restarle mérito puede entristecerla."
+      },
+      {
+        "texto": "La ignoras",
+        "es_correcta": false,
+        "reflexion": "Ignorarla le puede quitar ilusión."
+      },
+      {
+        "texto": "Le preguntas cómo estudió",
+        "es_correcta": true,
+        "reflexion": "Preguntar le permite compartir su esfuerzo."
+      }
+    ]
+  },
+  {
+    "imagen": "empatia14.png",
+    "situacion": "Tu amigo llora porque su equipo perdió. ¿Qué haces?",
+    "opciones": [
+      {
+        "texto": "Recuerdas que es un juego",
+        "es_correcta": true,
+        "reflexion": "Recordar eso lo ayuda a calmarse."
+      },
+      {
+        "texto": "Te burlas",
+        "es_correcta": false,
+        "reflexion": "Burlarte puede aumentar su tristeza."
+      },
+      {
+        "texto": "Le dices que otra vez ganará",
+        "es_correcta": true,
+        "reflexion": "Dar esperanza lo puede animar."
+      },
+      {
+        "texto": "Dices que siempre pierde",
+        "es_correcta": false,
+        "reflexion": "Decir eso le puede desmotivar."
+      }
+    ]
+  },
+  {
+    "imagen": "empatia15.png",
+    "situacion": "Una niña se cae y otros se ríen. ¿Qué haces?",
+    "opciones": [
+      {
+        "texto": "La ayudas",
+        "es_correcta": true,
+        "reflexion": "Ayudarla la puede hacer sentirse mejor."
+      },
+      {
+        "texto": "Te ríes",
+        "es_correcta": false,
+        "reflexion": "Reírte puede lastimar sus sentimientos."
+      },
+      {
+        "texto": "Preguntas si está bien",
+        "es_correcta": true,
+        "reflexion": "Preguntar demuestra cuidado."
+      },
+      {
+        "texto": "No haces nada",
+        "es_correcta": false,
+        "reflexion": "No actuar la puede hacer sentir sola."
+      }
+    ]
+  },
+  {
+    "imagen": "empatia16.png",
+    "situacion": "Tu hermano rompe su juguete y está triste. ¿Qué haces?",
+    "opciones": [
+      {
+        "texto": "Buscas solución juntos",
+        "es_correcta": true,
+        "reflexion": "Buscar juntos fortalece la unión."
+      },
+      {
+        "texto": "Le dices que no llore",
+        "es_correcta": false,
+        "reflexion": "Decir eso ignora su tristeza."
+      },
+      {
+        "texto": "Le prestas uno tuyo",
+        "es_correcta": true,
+        "reflexion": "Compartir tu juguete lo anima."
+      },
+      {
+        "texto": "Te vas",
+        "es_correcta": false,
+        "reflexion": "Dejarlo solo lo puede hacer sentir peor."
+      }
+    ]
+  },
+  {
+    "imagen": "empatia17.png",
+    "situacion": "Tu compañera llega tarde y todos la miran. ¿Qué haces?",
+    "opciones": [
+      {
+        "texto": "Le sonríes",
+        "es_correcta": true,
+        "reflexion": "Una sonrisa la puede hacer sentirse aceptada."
+      },
+      {
+        "texto": "Dices que llegó tarde",
+        "es_correcta": false,
+        "reflexion": "Recordarle su tardanza la  puede avergonzar."
+      },
+      {
+        "texto": "La ignoras",
+        "es_correcta": false,
+        "reflexion": "Ignorarla puede no hacerla sentirse bienvenida."
+      },
+      {
+        "texto": "La invitas a tu sitio",
+        "es_correcta": true,
+        "reflexion": "Invitarla la hace puede hacer sentirse incluida."
+      }
+    ]
+  },
+  {
+    "imagen": "empatia18.png",
+    "situacion": "Un niño se equivoca cantando en clase. ¿Qué haces?",
+    "opciones": [
+      {
+        "texto": "Aplaudes",
+        "es_correcta": true,
+        "reflexion": "Aplaudir reconoce su esfuerzo."
+      },
+      {
+        "texto": "Te burlas",
+        "es_correcta": false,
+        "reflexion": "Burlarte lo puede avergonzar."
+      },
+      {
+        "texto": "Haces cara graciosa",
+        "es_correcta": false,
+        "reflexion": "Hacer muecas puede ridiculizarlo."
+      },
+      {
+        "texto": "Dices que lo hizo bien",
+        "es_correcta": true,
+        "reflexion": "Reconocerlo le da confianza."
+      }
+    ]
+  },
+  {
+    "imagen": "empatia19.png",
+    "situacion": "Tu compañero olvida su almuerzo. ¿Qué haces?",
+    "opciones": [
+      {
+        "texto": "Compartes el tuyo",
+        "es_correcta": true,
+        "reflexion": "Compartir muestra generosidad."
+      },
+      {
+        "texto": "Dices que recuerde sus cosas",
+        "es_correcta": false,
+        "reflexion": "Aunque lo digas con buena intencione, se puede sentir regañado."
+      },
+      {
+        "texto": "Le das parte de tu merienda",
+        "es_correcta": true,
+        "reflexion": "Un poco de ayuda vale mucho."
+      },
+      {
+        "texto": "No haces nada",
+        "es_correcta": false,
+        "reflexion": "A lo mejor se puede quedar con hambre."
+      }
+    ]
+  },
+  {
+    "imagen": "empatia20.png",
+    "situacion": "Tu mejor amiga está muy callada. ¿Qué haces?",
+    "opciones": [
+      {
+        "texto": "Dices que estás ahí",
+        "es_correcta": true,
+        "reflexion": "Ofrecerte le da seguridad."
+      },
+      {
+        "texto": "Preguntas muchas veces",
+        "es_correcta": false,
+        "reflexion": "Insistir demasiado puede cansarla."
+      },
+      {
+        "texto": "Le das un dibujo bonito",
+        "es_correcta": true,
+        "reflexion": "Un detalle puede alegrarla."
+      },
+      {
+        "texto": "Te enfadas",
+        "es_correcta": false,
+        "reflexion": "Enfadarte no la ayuda."
+      }
     ]
   }
 ]

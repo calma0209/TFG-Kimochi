@@ -1,0 +1,1204 @@
+{
+  "nivel_1": {
+    "preguntas": [
+      {
+        "pregunta": "¿Cuál de estas imágenes representa la emoción de Alegría?",
+        "id_pregunta": 1,
+        "opciones": [
+          {
+            "id_opcion": 1,
+            "opcion_texto": "Alegría",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "alegria.png",
+              "nombre_emocion": "Alegría",
+              "descripcion": "Es cuando te sientes muy bien por dentro."
+            }
+          },
+          {
+            "id_opcion": 2,
+            "opcion_texto": "Tristeza",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "tristeza.png",
+              "nombre_emocion": "Tristeza"
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "Enfado",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "enfado.png",
+              "nombre_emocion": "Enfado"
+            }
+          }
+        ]
+      },
+      {
+        "pregunta": "¿Cuál de estas imágenes representa la emoción de Miedo?",
+        "id_pregunta": 2,
+        "opciones": [
+          {
+            "id_opcion": 1,
+            "opcion_texto": "Miedo",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "miedo.png",
+              "nombre_emocion": "Miedo",
+              "descripcion": "Es cuando algo te asusta y quieres protegerte o alejarte."
+            }
+          },
+          {
+            "id_opcion": 2,
+            "opcion_texto": "Alegría",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "alegria.png",
+              "nombre_emocion": "Alegría"
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "Enfado",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "enfado.png",
+              "nombre_emocion": "Enfado"
+            }
+          }
+        ]
+      },
+      {
+        "pregunta": "¿Cuál de estas imágenes representa la emoción de Tristeza?",
+        "id_pregunta": 3,
+        "opciones": [
+          {
+            "id_opcion": 1,
+            "opcion_texto": "Enfado",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "enfado.png",
+              "nombre_emocion": "Enfado"
+            }
+          },
+          {
+            "id_opcion": 2,
+            "opcion_texto": "Tristeza",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "tristeza.png",
+              "nombre_emocion": "Tristeza",
+              "descripcion": "Es cuando algo te hace sentir mal o te falta algo que quieres mucho."
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "Miedo",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "miedo.png",
+              "nombre_emocion": "Miedo"
+            }
+          }
+        ]
+      },
+      {
+        "pregunta": "¿Cuál de estas imágenes representa la emoción de Enfado?",
+        "id_pregunta": 4,
+        "opciones": [
+          {
+            "id_opcion": 1,
+            "opcion_texto": "Alegría",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "alegria.png",
+              "nombre_emocion": "Alegría",
+              "descripcion": "Es cuando te sientes muy bien por dentro."
+            }
+          },
+          {
+            "id_opcion": 2,
+            "opcion_texto": "Tristeza",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "tristeza.png",
+              "nombre_emocion": "Tristeza"
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "Enfado",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "enfado.png",
+              "nombre_emocion": "Enfado"
+            }
+          }
+        ]
+      },
+      {
+        "pregunta": "¿Cuál de estas imágenes representa la emoción de Calma?",
+        "id_pregunta": 5,
+        "opciones": [
+          {
+            "id_opcion": 1,
+            "opcion_texto": "Calma",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "calma.png",
+              "nombre_emocion": "Calma",
+              "descripcion": "Es cuando estás tranquilo y nada te molesta."
+            }
+          },
+          {
+            "id_opcion": 2,
+            "opcion_texto": "Pena",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "pena.png",
+              "nombre_emocion": "Pena"
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "Curiosidad",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "curiosidad.png",
+              "nombre_emocion": "Curiosidad"
+            }
+          }
+        ]
+      },
+      {
+        "pregunta": "¿Cuál de estas imágenes representa la emoción de Sorpresa?",
+        "id_pregunta": 6,
+        "opciones": [
+          {
+            "id_opcion": 1,
+            "opcion_texto": "Tristeza",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "tristeza.png",
+              "nombre_emocion": "Tristeza"
+            }
+          },
+          {
+            "id_opcion": 2,
+            "opcion_texto": "Sorpresa",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "sorpresa.png",
+              "nombre_emocion": "Sorpresa",
+              "descripcion": "Es cuando algo pasa sin esperarlo y te cambia la cara."
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "Miedo",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "miedo.png",
+              "nombre_emocion": "Miedo"
+            }
+          }
+        ]
+      },
+      {
+        "pregunta": "¿Cuál de estas imágenes representa la emoción de Cansancio?",
+        "id_pregunta": 7,
+        "opciones": [
+          {
+            "id_opcion": 1,
+            "opcion_texto": "ilusion",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "ilusion.png",
+              "nombre_emocion": "ilusion"
+            }
+          },
+          {
+            "id_opcion": 2,
+            "opcion_texto": "Alegría",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "alegria.png",
+              "nombre_emocion": "Alegría"
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "Cansancio",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "cansancio.png",
+              "nombre_emocion": "Cansancio",
+              "descripcion": "Es cuando tu cuerpo o tu mente necesitan descansar."
+            }
+          }
+        ]
+      },
+      {
+        "pregunta": "¿Cuál de estas imágenes representa la emoción de Aburrimiento?",
+        "id_pregunta": 34,
+        "opciones": [
+          {
+            "id_opcion": 1,
+            "opcion_texto": "Aburrimiento",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "aburrimiento.png",
+              "nombre_emocion": "Aburrimiento",
+              "descripcion": "Es cuando no sabes qué hacer y nada te divierte."
+            }
+          },
+          {
+            "id_opcion": 2,
+            "opcion_texto": "Orgullo",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "orgullo.png",
+              "nombre_emocion": "Orgullo"
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "Calma",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "calma.png",
+              "nombre_emocion": "Calma"
+            }
+          }
+        ]
+      },
+      {
+        "pregunta": "¿Cuál de estas imágenes representa la emoción de Asco?",
+        "id_pregunta": 35,
+        "opciones": [
+          {
+            "id_opcion": 1,
+            "opcion_texto": "Gracia",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "gracia.png",
+              "nombre_emocion": "Gracia"
+            }
+          },
+          {
+            "id_opcion": 2,
+            "opcion_texto": "Curiosidad",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "curiosidad.png",
+              "nombre_emocion": "Curiosidad"
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "Asco",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "asco.png",
+              "nombre_emocion": "Asco",
+              "descripcion": " cuando algo te da ganas de irte porque huele o se ve muy feo"
+            }
+          }
+        ]
+      },
+      {
+        "pregunta": "¿Cuál de estas imágenes representa la emoción de Curiosidad?",
+        "id_pregunta": 8,
+        "opciones": [
+          {
+            "id_opcion": 1,
+            "opcion_texto": "Curiosidad",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "curiosidad.png",
+              "nombre_emocion": "Curiosidad",
+              "descripcion": "Es cuando quieres saber más sobre algo o alguien."
+            }
+          },
+          {
+            "id_opcion": 2,
+            "opcion_texto": "Sorpresa",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "sorpresa.png",
+              "nombre_emocion": "Sorpresa"
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "Aburrimiento",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "aburrimiento.png",
+              "nombre_emocion": "Aburrimiento"
+            }
+          }
+        ]
+      },
+      {
+        "pregunta": "¿Cuál de estas imágenes representa la emoción de Orgullo?",
+        "id_pregunta": 9,
+        "opciones": [
+          {
+            "id_opcion": 1,
+            "opcion_texto": "Orgullo",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "orgullo.png",
+              "nombre_emocion": "Orgullo",
+              "descripcion": "Es cuando te sientes bien contigo mismo por haber hecho algo bueno."
+            }
+          },
+          {
+            "id_opcion": 2,
+            "opcion_texto": "Curiosidad",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "curiosidad.png",
+              "nombre_emocion": "Curiosidad"
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "Gracia",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "gracia.png",
+              "nombre_emocion": "Gracia"
+            }
+          }
+        ]
+      },
+      {
+        "pregunta": "¿Cuál de estas imágenes representa la emoción de Gracia?",
+        "id_pregunta": 10,
+        "opciones": [
+          {
+            "id_opcion": 1,
+            "opcion_texto": "Cansancio",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "cansancio.png",
+              "nombre_emocion": "Cansancio"
+            }
+          },
+          {
+            "id_opcion": 2,
+            "opcion_texto": "Gracia",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "gracia.png",
+              "nombre_emocion": "Gracia",
+              "descripcion": "Es cuando algo te hace reír o te parece divertido."
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "Pena",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "pena.png",
+              "nombre_emocion": "Pena"
+            }
+          }
+        ]
+      },
+      {
+        "pregunta": "¿Cuál de estas imágenes representa la emoción de Pena?",
+        "id_pregunta": 11,
+        "opciones": [
+          {
+            "id_opcion": 1,
+            "opcion_texto": "Pena",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "pena.png",
+              "nombre_emocion": "Pena",
+              "descripcion": "Es una tristeza suave, como cuando algo te duele por dentro."
+            }
+          },
+          {
+            "id_opcion": 2,
+            "opcion_texto": "Orgullo",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "orgullo.png",
+              "nombre_emocion": "Orgullo"
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "Calma",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "calma.png",
+              "nombre_emocion": "Calma"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "nivel_2": {
+    "preguntas": [
+      {
+        "pregunta": "¿Cuál de estas imágenes representa la emoción de Vergüenza?",
+        "id_pregunta": 12,
+        "opciones": [
+          {
+            "id_opcion": 1,
+            "opcion_texto": "Agobio",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "agobio.png",
+              "nombre_emocion": "Agobio"
+            }
+          },
+          {
+            "id_opcion": 2,
+            "opcion_texto": "Esperanza",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "esperanza.png",
+              "nombre_emocion": "Esperanza"
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "Vergüenza",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "verguenza.png",
+              "nombre_emocion": "Vergüenza",
+              "descripcion": "Es cuando no quieres que te miren porque hiciste algo que te incomoda."
+            }
+          }
+        ]
+      },
+      {
+        "pregunta": "¿Cuál de estas imágenes representa la emoción de Confusión?",
+        "id_pregunta": 13,
+        "opciones": [
+          {
+            "id_opcion": 1,
+            "opcion_texto": "confusion",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "confusion.png",
+              "nombre_emocion": "confusion",
+              "descripcion": "Es cuando no entiendes algo o no sabes qué hacer."
+            }
+          },
+          {
+            "id_opcion": 2,
+            "opcion_texto": "Cariño",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "cariño.png",
+              "nombre_emocion": "Cariño"
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "ilusion",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "ilusion.png",
+              "nombre_emocion": "ilusion"
+            }
+          }
+        ]
+      },
+      {
+        "pregunta": "¿Cuál de estas imágenes representa la emoción de Celos?",
+        "id_pregunta": 14,
+        "opciones": [
+          {
+            "id_opcion": 1,
+            "opcion_texto": "Celos",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "celos.png",
+              "nombre_emocion": "Celos",
+              "descripcion": "Es cuando quieres lo que otro tiene y eso te hace sentir mal."
+            }
+          },
+          {
+            "id_opcion": 2,
+            "opcion_texto": "empatia",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "empatia.png",
+              "nombre_emocion": "empatia"
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "Alivio",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "alivio.png",
+              "nombre_emocion": "Alivio"
+            }
+          }
+        ]
+      },
+      {
+        "pregunta": "¿Cuál de estas imágenes representa la emoción de Cariño?",
+        "id_pregunta": 15,
+        "opciones": [
+          {
+            "id_opcion": 1,
+            "opcion_texto": "Cariño",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "cariño.png",
+              "nombre_emocion": "Cariño",
+              "descripcion": "Es cuando te gusta mucho alguien y quieres demostrarle afecto."
+            }
+          },
+          {
+            "id_opcion": 2,
+            "opcion_texto": "Rabia",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "rabia.png",
+              "nombre_emocion": "Rabia"
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "Ansiedad",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "ansiedad.png",
+              "nombre_emocion": "Ansiedad"
+            }
+          }
+        ]
+      },
+      {
+        "pregunta": "¿Cuál de estas imágenes representa la emoción de Frustración?",
+        "id_pregunta": 16,
+        "opciones": [
+          {
+            "id_opcion": 1,
+            "opcion_texto": "frustracion",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "frustracion.png",
+              "nombre_emocion": "frustracion",
+              "descripcion": "Es cuando intentas algo y no sale como quieres, y te enfadas o te pones triste."
+            }
+          },
+          {
+            "id_opcion": 2,
+            "opcion_texto": "Esperanza",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "esperanza.png",
+              "nombre_emocion": "Esperanza"
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "admiracion",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "admiracion.png",
+              "nombre_emocion": "admiracion"
+            }
+          }
+        ]
+      },
+      {
+        "pregunta": "¿Cuál de estas imágenes representa la emoción de Ilusión?",
+        "id_pregunta": 17,
+        "opciones": [
+          {
+            "id_opcion": 1,
+            "opcion_texto": "ilusion",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "ilusion.png",
+              "nombre_emocion": "ilusion",
+              "descripcion": "Es cuando estás muy emocionado porque algo bonito va a pasar."
+            }
+          },
+          {
+            "id_opcion": 2,
+            "opcion_texto": "Agobio",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "agobio.png",
+              "nombre_emocion": "Agobio"
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "Rabia",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "rabia.png",
+              "nombre_emocion": "Rabia"
+            }
+          }
+        ]
+      },
+      {
+        "pregunta": "¿Cuál de estas imágenes representa la emoción de Ansiedad?",
+        "id_pregunta": 18,
+        "opciones": [
+          {
+            "id_opcion": 1,
+            "opcion_texto": "Ansiedad",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "ansiedad.png",
+              "nombre_emocion": "Ansiedad",
+              "descripcion": "Es cuando tienes nervios en el cuerpo y no puedes estar tranquilo."
+            }
+          },
+          {
+            "id_opcion": 2,
+            "opcion_texto": "Cariño",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "cariño.png",
+              "nombre_emocion": "Cariño"
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "ilusion",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "ilusion.png",
+              "nombre_emocion": "ilusion"
+            }
+          }
+        ]
+      },
+      {
+        "pregunta": "¿Cuál de estas imágenes representa la emoción de Esperanza?",
+        "id_pregunta": 19,
+        "opciones": [
+          {
+            "id_opcion": 1,
+            "opcion_texto": "Esperanza",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "esperanza.png",
+              "nombre_emocion": "Esperanza",
+              "descripcion": "Es cuando crees que algo bueno puede pasar pronto."
+            }
+          },
+          {
+            "id_opcion": 2,
+            "opcion_texto": "frustracion",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "frustracion.png",
+              "nombre_emocion": "frustracion"
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "Vergüenza",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "verguenza.png",
+              "nombre_emocion": "Vergüenza"
+            }
+          }
+        ]
+      },
+      {
+        "pregunta": "¿Cuál de estas imágenes representa la emoción de Rabia?",
+        "id_pregunta": 21,
+        "opciones": [
+          {
+            "id_opcion": 1,
+            "opcion_texto": "Rabia",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "rabia.png",
+              "nombre_emocion": "Rabia",
+              "descripcion": "Es un enfado muy fuerte que hace que quieras gritar o golpear algo."
+            }
+          },
+          {
+            "id_opcion": 2,
+            "opcion_texto": "confusion",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "confusion.png",
+              "nombre_emocion": "confusion"
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "Celos",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "celos.png",
+              "nombre_emocion": "Celos"
+            }
+          }
+        ]
+      },
+      {
+        "pregunta": "¿Cuál de estas imágenes representa la emoción de Empatía?",
+        "id_pregunta": 22,
+        "opciones": [
+          {
+            "id_opcion": 1,
+            "opcion_texto": "empatia",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "empatia.png",
+              "nombre_emocion": "empatia",
+              "descripcion": "Es cuando entiendes cómo se siente otra persona y quieres ayudarla."
+            }
+          },
+          {
+            "id_opcion": 2,
+            "opcion_texto": "Ansiedad",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "ansiedad.png",
+              "nombre_emocion": "Ansiedad"
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "ilusion",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "ilusion.png",
+              "nombre_emocion": "ilusion"
+            }
+          }
+        ]
+      },
+      {
+        "pregunta": "¿Cuál de estas imágenes representa la emoción de Alivio?",
+        "id_pregunta": 23,
+        "opciones": [
+          {
+            "id_opcion": 1,
+            "opcion_texto": "confusion",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "confusion.png",
+              "nombre_emocion": "confusion"
+            }
+          },
+          {
+            "id_opcion": 2,
+            "opcion_texto": "Rabia",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "rabia.png",
+              "nombre_emocion": "Rabia"
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "Alivio",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "alivio.png",
+              "nombre_emocion": "Alivio",
+              "descripcion": "Es cuando algo que te preocupaba se soluciona y te sientes tranquilo."
+            }
+          }
+        ]
+      },
+      {
+        "pregunta": "¿Cuál de estas imágenes representa la emoción de Admiración?",
+        "id_pregunta": 24,
+        "opciones": [
+          {
+            "id_opcion": 1,
+            "opcion_texto": "admiracion",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "admiracion.png",
+              "nombre_emocion": "admiracion",
+              "descripcion": "Es cuando ves algo o alguien que te parece increíble y te encanta."
+            }
+          },
+          {
+            "id_opcion": 2,
+            "opcion_texto": "Agobio",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "agobio.png",
+              "nombre_emocion": "Agobio"
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "Cariño",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "cariño.png",
+              "nombre_emocion": "Cariño"
+            }
+          }
+        ]
+      },
+      {
+        "pregunta": "¿Cuál de estas imágenes representa la emoción de Agobio?",
+        "id_pregunta": 25,
+        "opciones": [
+          {
+            "id_opcion": 1,
+            "opcion_texto": "Agobio",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "agobio.png",
+              "nombre_emocion": "Agobio",
+              "descripcion": "Es cuando tienes demasiadas cosas en la cabeza y te sientes muy presionado."
+            }
+          },
+          {
+            "id_opcion": 2,
+            "opcion_texto": "frustracion",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "frustracion.png",
+              "nombre_emocion": "frustracion"
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "Esperanza",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "esperanza.png",
+              "nombre_emocion": "Esperanza"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "nivel_3": {
+    "preguntas": [
+      {
+        "pregunta": "¿Cuál de estas imágenes representa la emoción de Inseguridad?",
+        "id_pregunta": 26,
+        "opciones": [
+          {
+            "id_opcion": 1,
+            "opcion_texto": "Culpa",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "culpa.png",
+              "nombre_emocion": "Culpa"
+            }
+          },
+          {
+            "id_opcion": 2,
+            "opcion_texto": "Inseguridad",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "inseguridad.png",
+              "nombre_emocion": "Inseguridad",
+              "descripcion": "Es cuando dudas de ti mismo y no sabes si podrás hacerlo bien."
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "Serenidad",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "serenidad.png",
+              "nombre_emocion": "Serenidad"
+            }
+          }
+        ]
+      },
+      {
+        "pregunta": "¿Cuál de estas imágenes representa la emoción de Gratitud?",
+        "id_pregunta": 27,
+        "opciones": [
+          {
+            "id_opcion": 1,
+            "opcion_texto": "Gratitud",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "gratitud.png",
+              "nombre_emocion": "Gratitud",
+              "descripcion": "Es cuando sientes ganas de decir 'gracias' porque alguien hizo algo bueno por ti."
+            }
+          },
+          {
+            "id_opcion": 2,
+            "opcion_texto": "Euforia",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "euforia.png",
+              "nombre_emocion": "Euforia"
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "Soledad",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "soledad.png",
+              "nombre_emocion": "Soledad"
+            }
+          }
+        ]
+      },
+      {
+        "pregunta": "¿Cuál de estas imágenes representa la emoción de Soledad?",
+        "id_pregunta": 28,
+        "opciones": [
+          {
+            "id_opcion": 1,
+            "opcion_texto": "Desconfianza",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "desconfianza.png",
+              "nombre_emocion": "Desconfianza"
+            }
+          },
+          {
+            "id_opcion": 2,
+            "opcion_texto": "Soledad",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "soledad.png",
+              "nombre_emocion": "Soledad",
+              "descripcion": "Es cuando te sientes solo aunque haya gente cerca."
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "preocupacion",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "preocupacion.png",
+              "nombre_emocion": "preocupacion"
+            }
+          }
+        ]
+      },
+      {
+        "pregunta": "¿Cuál de estas imágenes representa la emoción de Serenidad?",
+        "id_pregunta": 29,
+        "opciones": [
+          {
+            "id_opcion": 1,
+            "opcion_texto": "Serenidad",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "serenidad.png",
+              "nombre_emocion": "Serenidad",
+              "descripcion": "Es una calma profunda, como cuando todo está en paz a tu alrededor."
+            }
+          },
+          {
+            "id_opcion": 2,
+            "opcion_texto": "Rechazo",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "rechazo.png",
+              "nombre_emocion": "Rechazo"
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "Euforia",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "euforia.png",
+              "nombre_emocion": "Euforia"
+            }
+          }
+        ]
+      },
+      {
+        "pregunta": "¿Cuál de estas imágenes representa la emoción de Euforia?",
+        "id_pregunta": 30,
+        "opciones": [
+          {
+            "id_opcion": 1,
+            "opcion_texto": "Euforia",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "euforia.png",
+              "nombre_emocion": "Euforia",
+              "descripcion": "Es cuando estás muy, muy feliz y lleno de energía."
+            }
+          },
+          {
+            "id_opcion": 2,
+            "opcion_texto": "Gratitud",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "gratitud.png",
+              "nombre_emocion": "Gratitud"
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "Culpa",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "culpa.png",
+              "nombre_emocion": "Culpa"
+            }
+          }
+        ]
+      },
+      {
+        "pregunta": "¿Cuál de estas imágenes representa la emoción de Preocupación?",
+        "id_pregunta": 31,
+        "opciones": [
+          {
+            "id_opcion": 1,
+            "opcion_texto": "preocupacion",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "preocupacion.png",
+              "nombre_emocion": "preocupacion",
+              "descripcion": "Es cuando no dejas de pensar que algo malo puede pasar."
+            }
+          },
+          {
+            "id_opcion": 2,
+            "opcion_texto": "Serenidad",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "serenidad.png",
+              "nombre_emocion": "Serenidad"
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "Soledad",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "soledad.png",
+              "nombre_emocion": "Soledad"
+            }
+          }
+        ]
+      },
+      {
+        "pregunta": "¿Cuál de estas imágenes representa la emoción de Rechazo?",
+        "id_pregunta": 32,
+        "opciones": [
+          {
+            "id_opcion": 1,
+            "opcion_texto": "Rechazo",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "rechazo.png",
+              "nombre_emocion": "Rechazo",
+              "descripcion": "Es cuando alguien no te acepta o no quiere que estés allí."
+            }
+          },
+          {
+            "id_opcion": 2,
+            "opcion_texto": "preocupacion",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "preocupacion.png",
+              "nombre_emocion": "preocupacion"
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "Gratitud",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "gratitud.png",
+              "nombre_emocion": "Gratitud"
+            }
+          }
+        ]
+      },
+      {
+        "pregunta": "¿Cuál de estas imágenes representa la emoción de Desconfianza?",
+        "id_pregunta": 33,
+        "opciones": [
+          {
+            "id_opcion": 1,
+            "opcion_texto": "Desconfianza",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "desconfianza.png",
+              "nombre_emocion": "Desconfianza",
+              "descripcion": "Es cuando no crees del todo en lo que alguien dice o hace."
+            }
+          },
+          {
+            "id_opcion": 2,
+            "opcion_texto": "Soledad",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "soledad.png",
+              "nombre_emocion": "Soledad"
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "Inseguridad",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "inseguridad.png",
+              "nombre_emocion": "Inseguridad"
+            }
+          }
+        ]
+      },
+      {
+        "pregunta": "¿Cuál de estas imágenes representa la emoción de Culpa?",
+        "id_pregunta": 20,
+        "opciones": [
+          {
+            "id_opcion": 1,
+            "opcion_texto": "Gratitud",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "gratitud.png",
+              "nombre_emocion": "Gratitud"
+            }
+          },
+          {
+            "id_opcion": 2,
+            "opcion_texto": "Enfado",
+            "es_correcto": false,
+            "emocion": {
+              "imagen_local": "enfado.png",
+              "nombre_emocion": "Enfado"
+            }
+          },
+          {
+            "id_opcion": 3,
+            "opcion_texto": "Culpa",
+            "es_correcto": true,
+            "emocion": {
+              "imagen_local": "culpa.png",
+              "nombre_emocion": "Culpa",
+              "descripcion": "Es cuando hiciste algo que crees que estuvo mal y te pesa."
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
