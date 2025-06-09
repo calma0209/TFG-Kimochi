@@ -62,6 +62,14 @@ export default function PrivateLayout() {
           name="recompensas"
           options={{ headerShown: false, gestureEnabled: true }}
         />
+        {/* <Stack.Screen
+          name="(private)/perfil"
+          options={{ headerShown: false, gestureEnabled: true }}
+        />
+        <Stack.Screen
+          name="(private)dashboard"
+          options={{ headerShown: false, gestureEnabled: true }}
+        /> */}
       </Stack>
       {/* <Tabs.Screen
           name="index"

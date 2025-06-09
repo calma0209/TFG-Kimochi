@@ -14,6 +14,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import imageMap from "@/constants/emocionesMap";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { registrarRespuesta } from "@/constants/RegistrarRespuesta";
 
 /***************************
  * 🎨  PALETA DE COLORES  *
@@ -112,6 +113,12 @@ const EmocionesScreen = () => {
   };
 
   const handleOptionPress = (option: any) => {
+    registrarRespuesta(
+      "emociones",
+      option.es_correcto,
+      current.id_pregunta,
+      option.opcion_texto
+    );
     setSelectedOption(option.id_opcion);
     if (option.es_correcto) {
       setAnswerState("correcta");

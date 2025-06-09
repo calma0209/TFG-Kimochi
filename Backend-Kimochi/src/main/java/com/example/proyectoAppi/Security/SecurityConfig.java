@@ -49,7 +49,9 @@ public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Excepti
           
             .requestMatchers("/api/usuarios/forgot-password").permitAll()
             .requestMatchers("/api/usuarios/reset-password").permitAll()
+            .requestMatchers("api/enviar-informe/**").permitAll()
             
+            .requestMatchers("/api/respuestas/**").permitAll()
             .requestMatchers("/api/usuarios/**").permitAll()
           .requestMatchers(GET,"/api/usuarios/**").permitAll()
              .requestMatchers(GET, "/api/emociones/**").permitAll()

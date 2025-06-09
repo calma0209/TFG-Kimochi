@@ -14,6 +14,11 @@ import { Ionicons } from "@expo/vector-icons";
 import preguntasJSON from "@/assets/data/preguntasEmpatia.json";
 import imageMap from "@/constants/emocionesMap";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { registrarRespuesta } from "@/constants/RegistrarRespuesta";
+
+/* -------------------------------------------------------------------------- */
+/*                                    CONSTS                                  */
+/* -------------------------------------------------------------------------- */
 
 const COLORS = {
   purple: "#6a1b9a",
@@ -24,16 +29,37 @@ const COLORS = {
   red: "#FFCDD2",
 };
 
-const EmpatiaScreen = () => {
+/* -------------------------------------------------------------------------- */
+/*                              TYPE DEFINITIONS                               */
+/* -------------------------------------------------------------------------- */
+
+type Opcion = {
+  texto: string;
+  es_correcta: boolean;
+  reflexion: string;
+};
+
+type Pregunta = {
+  situacion: string;
+  imagen?: keyof typeof imageMap;
+  opciones: Opcion[];
+};
+
+/* -------------------------------------------------------------------------- */
+/*                                   SCREEN                                   */
+/* -------------------------------------------------------------------------- */
+
+const EmpatiaScreen: React.FC = () => {
   const { width, height } = useWindowDimensions();
   const isTablet = width > 700;
 
-  const [preguntas, setPreguntas] = useState<any[]>([]);
+  /* --------------------------------- STATE -------------------------------- */
+  const [preguntas, setPreguntas] = useState<Pregunta[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [respuestaSeleccionada, setRespuestaSeleccionada] = useState<
-    any | null
-  >(null);
+  const [respuestaSeleccionada, setRespuestaSeleccionada] =
+    useState<Opcion | null>(null);
 
+  /* ----------------------------- ANIMACIONES ------------------------------ */
   const scaleAnim = useRef(new Animated.Value(1)).current;
   const animateOption = () => {
     Animated.sequence([
@@ -50,48 +76,58 @@ const EmpatiaScreen = () => {
     ]).start();
   };
 
-  /* -------------------------
-   * 🎯  HANDLERS
-   * ------------------------- */
-  type Opcion = {
-    texto: string;
-    es_correcta: boolean;
-    reflexion: string;
-  };
+  /* ------------------------------ LIFECYCLE ------------------------------- */
+  useEffect(() => {
+    setPreguntas(preguntasJSON as Pregunta[]);
+  }, []);
 
+  /* ------------------------------- HANDLERS ------------------------------- */
   const manejarRespuesta = async (op: Opcion) => {
-    if (respuestaSeleccionada) return;
-    setRespuestaSeleccionada(op);
-    //opcion correcta
-    if (op.es_correcta) {
-      const userRaw = await AsyncStorage.getItem("user");
-      const user = JSON.parse(userRaw || "{}");
-      const userId = user?.id_usuario;
+    if (respuestaSeleccionada) return; // ya respondió
 
-      if (userId) {
-        fetch(
-          `${process.env.EXPO_PUBLIC_API_BASE}/api/usuarios/${userId}/monedas/sumar?cantidad=5`,
-          {
-            method: "POST",
-          }
-        ).catch((err) => console.error("Error al sumar monedas:", err));
+    setRespuestaSeleccionada(op);
+
+    // Guardar respuesta en backend / async storage
+    registrarRespuesta("empatia", op.es_correcta, undefined, op.texto);
+
+    // Si acierta, sumar monedas
+    if (op.es_correcta) {
+      try {
+        const userRaw = await AsyncStorage.getItem("user");
+        const user = JSON.parse(userRaw || "{}");
+        const userId = user?.id_usuario;
+
+        if (userId) {
+          await fetch(
+            `${process.env.EXPO_PUBLIC_API_BASE}/api/usuarios/${userId}/monedas/sumar?cantidad=5`,
+            { method: "POST" }
+          );
+        }
+      } catch (err) {
+        console.error("Error al sumar monedas:", err);
       }
     }
   };
 
-  const avanzar = () => {
+  /** Avanza a la siguiente pregunta y reinicia selección */
+  const nextQuestion = () => {
     const siguiente = currentIndex + 1;
     if (siguiente < preguntas.length) {
       setCurrentIndex(siguiente);
-      setRespuestaSeleccionada(null);
     } else {
+      // Reiniciar juego cuando se acaba el cuestionario
       setCurrentIndex(0);
-      setRespuestaSeleccionada(null);
     }
+    setRespuestaSeleccionada(null);
   };
 
-  if (preguntas.length === 0) return null;
+  /** Permite reintentar la misma pregunta */
+  const retryQuestion = () => setRespuestaSeleccionada(null);
 
+  /* --------------------------- RENDER EARLY RETURN ------------------------- */
+  if (preguntas.length === 0) return null; // carga inicial
+
+  /* --------------------------------- RENDER -------------------------------- */
   const preguntaActual = preguntas[currentIndex];
   const correcta = respuestaSeleccionada?.es_correcta;
 
@@ -104,6 +140,7 @@ const EmpatiaScreen = () => {
             { minHeight: height - 40, justifyContent: "space-evenly" },
           ]}
         >
+          {/* Imagen si existe */}
           {preguntaActual.imagen && (
             <Image
               source={imageMap[preguntaActual.imagen]}
@@ -114,15 +151,18 @@ const EmpatiaScreen = () => {
             />
           )}
 
+          {/* Situación */}
           <Text style={[styles.situacion, { fontSize: isTablet ? 22 : 18 }]}>
             {preguntaActual.situacion}
           </Text>
 
+          {/* Opciones */}
           <View style={styles.grid}>
-            {preguntaActual.opciones.map((opcion: any, idx: number) => {
+            {preguntaActual.opciones.map((opcion, idx) => {
               const seleccionado =
                 respuestaSeleccionada?.texto === opcion.texto;
               const borderColor = seleccionado ? COLORS.yellow : COLORS.purple;
+
               return (
                 <Animated.View
                   key={idx}
@@ -133,7 +173,10 @@ const EmpatiaScreen = () => {
                       styles.opcion,
                       { borderColor, minWidth: width / 2.4 },
                     ]}
-                    onPress={() => manejarRespuesta(opcion)}
+                    onPress={() => {
+                      animateOption();
+                      manejarRespuesta(opcion);
+                    }}
                     disabled={!!respuestaSeleccionada}
                     activeOpacity={0.9}
                   >
@@ -151,6 +194,7 @@ const EmpatiaScreen = () => {
             })}
           </View>
 
+          {/* Feedback + CTA */}
           {respuestaSeleccionada && (
             <>
               <View
@@ -170,13 +214,19 @@ const EmpatiaScreen = () => {
                 </Text>
               </View>
 
-              <TouchableOpacity style={styles.ctaButton} onPress={avanzar}>
+              <TouchableOpacity
+                style={styles.ctaButton}
+                onPress={correcta ? nextQuestion : retryQuestion}
+                activeOpacity={0.85}
+              >
                 <Ionicons
-                  name="arrow-forward"
-                  size={20}
+                  name={correcta ? "arrow-forward" : "refresh"}
+                  size={22}
                   color={COLORS.purple}
                 />
-                <Text style={styles.ctaText}>Siguiente</Text>
+                <Text style={styles.ctaText}>
+                  {correcta ? "Siguiente" : "Reintentar"}
+                </Text>
               </TouchableOpacity>
             </>
           )}
@@ -185,6 +235,10 @@ const EmpatiaScreen = () => {
     </SafeAreaView>
   );
 };
+
+/* -------------------------------------------------------------------------- */
+/*                                   STYLES                                   */
+/* -------------------------------------------------------------------------- */
 
 const styles = StyleSheet.create({
   container: {
@@ -251,19 +305,19 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.yellow,
     paddingVertical: 12,
     paddingHorizontal: 28,
-    borderRadius: 16,
+    borderRadius: 20,
     shadowColor: "#000",
-    shadowOpacity: 0.25,
     shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.2,
     shadowRadius: 4,
     elevation: 5,
-    marginTop: 20,
+    marginTop: 26,
   },
   ctaText: {
-    color: COLORS.purple,
-    fontSize: 18,
-    fontWeight: "bold",
     marginLeft: 6,
+    fontSize: 18,
+    fontWeight: "700",
+    color: COLORS.purple,
   },
 });
 

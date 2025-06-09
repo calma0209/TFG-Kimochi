@@ -6,6 +6,8 @@ import {
   TouchableOpacity,
   Image,
   BackHandler,
+  Modal,
+  Switch,
 } from "react-native";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -13,6 +15,7 @@ import { Ionicons, MaterialCommunityIcons, Feather } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Toast from "react-native-toast-message";
+import { enviarInforme } from "@/constants/enviarInforme";
 
 const PerfilScreen = () => {
   const [usuario, setUsuario] = useState({
@@ -21,6 +24,12 @@ const PerfilScreen = () => {
   });
 
   const router = useRouter();
+  const [modalVisible, setModalVisible] = useState(false);
+  const [juegos, setJuegos] = useState({
+    emociones: true,
+    empatia: true,
+    como_me_siento: true,
+  });
 
   // const navigation = useNavigation();
 
@@ -68,6 +77,27 @@ const PerfilScreen = () => {
 
     obtenerDatosUsuario();
   }, []);
+  const handleEnviarInforme = async () => {
+    const seleccion = Object.entries(juegos)
+      .filter(([_, v]) => v)
+      .map(([k]) => k);
+
+    if (seleccion.length === 0) {
+      Toast.show({
+        type: "info",
+        text1: "Selecciona al menos un juego",
+      });
+      return;
+    }
+
+    const ok = await enviarInforme(seleccion);
+    Toast.show({
+      type: ok ? "success" : "error",
+      text1: ok ? "Informe enviado al correo" : "No se pudo enviar el informe",
+      position: "bottom",
+    });
+    setModalVisible(false);
+  };
 
   // Función para manejar el cierre de sesión
   const handleCerrarSesion = async () => {
@@ -107,6 +137,47 @@ const PerfilScreen = () => {
       >
         <Text style={styles.logoutText}>Cerrar sesión</Text>
       </TouchableOpacity>
+
+      {/* ---------- NUEVO BOTÓN ENVIAR INFORME ---------- */}
+      <TouchableOpacity
+        style={[
+          styles.logoutButton,
+          { backgroundColor: "#FFB800", marginTop: 20 },
+        ]}
+        onPress={() => setModalVisible(true)}
+      >
+        <Text style={styles.logoutText}>Enviar informe</Text>
+      </TouchableOpacity>
+
+      {/* ---------- MODAL SELECCIÓN DE JUEGOS ---------- */}
+      <Modal visible={modalVisible} transparent animationType="slide">
+        <View style={styles.modalBg}>
+          <View style={styles.modalCard}>
+            <Text style={styles.modalTitle}>Selecciona juegos</Text>
+
+            {(["emociones", "empatia"] as const).map((k) => (
+              <View style={styles.switchRow} key={k}>
+                <Text style={styles.switchLabel}>{k.replaceAll("_", " ")}</Text>
+                <Switch
+                  value={juegos[k]}
+                  onValueChange={(v) => setJuegos({ ...juegos, [k]: v })}
+                />
+              </View>
+            ))}
+
+            <TouchableOpacity
+              style={[styles.logoutButton, { backgroundColor: "#6a1b9a" }]}
+              onPress={handleEnviarInforme}
+            >
+              <Text style={styles.logoutText}>Enviar</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => setModalVisible(false)}>
+              <Text style={{ color: "#666", marginTop: 10 }}>Cancelar</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </SafeAreaView>
   );
 };
@@ -161,4 +232,27 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 16,
   },
+  /* Modal */
+  modalBg: {
+    flex: 1,
+    backgroundColor: "rgba(0,0,0,0.4)",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  modalCard: {
+    width: "80%",
+    backgroundColor: "#fff",
+    borderRadius: 20,
+    padding: 25,
+    alignItems: "center",
+  },
+  modalTitle: { fontSize: 18, fontWeight: "bold", marginBottom: 20 },
+  switchRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "100%",
+    gap: 10,
+    marginVertical: 8,
+  },
+  switchLabel: { fontSize: 16, textTransform: "capitalize" },
 });
