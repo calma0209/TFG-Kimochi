@@ -14,7 +14,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import imageMap from "@/constants/emocionesMap";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { registrarRespuesta } from "@/constants/RegistrarRespuesta";
+import { registrarRespuesta } from "@/constants/registrarRespuesta";
 
 /***************************
  * 🎨  PALETA DE COLORES  *
