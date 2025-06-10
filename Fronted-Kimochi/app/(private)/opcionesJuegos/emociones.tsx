@@ -16,9 +16,6 @@ import imageMap from "@/constants/emocionesMap";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { registrarRespuesta } from "@/constants/registrarRespuesta";
 
-/***************************
- * 🎨  PALETA DE COLORES  *
- ***************************/
 const COLORS = {
   purple: "#6a1b9a",
   yellow: "#FFB800",
@@ -59,9 +56,6 @@ const EmocionesScreen = () => {
     }).start();
   };
 
-  /* -------------------------
-   * 📥  OBTENER USUARIO AL INICIAR
-   * ------------------------- */
   useEffect(() => {
     const obtenerUsuarioGuardado = async () => {
       try {
@@ -78,9 +72,6 @@ const EmocionesScreen = () => {
     obtenerUsuarioGuardado();
   }, []);
 
-  /* -------------------------
-   * 🔄  NIVEL DEL USUARIO
-   * ------------------------- */
   useEffect(() => {
     if (usuario) obtenerNivel(usuario.id_usuario);
   }, [usuario]);
@@ -173,9 +164,6 @@ const EmocionesScreen = () => {
     setGameOver(false);
   };
 
-  /*********************************
-   * 🚩  ESTADOS INTERMEDIOS
-   *********************************/
   if (nivelCompletadoMensaje) {
     return (
       <View style={styles.centered}>
@@ -287,16 +275,13 @@ const EmocionesScreen = () => {
   );
 };
 
-/***************************
- * 💅  ESTILOS
- ***************************/
 const { width } = Dimensions.get("window");
-const isTablet = width > 700;
+const isTablet = width > 600;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: isTablet ? 40 : 24,
+    padding: isTablet ? 0 : 10,
   },
   centered: {
     flex: 1,

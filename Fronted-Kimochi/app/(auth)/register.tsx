@@ -18,7 +18,6 @@ export default function RegisterScreen() {
   const [error, setError] = useState("");
 
   const handleRegister = async () => {
-    //limpiar el error anterior si es que lo hay
     setError("");
 
     if (!nombre || !email || !password || !confirmPassword) {
@@ -32,7 +31,6 @@ export default function RegisterScreen() {
     }
 
     try {
-      // await sirve para esperar a que se complete la promesa (fetch)
       const response = await fetch(
         `${process.env.EXPO_PUBLIC_API_BASE}/api/usuarios`,
         {
@@ -61,7 +59,7 @@ export default function RegisterScreen() {
         }, 1500);
       } else {
         const errorData = await response.json();
-        // verificamos si el nombre o correo ya están en uso
+
         if (errorData.message.includes("correo")) {
           setError(
             "El correo electrónico ya está registrado. Inicia sesión para continuar."

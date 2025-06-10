@@ -33,8 +33,7 @@ public class InformeService {
         long empOK = lista.stream().filter(r -> r.getJuego().equals("empatia")   && r.isCorrecta()).count();
         long empKO = lista.stream().filter(r -> r.getJuego().equals("empatia")   && !r.isCorrecta()).count();
         long cmsTot = lista.stream().filter(r -> r.getJuego().equals("como_me_siento")).count();
-
-        /* === gráfica === */
+   
         DefaultCategoryDataset ds = new DefaultCategoryDataset();
         ds.addValue(emoOK, "Correctas",   "Emociones");
         ds.addValue(emoKO, "Incorrectas", "Emociones");
@@ -48,7 +47,6 @@ public class InformeService {
         ByteArrayOutputStream chartBytes = new ByteArrayOutputStream();
         ChartUtils.writeChartAsPNG(chartBytes, chart, 500, 300);
 
-        /* === PDF === */
         ByteArrayOutputStream pdfBytes = new ByteArrayOutputStream();
         Document doc = new Document();
         PdfWriter.getInstance(doc, pdfBytes);

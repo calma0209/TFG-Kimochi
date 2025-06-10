@@ -69,18 +69,13 @@ public class usuarioService {
     }
 
     usuario user = optUser.get();
-
-    // 1️⃣ Generar y guardar token
     String token = UUID.randomUUID().toString();
     user.setTokenReset(token);
     usuarioR.save(user);
 
-    // 2️⃣ Construir deep-link
-    //    Usa tu host de Expo (túnel o LAN). Puedes inyectarlo por variable de entorno.
     String host = System.getenv().getOrDefault("EXPO_HOST", "gbjt_so-slubyn-8081.exp.direct");
     String enlace = "exp://" + host + "/--/resetPassword?email=" + email + "&token=" + token;
 
-    // 3️⃣ Plantilla HTML del correo
     String html = """
         <html>
           <body style="font-family: Arial, sans-serif; text-align: center;">
