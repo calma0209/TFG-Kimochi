@@ -21,7 +21,7 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    // ✅ CORS completamente abierto (solo para desarrollo)
+    //CORS completamente abierto (solo para desarrollo)
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
@@ -36,7 +36,7 @@ public class SecurityConfig {
         };
     }
 
-    // ✅ Seguridad HTTP con CSRF desactivado y rutas públicas
+    //Seguridad HTTP con CSRF desactivado y rutas públicas
    @Bean
 public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http

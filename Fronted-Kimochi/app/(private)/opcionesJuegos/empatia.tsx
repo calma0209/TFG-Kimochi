@@ -8,6 +8,7 @@ import {
   Animated,
   useWindowDimensions,
   ScrollView,
+  Dimensions,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
@@ -15,10 +16,6 @@ import preguntasJSON from "@/assets/data/preguntasEmpatia.json";
 import imageMap from "@/constants/emocionesMap";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { registrarRespuesta } from "@/constants/RegistrarRespuesta";
-
-/* -------------------------------------------------------------------------- */
-/*                                    CONSTS                                  */
-/* -------------------------------------------------------------------------- */
 
 const COLORS = {
   purple: "#6a1b9a",
@@ -28,10 +25,6 @@ const COLORS = {
   green: "#C8E6C9",
   red: "#FFCDD2",
 };
-
-/* -------------------------------------------------------------------------- */
-/*                              TYPE DEFINITIONS                               */
-/* -------------------------------------------------------------------------- */
 
 type Opcion = {
   texto: string;
@@ -45,21 +38,15 @@ type Pregunta = {
   opciones: Opcion[];
 };
 
-/* -------------------------------------------------------------------------- */
-/*                                   SCREEN                                   */
-/* -------------------------------------------------------------------------- */
-
 const EmpatiaScreen: React.FC = () => {
   const { width, height } = useWindowDimensions();
   const isTablet = width > 700;
 
-  /* --------------------------------- STATE -------------------------------- */
   const [preguntas, setPreguntas] = useState<Pregunta[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [respuestaSeleccionada, setRespuestaSeleccionada] =
     useState<Opcion | null>(null);
 
-  /* ----------------------------- ANIMACIONES ------------------------------ */
   const scaleAnim = useRef(new Animated.Value(1)).current;
   const animateOption = () => {
     Animated.sequence([
@@ -76,21 +63,17 @@ const EmpatiaScreen: React.FC = () => {
     ]).start();
   };
 
-  /* ------------------------------ LIFECYCLE ------------------------------- */
   useEffect(() => {
     setPreguntas(preguntasJSON as Pregunta[]);
   }, []);
 
-  /* ------------------------------- HANDLERS ------------------------------- */
   const manejarRespuesta = async (op: Opcion) => {
-    if (respuestaSeleccionada) return; // ya respondió
+    if (respuestaSeleccionada) return;
 
     setRespuestaSeleccionada(op);
 
-    // Guardar respuesta en backend / async storage
     registrarRespuesta("empatia", op.es_correcta, undefined, op.texto);
 
-    // Si acierta, sumar monedas
     if (op.es_correcta) {
       try {
         const userRaw = await AsyncStorage.getItem("user");
@@ -109,31 +92,26 @@ const EmpatiaScreen: React.FC = () => {
     }
   };
 
-  /** Avanza a la siguiente pregunta y reinicia selección */
   const nextQuestion = () => {
     const siguiente = currentIndex + 1;
     if (siguiente < preguntas.length) {
       setCurrentIndex(siguiente);
     } else {
-      // Reiniciar juego cuando se acaba el cuestionario
       setCurrentIndex(0);
     }
     setRespuestaSeleccionada(null);
   };
 
-  /** Permite reintentar la misma pregunta */
   const retryQuestion = () => setRespuestaSeleccionada(null);
 
-  /* --------------------------- RENDER EARLY RETURN ------------------------- */
   if (preguntas.length === 0) return null; // carga inicial
 
-  /* --------------------------------- RENDER -------------------------------- */
   const preguntaActual = preguntas[currentIndex];
   const correcta = respuestaSeleccionada?.es_correcta;
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lavender }}>
-      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+      <View>
         <View
           style={[
             styles.container,
@@ -193,8 +171,6 @@ const EmpatiaScreen: React.FC = () => {
               );
             })}
           </View>
-
-          {/* Feedback + CTA */}
           {respuestaSeleccionada && (
             <>
               <View
@@ -231,15 +207,12 @@ const EmpatiaScreen: React.FC = () => {
             </>
           )}
         </View>
-      </ScrollView>
+      </View>
     </SafeAreaView>
   );
 };
-
-/* -------------------------------------------------------------------------- */
-/*                                   STYLES                                   */
-/* -------------------------------------------------------------------------- */
-
+const { width } = Dimensions.get("window");
+const isTablet = width > 600;
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 24,
@@ -254,8 +227,8 @@ const styles = StyleSheet.create({
     color: COLORS.purple,
   },
   grid: {
-    flexDirection: "row",
-    flexWrap: "wrap",
+    flexDirection: isTablet ? "row" : "column",
+    flexWrap: isTablet ? "wrap" : "nowrap",
     justifyContent: "center",
     gap: 18,
   },
@@ -279,7 +252,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   feedbackCard: {
-    flexDirection: "row",
+    // flexDirection: "row",
     alignItems: "center",
     alignSelf: "center",
     paddingVertical: 10,
@@ -311,7 +284,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 4,
     elevation: 5,
-    marginTop: 26,
+    // marginTop: 26,
   },
   ctaText: {
     marginLeft: 6,

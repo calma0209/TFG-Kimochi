@@ -22,7 +22,6 @@ export default function LoginScreen() {
   console.log("🔧 API_BASE =", process.env.EXPO_PUBLIC_API_BASE);
 
   useEffect(() => {
-    console.log("⚠️ useEffect arrancó");
     AsyncStorage.getItem("user")
       .then((res) => {
         console.log("usuario guardado:", res);
@@ -50,11 +49,11 @@ export default function LoginScreen() {
 
     try {
       const response = await fetch(
-        `${process.env.EXPO_PUBLIC_API_BASE}/api/usuarios/login`, // ← endpoint correcto
+        `${process.env.EXPO_PUBLIC_API_BASE}/api/usuarios/login`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, contraseña }), // ← clave correcta
+          body: JSON.stringify({ email, contraseña }),
         }
       );
 
@@ -107,14 +106,11 @@ export default function LoginScreen() {
               value={contraseña}
               onChangeText={setPassword}
             />
-
-            {/* Mostrar error si no mete bien las credenciales */}
             {error ? (
               <Text style={{ color: "red", marginBottom: 10 }}>{error}</Text>
             ) : null}
           </View>
 
-          {/* Botones para entrar, registro, iniciar sesion con apple, etc */}
           <View style={{ marginTop: isTablet ? 750 : 250 }}>
             <View style={styles.rowLinks}>
               <TouchableOpacity onPress={() => router.push("/register")}>
@@ -132,18 +128,18 @@ export default function LoginScreen() {
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
-            <TouchableOpacity style={styles.socialButton}>
+            {/* <TouchableOpacity style={styles.socialButton}>
               <FontAwesome name="google" size={20} color="#EA4335" />
-              {/* <Text style={styles.socialText}>Continue with Google</Text> */}
+              <Text style={styles.socialText}>Continue with Google</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.socialButton}>
               <FontAwesome name="facebook" size={20} color="#1877F2" />
-              {/* <Text style={styles.socialText}>Continue with Facebook</Text> */}
+              <Text style={styles.socialText}>Continue with Facebook</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.socialButton}>
               <FontAwesome name="apple" size={20} color="black" />
-              {/* <Text style={styles.socialText}>Continue with Facebook</Text> */}
-            </TouchableOpacity>
+              <Text style={styles.socialText}>Continue with Facebook</Text>
+            </TouchableOpacity> */}
           </View>
         </View>
       </View>

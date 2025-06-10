@@ -105,7 +105,7 @@ const RecompensasScreen: React.FC = () => {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#f3e5f5" }}>
       <View style={styles.container}>
         <View style={styles.monedasBox}>
           <FontAwesome5 name="coins" size={24} color="#FFD700" />
@@ -131,8 +131,8 @@ const isTablet = width > 600;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: isTablet ? 40 : 20,
-    backgroundColor: "#fff",
+    padding: isTablet ? 10 : 20,
+    backgroundColor: "#f3e5f5",
   },
   monedasBox: {
     flexDirection: "row",

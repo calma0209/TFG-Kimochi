@@ -20,6 +20,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+import { StatusBar } from "react-native";
+
 const DashboardScreen = () => {
   const router = useRouter();
   const isTablet = useIsTablet();
@@ -45,7 +47,7 @@ const DashboardScreen = () => {
   useFocusEffect(
     React.useCallback(() => {
       const onBackPress = () => {
-        return true; // ← bloquea volver atrás
+        return true;
       };
       const backHandler = BackHandler.addEventListener(
         "hardwareBackPress",
@@ -56,8 +58,6 @@ const DashboardScreen = () => {
       };
     }, [])
   );
-
-  // //para que no vuelva atrás al deslizar (iOS)
 
   // useEffect(() => {
   //   navigation.setOptions({ gestureEnabled: false });
@@ -70,7 +70,8 @@ const DashboardScreen = () => {
 
   const mensaje = consejoAleatorio.texto;
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "black" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#f3e5f5" }}>
+      <StatusBar barStyle="dark-content" translucent={false} />
       <View style={styles.container}>
         <View style={styles.header}>
           <Text style={styles.title}>
@@ -135,7 +136,7 @@ const styles = StyleSheet.create({
     fontStyle: "italic",
     fontWeight: "500",
     color: "#4A148C",
-    backgroundColor: "#F3E5F5",
+    backgroundColor: "#f3e98f",
     padding: 15,
     borderRadius: 10,
     textAlign: "center",
@@ -164,7 +165,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 20,
-    backgroundColor: "#fff",
+    backgroundColor: "#f3e5f5",
   },
   header: {
     // marginBottom: 10,

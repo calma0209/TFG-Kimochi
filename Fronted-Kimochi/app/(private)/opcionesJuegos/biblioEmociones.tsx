@@ -15,8 +15,8 @@ import emocionesJSON from "@/assets/data/emociones.json";
 import emocionesMap from "@/constants/emocionesMap";
 
 const { width } = Dimensions.get("window");
-const CARD_WIDTH = width / 2.3;
 
+const CARD_WIDTH = width / 2.3;
 type Emocion = {
   nombre: string;
   imagen: string;
@@ -101,7 +101,7 @@ export default function BiblioEmociones() {
     </SafeAreaView>
   );
 }
-
+const isTablet = width > 600;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   cardContainer: {
-    width: CARD_WIDTH,
+    width: isTablet ? 480 : CARD_WIDTH,
     height: 220,
     margin: 10,
   },

@@ -14,9 +14,6 @@ import preguntasJSON from "@/assets/data/preguntasComoMeSiento.json";
 import imageMap from "@/constants/emocionesMap";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-/***************************
- * 🎨  PALETA DE COLORES  *
- ***************************/
 const COLORS = {
   purple: "#6a1b9a",
   yellow: "#FFB800",
@@ -51,9 +48,6 @@ const ComoMeSientoScreen = () => {
     }).start();
   };
 
-  /* -------------------------
-   * 🚀  INICIAR JUEGO
-   * ------------------------- */
   useEffect(() => {
     iniciarJuego();
   }, []);
@@ -84,7 +78,6 @@ const ComoMeSientoScreen = () => {
       setFeedback("");
       setMostrarBotonSiguiente(false);
     } else {
-      // 👇 Juego terminado → Dar recompensa
       const userRaw = await AsyncStorage.getItem("user");
       const user = JSON.parse(userRaw || "{}");
       const userId = user.id_usuario;
@@ -101,9 +94,6 @@ const ComoMeSientoScreen = () => {
     }
   };
 
-  /*********************************
-   * 🎉  ESTADOS INTERMEDIOS
-   *********************************/
   if (preguntas.length === 0) return null;
 
   if (juegoTerminado) {
@@ -185,17 +175,16 @@ const ComoMeSientoScreen = () => {
   );
 };
 
-/***************************
- * 💅  ESTILOS
- ***************************/
 const { width } = Dimensions.get("window");
-const isTablet = width > 700;
+const isTablet = width > 600;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: isTablet ? 40 : 24,
+    padding: isTablet ? 40 : 0,
     alignItems: "center",
+    marginTop: isTablet ? 50 : 50,
+    justifyContent: isTablet ? "center" : "flex-start",
   },
   centered: {
     flex: 1,
@@ -222,10 +211,11 @@ const styles = StyleSheet.create({
     marginBottom: 26,
     fontWeight: "bold",
     color: COLORS.purple,
+    marginTop: 10,
   },
   grid: {
-    flexDirection: "row",
-    flexWrap: "wrap",
+    flexDirection: isTablet ? "row" : "column",
+    flexWrap: isTablet ? "wrap" : "nowrap",
     justifyContent: "center",
     gap: 18,
   },

@@ -121,12 +121,12 @@ public ResponseEntity<Map<String, String>> forgotPassword(@RequestBody Map<Strin
     String email = body.get("email");
 
     try {
-        userS.forgotPassword(email);   // ① genera y envía el correo
+        userS.forgotPassword(email);   
         return ResponseEntity.ok(Map.of("message", "Correo enviado"));
-    } catch (IllegalArgumentException e) {      // ② correo NO registrado
-        // ✅ Para no dar pistas, respondemos igual que si todo fuera bien
+    } catch (IllegalArgumentException e) {      
+      
         return ResponseEntity.ok(Map.of("message", "Correo enviado"));
-    } catch (Exception e) {                     // ③ fallo al enviar e-mail, etc.
+    } catch (Exception e) {                     
         return ResponseEntity
                .status(HttpStatus.INTERNAL_SERVER_ERROR)
                .body(Map.of("message", "No se pudo enviar el correo"));

@@ -94,10 +94,10 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   buttonRow: {
-    flexDirection: "column", // De 'row' a 'column'
+    flexDirection: "column",
     gap: 12,
-    width: "100%", // Para que se alineen bien
-    alignItems: "center", // Centra los botones
+    width: "100%",
+    alignItems: "center",
   },
   signInButton: {
     backgroundColor: "#000",

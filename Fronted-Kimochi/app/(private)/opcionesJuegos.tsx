@@ -13,7 +13,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function OpcionesJuegos() {
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "black" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#f3e5f5" }}>
       <View style={styles.container}>
         <View style={styles.header}>
           <Text style={styles.title}>Juegos</Text>
@@ -67,7 +67,7 @@ const isTablet = width > 600;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "#f3e5f5",
   },
   header: {
     alignItems: "center",

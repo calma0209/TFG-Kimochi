@@ -17,6 +17,7 @@ import Modal from "react-native-modal";
 import { useRouter } from "expo-router";
 import { useFocusEffect } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 type Entrada = {
   id_registro: number;
@@ -48,8 +49,8 @@ const DiarioEmociones = () => {
   const [usuario, setUsuario] = useState<any>(null);
   const [editandoId, setEditandoId] = useState<number | null>(null);
   const router = useRouter();
+  const insets = useSafeAreaInsets();
 
-  // 🔄 Cargar usuario al montar el componente
   useEffect(() => {
     const obtenerUsuario = async () => {
       try {
@@ -66,7 +67,6 @@ const DiarioEmociones = () => {
     obtenerUsuario();
   }, []);
 
-  // ✅ Solo obtenemos entradas cuando el usuario esté cargado
   useEffect(() => {
     if (usuario) {
       obtenerEntradas(usuario.id_usuario);
@@ -102,7 +102,6 @@ const DiarioEmociones = () => {
     }
   };
 
-  // 🟢 CAMBIO: ahora recibe el ID como parámetro y solo se llama si el usuario está definido
   const obtenerEntradas = async (id: number) => {
     try {
       const res = await fetch(
@@ -147,7 +146,7 @@ const DiarioEmociones = () => {
 
     try {
       if (editandoId !== null) {
-        // UPDATE
+        // ACTUALIZAR
         await fetch(
           `${process.env.EXPO_PUBLIC_API_BASE}/api/diario/${editandoId}`,
           {
@@ -158,7 +157,6 @@ const DiarioEmociones = () => {
         );
         alert("Entrada actualizada");
       } else {
-        // CREATE
         await fetch(
           `${process.env.EXPO_PUBLIC_API_BASE}/api/diario/crear/${usuario.id_usuario}`,
           {
@@ -170,7 +168,6 @@ const DiarioEmociones = () => {
         alert("Entrada guardada");
       }
 
-      // limpiar y recargar
       setTexto("");
       setEmocionSeleccionada(null);
       setEditandoId(null);
@@ -188,148 +185,143 @@ const DiarioEmociones = () => {
   });
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "black" }}>
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={styles.container}>
-          <View style={styles.header}>
-            <Text style={styles.headerText}>{fechaActual}</Text>
-          </View>
-
-          <View style={styles.content}>
-            <Text style={styles.label}>
-              ¿Qué emoción representa hoy tu día?
-            </Text>
-            <ScrollView
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              style={{ marginVertical: 0 }}
-            >
-              {emociones.map((emocion) => (
-                <TouchableOpacity
-                  key={emocion.id_emocion}
-                  onPress={() => setEmocionSeleccionada(emocion.id_emocion)}
-                  style={[
-                    styles.emocionBox,
-                    emocionSeleccionada === emocion.id_emocion &&
-                      styles.emocionSeleccionada,
-                  ]}
-                >
-                  <Image
-                    source={{ uri: emocion.imagen_url }}
-                    style={styles.imagenEmocion}
-                    resizeMode="contain"
-                  />
-                </TouchableOpacity>
-              ))}
-            </ScrollView>
-
-            <Text style={styles.label}>¿Cómo te sientes hoy?</Text>
-            <TextInput
-              style={styles.textArea}
-              placeholder="Escribe tu entrada aquí..."
-              multiline
-              numberOfLines={8}
-              textAlignVertical="top"
-              value={texto}
-              onChangeText={setTexto}
-            />
-
-            <TouchableOpacity style={styles.button} onPress={handleGuardar}>
-              <Text style={styles.buttonText}>Guardar</Text>
-            </TouchableOpacity>
-
-            <View style={{ flex: 1 }}>
-              <SwipeListView
-                data={entradas}
-                keyExtractor={(item) => item.id_registro.toString()}
-                renderItem={({ item }) => (
-                  <View style={styles.rowFront}>
-                    <TouchableOpacity
-                      style={styles.fila}
-                      onPress={() => {
-                        setEntradaSeleccionada(item);
-                        setModalVisible(true);
-                      }}
-                    >
-                      <Image
-                        source={{ uri: item.emocion.imagen_url }}
-                        style={{ width: 25, height: 25, marginRight: 10 }}
-                      />
-                      <Text style={styles.columnaFecha}>
-                        {new Date(item.fecha_registro).toLocaleDateString(
-                          "es-ES"
-                        )}
-                      </Text>
-                      <Text numberOfLines={1} style={styles.columnaTexto}>
-                        {item.nota}
-                      </Text>
-                    </TouchableOpacity>
-                  </View>
-                )}
-                renderHiddenItem={({ item }) => (
-                  <View style={styles.rowBack}>
-                    <TouchableOpacity
-                      style={[
-                        styles.botonOculto,
-                        { backgroundColor: "#ff9800" },
-                      ]}
-                      onPress={() => {
-                        setTexto(item.nota);
-                        setEmocionSeleccionada(item.emocion.id_emocion);
-                        setEditandoId(item.id_registro);
-                      }}
-                    >
-                      <Text style={styles.textoBoton}>Editar</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                      style={[
-                        styles.botonOculto,
-                        { backgroundColor: "#f44336" },
-                      ]}
-                      onPress={() => eliminarEntrada(item.id_registro)}
-                    >
-                      <Text style={styles.textoBoton}>Eliminar</Text>
-                    </TouchableOpacity>
-                  </View>
-                )}
-                rightOpenValue={-160}
-                disableRightSwipe
-              />
-            </View>
-
-            <Modal
-              isVisible={modalVisible}
-              onBackdropPress={() => setModalVisible(false)}
-            >
-              <View
-                style={{
-                  backgroundColor: "white",
-                  padding: 20,
-                  borderRadius: 20,
-                }}
-              >
-                {entradaSeleccionada && (
-                  <>
-                    <Text style={{ fontSize: 18, fontWeight: "bold" }}>
-                      {new Date(
-                        entradaSeleccionada.fecha_registro
-                      ).toLocaleDateString("es-ES")}
-                    </Text>
-                    <Image
-                      source={{ uri: entradaSeleccionada.emocion.imagen_url }}
-                      style={{ width: 50, height: 50, marginVertical: 10 }}
-                    />
-                    <Text style={{ fontSize: 16 }}>
-                      {entradaSeleccionada.nota}
-                    </Text>
-                  </>
-                )}
-              </View>
-            </Modal>
-          </View>
+    // <SafeAreaView style={{ flex: 1, backgroundColor: "#FFB800" }}>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <Text style={styles.headerText}>{fechaActual}</Text>
         </View>
-      </TouchableWithoutFeedback>
-    </SafeAreaView>
+
+        <View style={styles.content}>
+          <Text style={styles.label}>¿Qué emoción representa hoy tu día?</Text>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{ paddingHorizontal: 5 }}
+            style={{ marginBottom: 4, paddingBottom: 15 }}
+          >
+            {emociones.map((emocion) => (
+              <TouchableOpacity
+                key={emocion.id_emocion}
+                onPress={() => setEmocionSeleccionada(emocion.id_emocion)}
+                style={[
+                  styles.emocionBox,
+                  emocionSeleccionada === emocion.id_emocion &&
+                    styles.emocionSeleccionada,
+                ]}
+              >
+                <Image
+                  source={{ uri: emocion.imagen_url }}
+                  style={styles.imagenEmocion}
+                  resizeMode="contain"
+                />
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+
+          <Text style={styles.label}>¿Cómo te sientes hoy?</Text>
+          <TextInput
+            style={styles.textArea}
+            // placeholder="Escribe tu entrada aquí..."
+            multiline
+            numberOfLines={8}
+            textAlignVertical="top"
+            value={texto}
+            onChangeText={setTexto}
+          />
+
+          <TouchableOpacity style={styles.button} onPress={handleGuardar}>
+            <Text style={styles.buttonText}>Guardar</Text>
+          </TouchableOpacity>
+
+          <View>
+            <SwipeListView
+              // contentContainerStyle={{ flexGrow: 1 }}
+              data={entradas}
+              keyExtractor={(item) => item.id_registro.toString()}
+              renderItem={({ item }) => (
+                <View style={styles.rowFront}>
+                  <TouchableOpacity
+                    style={styles.fila}
+                    onPress={() => {
+                      setEntradaSeleccionada(item);
+                      setModalVisible(true);
+                    }}
+                  >
+                    <Image
+                      source={{ uri: item.emocion.imagen_url }}
+                      style={{ width: 25, height: 25, marginRight: 10 }}
+                    />
+                    <Text style={styles.columnaFecha}>
+                      {new Date(item.fecha_registro).toLocaleDateString(
+                        "es-ES"
+                      )}
+                    </Text>
+                    <Text numberOfLines={1} style={styles.columnaTexto}>
+                      {item.nota}
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              )}
+              renderHiddenItem={({ item }) => (
+                <View style={styles.rowBack}>
+                  <TouchableOpacity
+                    style={[styles.botonOculto, { backgroundColor: "#ff9800" }]}
+                    onPress={() => {
+                      setTexto(item.nota);
+                      setEmocionSeleccionada(item.emocion.id_emocion);
+                      setEditandoId(item.id_registro);
+                    }}
+                  >
+                    <Text style={styles.textoBoton}>Editar</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={[styles.botonOculto, { backgroundColor: "#f44336" }]}
+                    onPress={() => eliminarEntrada(item.id_registro)}
+                  >
+                    <Text style={styles.textoBoton}>Eliminar</Text>
+                  </TouchableOpacity>
+                </View>
+              )}
+              rightOpenValue={-160}
+              disableRightSwipe
+            />
+          </View>
+
+          <Modal
+            isVisible={modalVisible}
+            onBackdropPress={() => setModalVisible(false)}
+          >
+            <View
+              style={{
+                backgroundColor: "white",
+                padding: 20,
+                borderRadius: 20,
+              }}
+            >
+              {entradaSeleccionada && (
+                <>
+                  <Text style={{ fontSize: 18, fontWeight: "bold" }}>
+                    {new Date(
+                      entradaSeleccionada.fecha_registro
+                    ).toLocaleDateString("es-ES")}
+                  </Text>
+                  <Image
+                    source={{ uri: entradaSeleccionada.emocion.imagen_url }}
+                    style={{ width: 50, height: 50, marginVertical: 10 }}
+                  />
+                  <Text style={{ fontSize: 16 }}>
+                    {entradaSeleccionada.nota}
+                  </Text>
+                </>
+              )}
+            </View>
+          </Modal>
+        </View>
+      </View>
+    </TouchableWithoutFeedback>
+
+    // </SafeAreaView>
   );
 };
 
@@ -337,7 +329,7 @@ export default DiarioEmociones;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#f3e5f5",
   },
   header: {
     backgroundColor: "#FFB800",
@@ -346,20 +338,26 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 30,
     borderBottomRightRadius: 30,
     alignItems: "center",
+
+    // marginTop: 20,
   },
   headerText: {
     color: "#000",
     fontSize: 18,
     fontWeight: "bold",
     textTransform: "capitalize",
+    marginTop: 15,
   },
   content: {
-    flex: 1,
-    padding: 20,
+    // flex: 1,
+    paddingHorizontal: 20,
+    paddingTop: 20,
+    paddingBottom: 10,
   },
   label: {
     fontSize: 18,
-    marginBottom: 10,
+    marginBottom: 15,
+    marginTop: 0,
     color: "#333",
   },
   textArea: {
@@ -377,6 +375,7 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     borderRadius: 20,
     alignItems: "center",
+    marginBottom: 15,
   },
   buttonText: {
     color: "#fff",
@@ -390,6 +389,7 @@ const styles = StyleSheet.create({
     borderColor: "#ccc",
     paddingVertical: 10,
     paddingHorizontal: 10,
+    borderRadius: 10,
   },
   columnaFecha: {
     flex: 1,
@@ -424,6 +424,7 @@ const styles = StyleSheet.create({
   },
   rowFront: {
     backgroundColor: "#fff",
+    borderRadius: 10,
   },
   rowBack: {
     alignItems: "center",

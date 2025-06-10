@@ -8,6 +8,7 @@ import {
   BackHandler,
   Modal,
   Switch,
+  StatusBar,
 } from "react-native";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -32,6 +33,16 @@ const PerfilScreen = () => {
   });
 
   // const navigation = useNavigation();
+
+  useFocusEffect(
+    React.useCallback(() => {
+      StatusBar.setBarStyle("light-content");
+
+      return () => {
+        // Puedes resetear aquí si lo necesitas
+      };
+    }, [])
+  );
 
   //para que la pantalla no vuelva atrás al presionar el botón de atrás (Android)
   useFocusEffect(
@@ -111,14 +122,13 @@ const PerfilScreen = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      {/* Header con degradado */}
+    <View style={styles.container}>
+      {/* <StatusBar barStyle="light-content" backgroundColor="#f3e5f5" /> */}
       <View style={styles.header}>
-        <Ionicons name="person-circle" size={80} color="white" />
+        <Ionicons name="person-circle" size={90} color="white" />
         <Text style={styles.username}>{usuario.nombre}</Text>
       </View>
 
-      {/* Info del perfil */}
       <View style={styles.infoContainer}>
         <View style={styles.infoRow}>
           <Ionicons name="person-outline" size={24} color="#6a1b9a" />
@@ -130,7 +140,6 @@ const PerfilScreen = () => {
         </View>
       </View>
 
-      {/* Botón de cerrar sesión */}
       <TouchableOpacity
         style={styles.logoutButton}
         onPress={handleCerrarSesion}
@@ -138,7 +147,6 @@ const PerfilScreen = () => {
         <Text style={styles.logoutText}>Cerrar sesión</Text>
       </TouchableOpacity>
 
-      {/* ---------- NUEVO BOTÓN ENVIAR INFORME ---------- */}
       <TouchableOpacity
         style={[
           styles.logoutButton,
@@ -149,7 +157,6 @@ const PerfilScreen = () => {
         <Text style={styles.logoutText}>Enviar informe</Text>
       </TouchableOpacity>
 
-      {/* ---------- MODAL SELECCIÓN DE JUEGOS ---------- */}
       <Modal visible={modalVisible} transparent animationType="slide">
         <View style={styles.modalBg}>
           <View style={styles.modalCard}>
@@ -178,7 +185,7 @@ const PerfilScreen = () => {
           </View>
         </View>
       </Modal>
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -187,7 +194,7 @@ export default PerfilScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#f3e5f5",
   },
   header: {
     backgroundColor: "#6a1b9a",
@@ -199,7 +206,7 @@ const styles = StyleSheet.create({
   username: {
     fontSize: 22,
     color: "#fff",
-    marginTop: 10,
+    marginTop: 20,
     fontWeight: "bold",
   },
   infoContainer: {
