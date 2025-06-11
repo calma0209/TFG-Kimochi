@@ -43,7 +43,7 @@ export default function OpcionesJuegos() {
             }
           />
           <Card
-            imagen={require("../../assets/images/casos/caso2.png")}
+            imagen={require("../../assets/images/empatia/empatia9.png")}
             title="Juego Empatía"
             description="Juego para mejorar tu empatía con el entorno"
             onPress={() => router.push("/(private)/opcionesJuegos/empatia")}
